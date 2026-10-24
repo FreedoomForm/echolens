@@ -32,6 +32,9 @@ import androidx.lifecycle.LifecycleService
 import com.echolens.app.MainActivity
 import com.echolens.app.R
 import com.echolens.app.audio.AudioEngine
+import com.echolens.app.audio.neural.NeuralModels
+import com.echolens.app.audio.neural.NeuralTextureProvisioner
+import com.echolens.app.audio.neural.TextureCache
 import com.echolens.app.core.HeadPose
 import com.echolens.app.core.RuText
 import com.echolens.app.core.TrackSnapshot
@@ -39,6 +42,7 @@ import com.echolens.app.head.HeadTracker
 import com.echolens.app.util.Angles
 import com.echolens.app.vision.DepthEstimator
 import com.echolens.app.vision.FrameConverter
+import com.echolens.app.vision.MaterialClassifier
 import com.echolens.app.vision.SceneTracker
 import com.echolens.app.vision.YoloDetector
 import java.util.Locale
@@ -66,6 +70,7 @@ class AudioSceneService : LifecycleService() {
         const val KEY_VOLUME = "master_volume"
         const val KEY_CONE_DEG = "cone_deg"
         const val KEY_STREAMS = "max_streams"
+        const val KEY_NEURAL = "neural_textures"
 
         private const val CHANNEL_ID = "session"
         private const val NOTIFICATION_ID = 42
@@ -86,7 +91,10 @@ class AudioSceneService : LifecycleService() {
         val frames: Long,
         val camError: String?,
         val depthMs: Int,
-        val depthOn: Boolean
+        val depthOn: Boolean,
+        val neuralStatus: String,
+        val neuralAvailable: Boolean,
+        val materialClfOn: Boolean
     )
 
     inner class LocalBinder : Binder() {
@@ -98,8 +106,11 @@ class AudioSceneService : LifecycleService() {
     private var headTracker: HeadTracker? = null
     private var detector: YoloDetector? = null
     private var depthEstimator: DepthEstimator? = null
+    private var materialClassifier: MaterialClassifier? = null
     private var sceneTracker: SceneTracker? = null
     private var audioEngine: AudioEngine? = null
+    private var textureCache: TextureCache? = null
+    private var provisioner: NeuralTextureProvisioner? = null
     private var cameraProvider: ProcessCameraProvider? = null
     private var cameraExecutor: ExecutorService? = null
     private var frameConverter: FrameConverter? = null
@@ -194,12 +205,28 @@ class AudioSceneService : LifecycleService() {
         sceneTracker = SceneTracker()
         frameConverter = FrameConverter()
 
+        // Neural texture pipeline: cache + background on-device generation.
+        val cache = TextureCache(this)
+        textureCache = cache
+        val prov = NeuralTextureProvisioner.get(this, cache)
+        provisioner = prov
+
+        // Optional visual material classifier (MINC-23).
+        materialClassifier = try {
+            MaterialClassifier.tryCreate(this)
+        } catch (e: Exception) {
+            Log.w(TAG, "Material classifier unavailable", e)
+            null
+        }
+
         val engine = AudioEngine(
             headProvider = { HeadPose(headTracker?.yaw ?: 0f, headTracker?.pitch ?: 0f) },
             tracksProvider = {
                 sceneTracker?.snapshot(SystemClock.elapsedRealtime()) ?: emptyList()
             },
-            onObjectActivated = { ruName -> onObjectActivated(ruName) }
+            onObjectActivated = { ruName -> onObjectActivated(ruName) },
+            textureCache = cache,
+            provisioner = prov
         )
         audioEngine = engine
         applySettings()
@@ -218,7 +245,9 @@ class AudioSceneService : LifecycleService() {
             maxSources = prefs.getInt(KEY_STREAMS, DEFAULT_STREAMS).coerceIn(2, 6)
             invertAzimuth = prefs.getBoolean(KEY_INVERT, false)
             speakerMode = prefs.getBoolean(KEY_SPEAKER, true)
+            neuralTextures = prefs.getBoolean(KEY_NEURAL, true)
         }
+        provisioner?.enabled = prefs.getBoolean(KEY_NEURAL, true)
     }
 
     private fun startCamera() {
@@ -285,6 +314,16 @@ class AudioSceneService : LifecycleService() {
                     val d = detections[idx]
                     val rd = depth.sampleAt(d.cxNorm, d.cyNorm)
                     if (rd != null) detections[idx] = d.withDepth(rd)
+                }
+            }
+
+            // Optional material refinement on the top detection (~2 Hz).
+            val clf = materialClassifier
+            if (clf != null && frameCount % 15 == 0L && detections.isNotEmpty()) {
+                val d = detections[0]
+                val res = clf.classify(bitmap, d.cxNorm, d.cyNorm, d.hFrac)
+                if (res != null) {
+                    detections[0] = d.withSpec(clf.refine(d.spec, res))
                 }
             }
 
@@ -369,6 +408,7 @@ class AudioSceneService : LifecycleService() {
     }
 
     fun uiState(): UiState {
+        val prov = provisioner
         return UiState(
             running = sessionRunning,
             headYawDeg = Angles.deg(headTracker?.yaw ?: 0f),
@@ -379,7 +419,10 @@ class AudioSceneService : LifecycleService() {
             frames = frameCount,
             camError = camError,
             depthMs = depthEstimator?.lastMs?.toInt() ?: 0,
-            depthOn = depthEstimator != null
+            depthOn = depthEstimator != null,
+            neuralStatus = prov?.status ?: "",
+            neuralAvailable = NeuralModels.status(this).available,
+            materialClfOn = materialClassifier != null
         )
     }
 
@@ -393,15 +436,20 @@ class AudioSceneService : LifecycleService() {
         cameraProvider = null
         audioEngine?.stopEngine()
         audioEngine = null
+        provisioner?.clearPending()
+        provisioner?.releaseEngine()
         headTracker?.stop()
         headTracker = null
         detector?.close()
         detector = null
         depthEstimator?.close()
         depthEstimator = null
+        materialClassifier?.close()
+        materialClassifier = null
         sceneTracker?.clear()
         sceneTracker = null
         frameConverter = null
+        textureCache = null
         tts?.stop()
         tts?.shutdown()
         tts = null

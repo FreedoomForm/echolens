@@ -14,8 +14,8 @@ android {
         applicationId = "com.echolens.app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 2
-        versionName = "1.1.0"
+        versionCode = 3
+        versionName = "1.2.0"
 
         ndk {
             abiFilters += listOf("arm64-v8a", "x86_64")
@@ -74,6 +74,9 @@ dependencies {
     // Foreground service with lifecycle
     implementation("androidx.lifecycle:lifecycle-service:2.8.4")
 
-    // ONNX Runtime — YOLO26-N detector + Depth Anything V2 (both offline, on-device)
+    // ONNX Runtime — YOLO26-N detector + Depth Anything V2 + optional RAVE backends
     implementation("com.microsoft.onnxruntime:onnxruntime-android:1.19.2")
+
+    // LiteRT (TensorFlow Lite) — Stable Audio Open Small on-device texture generation
+    implementation("org.tensorflow:tensorflow-lite:2.14.0")
 }

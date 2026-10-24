@@ -18,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.echolens.app.core.RuText
+import com.echolens.app.audio.neural.NeuralModels
 import com.echolens.app.service.AudioSceneService
 import com.echolens.app.util.Angles
 import com.google.android.material.button.MaterialButton
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var swScreen: MaterialSwitch
     private lateinit var swInvert: MaterialSwitch
     private lateinit var swSpeaker: MaterialSwitch
+    private lateinit var swNeural: MaterialSwitch
+    private lateinit var tvNeuralStatus: TextView
     private lateinit var tvDiag: TextView
     private lateinit var tvVolumeValue: TextView
     private lateinit var sbVolume: SeekBar
@@ -95,6 +98,8 @@ class MainActivity : AppCompatActivity() {
         swScreen = findViewById(R.id.sw_screen)
         swInvert = findViewById(R.id.sw_invert)
         swSpeaker = findViewById(R.id.sw_speaker)
+        swNeural = findViewById(R.id.sw_neural)
+        tvNeuralStatus = findViewById(R.id.tv_neural_status)
         tvDiag = findViewById(R.id.tv_diag)
         tvVolumeValue = findViewById(R.id.tv_volume_value)
         sbVolume = findViewById(R.id.sb_volume)
@@ -199,6 +204,11 @@ class MainActivity : AppCompatActivity() {
             prefs.edit().putBoolean(AudioSceneService.KEY_SPEAKER, checked).apply()
             persistAndApply()
         }
+        swNeural.setOnCheckedChangeListener { _, checked ->
+            prefs.edit().putBoolean(AudioSceneService.KEY_NEURAL, checked).apply()
+            persistAndApply()
+            refreshNeuralStatus()
+        }
 
         sbVolume.max = 100
         sbVolume.setOnSeekBarChangeListener(object : SimpleSeekBar() {
@@ -249,6 +259,8 @@ class MainActivity : AppCompatActivity() {
         swScreen.isChecked = prefs.getBoolean(AudioSceneService.KEY_SCREEN, true)
         swInvert.isChecked = prefs.getBoolean(AudioSceneService.KEY_INVERT, false)
         swSpeaker.isChecked = prefs.getBoolean(AudioSceneService.KEY_SPEAKER, true)
+        swNeural.isChecked = prefs.getBoolean(AudioSceneService.KEY_NEURAL, true)
+        refreshNeuralStatus()
         val volume = prefs.getInt(AudioSceneService.KEY_VOLUME, AudioSceneService.DEFAULT_VOLUME)
         sbVolume.progress = volume
         tvVolumeValue.text = getString(R.string.volume_label, volume)
@@ -261,6 +273,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     // ----------------------------------------------------------------- UI
+
+    private fun refreshNeuralStatus() {
+        val st = NeuralModels.status(this)
+        tvNeuralStatus.text = when {
+            !st.deviceCapable -> getString(
+                R.string.neural_weak_device,
+                (st.totalRamBytes / (1024L * 1024 * 1024)).toInt()
+            )
+            st.complete -> getString(R.string.neural_ready)
+            else -> getString(R.string.neural_no_models, st.modelsDir?.absolutePath ?: "")
+        }
+    }
 
     private fun applyKeepScreenOn(enabled: Boolean) {
         if (enabled) {
@@ -288,6 +312,12 @@ class MainActivity : AppCompatActivity() {
             tvDiag.text = getString(
                 R.string.diag_fmt, camState, state.frames, Math.round(state.detectorMs), depthStr
             )
+
+            if (state.neuralStatus.isNotEmpty()) {
+                tvNeuralStatus.text = getString(R.string.neural_gen, state.neuralStatus)
+            } else {
+                refreshNeuralStatus()
+            }
 
             if (state.tracks.isEmpty()) {
                 tvTracks.text = getString(R.string.no_tracks)

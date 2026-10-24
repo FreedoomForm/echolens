@@ -24,6 +24,11 @@
     <string name="screen_toggle">Keep screen on</string>
     <string name="invert_toggle">Invert left/right (mount mirrored)</string>
     <string name="speaker_toggle">Play through phone speaker (no headphones)</string>
+    <string name="neural_toggle">Neural material textures (on-device generation)</string>
+    <string name="neural_ready">Neural textures: models found — new materials will be generated in the background (~20–40 s once per material)</string>
+    <string name="neural_no_models">Neural textures: model files not found. Procedural sounds stay active. Put conditioners_float32.tflite, dit_model.tflite, autoencoder_model.tflite into %1$s</string>
+    <string name="neural_weak_device">Neural textures: device has not enough RAM (%1$d GB). Procedural sounds stay active</string>
+    <string name="neural_gen">Neural texture: %1$s</string>
     <string name="diag_fmt">Camera: %1$s · Frames: %2$d · Detection: %3$d ms · Depth: %4$s</string>
     <string name="volume_label">Volume: %1$d%%</string>
     <string name="cone_label">Attention cone width: %1$d°</string>

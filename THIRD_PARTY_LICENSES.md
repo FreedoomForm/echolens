@@ -25,8 +25,31 @@
 ### AndroidX / Jetpack (CameraX, Lifecycle, AppCompat, Material)
 - License: **Apache-2.0**
 
-### TensorFlow Lite (used in v1.0, removed in v1.1)
+### TensorFlow Lite / LiteRT (v1.0 detector; v1.2+ neural textures)
+- Maven: org.tensorflow:tensorflow-lite
 - License: **Apache-2.0**
+
+## On-device generative audio (v1.2+, optional, provisioned outside the APK)
+
+### Stable Audio Open Small (neural texture generation)
+- Weights: https://huggingface.co/stabilityai/stable-audio-open-small
+- License: **Stability AI Community License** — free for commercial and
+  non-commercial use for organizations under $1M annual revenue; generated
+  outputs belong to the user. The model files are NOT bundled: the user
+  provisions them into the app models dir (see tools/litert_models.md).
+- Reference LiteRT pipeline: Arm ML-examples kleidiai-examples/audiogen
+  (export_sao.py, audiogen.cpp) — **Apache-2.0**, Copyright Arm Limited.
+  The Kotlin port in app/.../audio/neural/ follows that implementation.
+
+### RAVE (optional per-material backends, rave_*.onnx)
+- Source: https://github.com/acids-ircam/RAVE (IRCAM / ACIDS)
+- License: **MIT** (code). Trained model checkpoints carry their own terms —
+  check the IRCAM Forum model card before shipping a specific checkpoint.
+
+### MINC-2500 dataset (optional material classifier)
+- Source: http://opensurfaces.cs.cornell.edu/publications/minc/
+- License: research/academic terms of the MINC dataset; the classifier model
+  file is user-provisioned, not bundled.
 
 ## v1.0 detector (history)
 ### ssd_mobilenet_v1 quantized (COCO)

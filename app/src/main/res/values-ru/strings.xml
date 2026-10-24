@@ -24,6 +24,11 @@
     <string name="screen_toggle">Не выключать экран</string>
     <string name="invert_toggle">Инвертировать лево/право (перевёрнутое крепление)</string>
     <string name="speaker_toggle">Звук через динамик телефона (без наушников)</string>
+    <string name="neural_toggle">Нейро-текстуры материалов (генерация на телефоне)</string>
+    <string name="neural_ready">Нейро-текстуры: модели найдены — новые материалы будут генерироваться в фоне (~20–40 с один раз на материал)</string>
+    <string name="neural_no_models">Нейро-текстуры: файлы моделей не найдены. Процедурные звуки продолжают работать. Положите conditioners_float32.tflite, dit_model.tflite, autoencoder_model.tflite в %1$s</string>
+    <string name="neural_weak_device">Нейро-текстуры: недостаточно оперативной памяти (%1$d ГБ). Процедурные звуки продолжают работать</string>
+    <string name="neural_gen">Нейро-текстура: %1$s</string>
     <string name="diag_fmt">Камера: %1$s · Кадры: %2$d · Детекция: %3$d мс · Глубина: %4$s</string>
     <string name="volume_label">Громкость: %1$d%%</string>
     <string name="cone_label">Ширина конуса внимания: %1$d°</string>

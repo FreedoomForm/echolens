@@ -40,6 +40,10 @@ class YoloDetector(
     ) {
         fun withDepth(rd: Float?): Detection =
             if (rd == null) this else Detection(label, ruName, spec, score, cxNorm, cyNorm, hFrac, rd)
+
+        /** Material refinement (e.g. from the optional MINC material classifier). */
+        fun withSpec(newSpec: MaterialSpec): Detection =
+            Detection(label, newSpec.ruName, newSpec, score, cxNorm, cyNorm, hFrac, relDepth)
     }
 
     private val env: OrtEnvironment = OrtEnvironment.getEnvironment()

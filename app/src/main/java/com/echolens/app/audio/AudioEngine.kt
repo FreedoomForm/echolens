@@ -4,10 +4,15 @@ import android.media.AudioAttributes
 import android.media.AudioFormat
 import android.media.AudioTrack
 import android.os.SystemClock
+import com.echolens.app.audio.neural.MaterialPrompts
+import com.echolens.app.audio.neural.NeuralTextureProvisioner
+import com.echolens.app.audio.neural.TextureCache
 import com.echolens.app.core.HeadPose
+import com.echolens.app.core.Material
 import com.echolens.app.core.MaterialSpec
 import com.echolens.app.core.TrackSnapshot
 import com.echolens.app.util.Angles
+import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.exp
@@ -37,8 +42,10 @@ class AudioEngine(
     private val blockFrames: Int = 960, // 20 ms @ 48 kHz
     private val headProvider: () -> HeadPose,
     private val tracksProvider: () -> List<TrackSnapshot>,
-    private val onObjectActivated: ((ruName: String) -> Unit)? = null
-) : Thread("EchoLensAudio") {
+    private val onObjectActivated: ((ruName: String) -> Unit)? = null,
+    private val textureCache: TextureCache? = null,
+    private val provisioner: NeuralTextureProvisioner? = null
+) : Thread("EchoLensAudio"), NeuralTextureProvisioner.Listener {
 
     class Settings {
         @Volatile var masterVolume = 0.85f
@@ -48,6 +55,8 @@ class AudioEngine(
         @Volatile var invertAzimuth = false
         /** True = phone speaker playback (brighter textures, deeper head shadow, gentler limiter). */
         @Volatile var speakerMode = true
+        /** Neural textures: crossfade procedural -> on-device generated loops. */
+        @Volatile var neuralTextures = true
     }
 
     val settings = Settings()
@@ -71,6 +80,15 @@ class AudioEngine(
         var silencingBlocks = 0
         var testSource = false
 
+        // Neural texture loop state (crossfaded over the procedural generator)
+        var material: Material? = null
+        var variant = 0
+        var loopSamples: FloatArray? = null
+        var loopPos = 0f
+        var loopBlend = 0f
+        var loopLp = 0f
+        var loopGainSmooth = 0f
+
         // Spatial state (updated per block)
         var panL = 0.707f
         var panR = 0.707f
@@ -93,6 +111,8 @@ class AudioEngine(
     private val mixR = FloatArray(blockFrames)
     private val out = FloatArray(blockFrames * 2)
     private val announcedAt = HashMap<Long, Long>()
+    private val tmpDry = FloatArray(blockFrames)
+    private val pendingSwaps = ConcurrentLinkedQueue<Pair<Material, Int>>()
 
     // Test tone state (sound check: a ping circles the head)
     private var testPhase = 0f
@@ -116,6 +136,15 @@ class AudioEngine(
         testModeUntilMs = SystemClock.elapsedRealtime() + seconds * 1000L
         testPingTimer = 0f
         testPhase = 0f
+    }
+
+    init {
+        provisioner?.listener = this
+    }
+
+    /** Neural worker thread -> audio thread hand-off. */
+    override fun onTextureReady(material: Material, variant: Int) {
+        pendingSwaps.add(material to variant)
     }
 
     override fun run() {
@@ -161,6 +190,8 @@ class AudioEngine(
         java.util.Arrays.fill(mixR, 0f)
         val pose = headProvider()
         val nowMs = SystemClock.elapsedRealtime()
+
+        drainPendingSwaps()
 
         if (nowMs < testModeUntilMs) {
             renderTestSource(pose)
@@ -216,11 +247,7 @@ class AudioEngine(
         for (s in slots) {
             if (s.testSource) {
                 s.testSource = false
-                s.trackId = -1L
-                s.generator = null
-                s.currentGain = 0f
-                s.targetGain = 0f
-                s.silencingBlocks = 0
+                releaseSlot(s)
             }
         }
 
@@ -268,6 +295,7 @@ class AudioEngine(
             s.targetGain = c.gain
             s.currentGain = 0f
             s.silencingBlocks = 0
+            attachNeuralLoop(s, c.t)
             maybeAnnounce(c.t.id, c.t.ruName, nowMs, c.gain)
         }
 
@@ -275,10 +303,92 @@ class AudioEngine(
         for (s in slots) {
             s.currentGain += (s.targetGain - s.currentGain) * 0.25f
             if (s.trackId != -1L && s.targetGain == 0f && s.silencingBlocks > 8 && s.currentGain < 0.01f) {
-                s.trackId = -1L
-                s.generator = null
+                releaseSlot(s)
             }
         }
+    }
+
+    private fun releaseSlot(s: Slot) {
+        s.trackId = -1L
+        s.generator = null
+        s.loopSamples = null
+        s.loopPos = 0f
+        s.loopBlend = 0f
+        s.loopLp = 0f
+        s.loopGainSmooth = 0f
+        s.material = null
+        s.variant = 0
+    }
+
+    // ------------------------------------------------------------- neural
+
+    /** Non-blocking: picks a cached loop and/or asks the provisioner to make one. */
+    private fun attachNeuralLoop(s: Slot, t: TrackSnapshot) {
+        val material = t.spec.material
+        s.material = material
+        val variants = MaterialPrompts.variantCount(material.name)
+        s.variant = (((t.id % variants.toLong()) + variants.toLong()) % variants.toLong()).toInt()
+        if (!settings.neuralTextures || textureCache == null) return
+        val entry = textureCache.find(material, s.variant)
+        if (entry?.samples != null) {
+            s.loopSamples = entry.samples
+            s.loopPos = 0f
+            s.loopBlend = 0f
+            s.loopLp = 0f
+            s.loopGainSmooth = 0f
+        } else {
+            provisioner?.request(material, s.variant, t.id * 6364136223846793005L)
+        }
+    }
+
+    private fun drainPendingSwaps() {
+        if (pendingSwaps.isEmpty()) return
+        val cache = textureCache ?: return
+        while (true) {
+            val p = pendingSwaps.poll() ?: break
+            val (material, variant) = p
+            val entry = cache.find(material, variant) ?: continue
+            val samples = entry.samples ?: continue
+            for (s in slots) {
+                if (s.spec?.material == material && s.variant == variant &&
+                    s.trackId != -1L && !s.testSource && s.loopSamples == null
+                ) {
+                    s.loopSamples = samples
+                    s.loopPos = 0f
+                    s.loopBlend = 0f
+                    s.loopLp = 0f
+                    s.loopGainSmooth = 0f
+                }
+            }
+        }
+    }
+
+    /** Renders the neural loop into [dest] with distance low-pass + dezippered gain. */
+    private fun renderLoopInto(dest: FloatArray, s: Slot, distanceM: Float, gain: Float) {
+        val samples = s.loopSamples ?: return
+        val n = samples.size
+        if (n < 2) return
+        val invSr = 1f / sampleRate
+        val fc = 12000f / (1f + distanceM * distanceM * 0.16f)
+        val a = (1f - exp(-TWO_PI * fc * invSr)).coerceIn(0.001f, 1f)
+        var lp = s.loopLp
+        var g = s.loopGainSmooth
+        var pos = s.loopPos
+        for (i in 0 until blockFrames) {
+            val i0 = pos.toInt()
+            val f = pos - i0
+            val j0 = i0 % n
+            val j1 = (i0 + 1) % n
+            val v = samples[j0] + (samples[j1] - samples[j0]) * f
+            pos += 1f
+            if (pos >= n) pos -= n
+            lp += a * (v - lp)
+            g += 0.0045f * (gain - g)
+            dest[i] = lp * g * 0.9f
+        }
+        s.loopPos = pos
+        s.loopLp = lp
+        s.loopGainSmooth = g
     }
 
     private fun maybeAnnounce(id: Long, ruName: String, nowMs: Long, gain: Float) {
@@ -300,9 +410,28 @@ class AudioEngine(
         if (s.testSource) {
             // dry buffer already filled by renderTestSource
         } else {
-            val gen = s.generator ?: return
             val distGain = (spec.refDistanceM / s.distance).pow(1.15f).coerceAtMost(1.7f)
-            gen.process(s.dry, blockFrames, s.distance, s.targetGain * distGain)
+            val target = s.targetGain * distGain
+            val loopReady = s.loopSamples != null && settings.neuralTextures
+            if (loopReady) {
+                // Crossfade procedural -> neural loop (~1 s), then free the DSP.
+                if (s.loopBlend < 1f) s.loopBlend = (s.loopBlend + 0.02f).coerceAtMost(1f)
+                val gen = s.generator
+                if (gen != null && s.loopBlend < 1f) {
+                    gen.process(s.dry, blockFrames, s.distance, target)
+                    renderLoopInto(tmpDry, s, s.distance, target)
+                    val b = s.loopBlend
+                    for (i in 0 until blockFrames) {
+                        s.dry[i] = s.dry[i] * (1f - b) + tmpDry[i] * b
+                    }
+                } else {
+                    s.generator = null
+                    renderLoopInto(s.dry, s, s.distance, target)
+                }
+            } else {
+                val gen = s.generator ?: return
+                gen.process(s.dry, blockFrames, s.distance, target)
+            }
         }
 
         // Constant-power panning.
@@ -391,8 +520,7 @@ class AudioEngine(
         }
         for (s in slots) {
             if (!s.testSource && s.trackId != -1L && s.currentGain < 0.02f) {
-                s.trackId = -1L
-                s.generator = null
+                releaseSlot(s)
             }
         }
 

@@ -139,6 +139,22 @@
             android:text="@string/speaker_toggle"
             android:textSize="16sp" />
 
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/sw_neural"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:text="@string/neural_toggle"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_neural_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/text_dim"
+            android:textSize="13sp" />
+
         <TextView
             android:id="@+id/tv_diag"
             android:layout_width="match_parent"
