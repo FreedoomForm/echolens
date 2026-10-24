@@ -4,6 +4,7 @@ import com.echolens.app.core.MaterialSpec
 import com.echolens.app.core.TrackSnapshot
 import com.echolens.app.util.Angles
 import kotlin.math.abs
+import kotlin.math.max
 import kotlin.math.tan
 
 /**
@@ -14,6 +15,11 @@ import kotlin.math.tan
  * then rotated by the current head yaw into a session-fixed world frame.
  * Objects keep their world position when the head turns — that is what
  * makes the sounds stay in place and the scene feel "external".
+ *
+ * Distance is fused from two sources:
+ *  - bbox-size prior (object class height vs box height)
+ *  - Depth Anything V2 relative depth (higher = closer), calibrated
+ *    against the bbox prior by a global scale factor.
  */
 class SceneTracker(
     private val memoryMs: Long = 6000L
@@ -26,6 +32,9 @@ class SceneTracker(
     private val matchAzRad = 0.35f      // ~20°
     private val matchElevRad = 0.5f     // ~29°
     private val maxTracks = 24
+
+    // Global depth calibration: distance ≈ depthScale / relativeDepth.
+    private var depthScale = 0f
 
     private class Track(
         val id: Long,
@@ -44,7 +53,7 @@ class SceneTracker(
 
     @Synchronized
     fun onDetections(
-        detections: List<DetectorEngine.Detection>,
+        detections: List<YoloDetector.Detection>,
         headYaw: Float,
         headPitch: Float,
         nowMs: Long
@@ -55,8 +64,19 @@ class SceneTracker(
             val elevCam = (0.5f - d.cyNorm) * vFovPortrait
             val azWorld = Angles.normalize(headYaw + azCam)
             val elevWorld = Angles.clamp(headPitch + elevCam, -1.25f, 1.25f)
-            // Monocular distance guess from the object's typical height.
-            val distGuess = (d.spec.realHeightM / (2f * tanHalfV * d.hFrac)).coerceIn(0.25f, 12f)
+            // Prior: monocular distance guess from the object's typical height.
+            val bboxDist = (d.spec.realHeightM / (2f * tanHalfV * d.hFrac)).coerceIn(0.25f, 15f)
+
+            // Fuse with relative depth when available.
+            val dist: Float = if (d.relDepth != null && d.relDepth > 1e-3f) {
+                val product = bboxDist * d.relDepth
+                depthScale = if (depthScale <= 0f) product else depthScale + 0.12f * (product - depthScale)
+                val depthDist = (depthScale / max(d.relDepth, 1e-3f)).coerceIn(0.25f, 15f)
+                // Trust depth more once the scale has settled.
+                0.35f * bboxDist + 0.65f * depthDist
+            } else {
+                bboxDist
+            }
 
             var best: Track? = null
             for (t in tracks) {
@@ -72,12 +92,12 @@ class SceneTracker(
                 // Exponential smoothing keeps the sound anchored and stable.
                 best.azWorld = Angles.normalize(best.azWorld + 0.35f * Angles.normalize(azWorld - best.azWorld))
                 best.elevWorld += 0.35f * (elevWorld - best.elevWorld)
-                best.distance += 0.25f * (distGuess - best.distance)
+                best.distance += 0.25f * (dist - best.distance)
                 best.lastSeenMs = nowMs
                 best.confidence = d.score
                 used.add(best.id)
             } else {
-                val t = Track(nextId++, d.label, d.ruName, d.spec, azWorld, elevWorld, distGuess, nowMs, d.score)
+                val t = Track(nextId++, d.label, d.ruName, d.spec, azWorld, elevWorld, dist, nowMs, d.score)
                 tracks.add(t)
                 used.add(t.id)
                 if (tracks.size > maxTracks) {

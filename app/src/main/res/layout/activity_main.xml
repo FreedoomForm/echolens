@@ -131,6 +131,22 @@
             android:text="@string/invert_toggle"
             android:textSize="16sp" />
 
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/sw_speaker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:text="@string/speaker_toggle"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_diag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/text_dim"
+            android:textSize="13sp" />
+
         <TextView
             android:id="@+id/tv_volume_value"
             android:layout_width="wrap_content"

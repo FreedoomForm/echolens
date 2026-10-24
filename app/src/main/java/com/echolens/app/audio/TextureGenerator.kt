@@ -22,13 +22,29 @@ import kotlin.math.sin
 class TextureGenerator(
     private val spec: MaterialSpec,
     private val sampleRate: Int,
-    seed: Long
+    seed: Long,
+    /**
+     * Phone speakers roll off below ~350-400 Hz, so in speaker mode all
+     * textures are shifted into the 200 Hz+ range and their "body" is
+     * carried by harmonics the speaker can actually reproduce.
+     */
+    speakerMode: Boolean = true
 ) {
     private val invSr = 1f / sampleRate
     private val rng = Random(seed)
 
     /** Time until the next strike/burst event, in samples. */
     private var timeToEvent = (0.25f + rng.nextFloat() * 0.6f) * sampleRate
+
+    // Frequency/tonal adaptation
+    private val fMul: Float
+    private val bedCoefEngine: Float
+    private val bedCoefPerson: Float
+    private val bedCoefWater: Float
+    private val bedCoefFabric: Float
+    private val bedCoefPlant: Float
+    private val bedCoefFood: Float
+    private val neutralFreq: Float
 
     // Continuous "bed" state
     private var phase = 0f
@@ -88,9 +104,28 @@ class TextureGenerator(
             Material.NEUTRAL -> 0.30f
         }
         f0 = when (spec.material) {
-            Material.ENGINE -> 44f + rng.nextFloat() * 36f
-            Material.PERSON -> 150f + rng.nextFloat() * 40f
+            Material.ENGINE -> if (speakerMode) 105f + rng.nextFloat() * 45f else 44f + rng.nextFloat() * 36f
+            Material.PERSON -> if (speakerMode) 190f + rng.nextFloat() * 50f else 150f + rng.nextFloat() * 40f
             else -> 0f
+        }
+        if (speakerMode) {
+            fMul = 1.35f
+            bedCoefEngine = 0.045f
+            bedCoefPerson = 0.05f
+            bedCoefWater = 0.13f
+            bedCoefFabric = 0.09f
+            bedCoefPlant = 0.14f
+            bedCoefFood = 0.075f
+            neutralFreq = 440f
+        } else {
+            fMul = 1f
+            bedCoefEngine = 0.013f
+            bedCoefPerson = 0.02f
+            bedCoefWater = 0.09f
+            bedCoefFabric = 0.058f
+            bedCoefPlant = 0.11f
+            bedCoefFood = 0.038f
+            neutralFreq = 340f
         }
     }
 
@@ -114,7 +149,7 @@ class TextureGenerator(
                         0.18f * sin(TWO_PI * phase * 4f) +
                         0.10f * sin(TWO_PI * phase * 5f)) * 0.20f * am
                     val w = white()
-                    bedLp += 0.013f * (w - bedLp)
+                    bedLp += bedCoefEngine * (w - bedLp)
                     s += bedLp * 2.2f
                 }
                 Material.PERSON -> {
@@ -124,13 +159,13 @@ class TextureGenerator(
                     phase2 += f0 * 1.5f * invSr
                     s = (sin(TWO_PI * phase) + 0.5f * sin(TWO_PI * phase2 + 0.7f)) * 0.35f * breath
                     val w = white()
-                    bedLp += 0.02f * (w - bedLp)
+                    bedLp += bedCoefPerson * (w - bedLp)
                     s += bedLp * 0.4f
                 }
                 Material.WATER -> {
                     lfo1 += 0.3f * invSr
                     val w = white()
-                    bedLp += 0.09f * (w - bedLp)
+                    bedLp += bedCoefWater * (w - bedLp)
                     s = bedLp * 0.55f * (0.7f + 0.3f * sin(TWO_PI * lfo1))
                 }
                 Material.ELECTRONICS -> {
@@ -145,24 +180,24 @@ class TextureGenerator(
                     lfo2 += 3.7f * invSr
                     val am = 0.45f + 0.3f * sin(TWO_PI * lfo1) + 0.25f * sin(TWO_PI * lfo2)
                     val w = white()
-                    bedLp += 0.058f * (w - bedLp)
+                    bedLp += bedCoefFabric * (w - bedLp)
                     s = bedLp * 1.1f * am
                 }
                 Material.PLANT -> {
                     lfo1 += 1.3f * invSr
                     val am = 0.6f + 0.4f * (0.5f + 0.5f * sin(TWO_PI * lfo1))
                     val w = white()
-                    bedLp += 0.11f * (w - bedLp)
+                    bedLp += bedCoefPlant * (w - bedLp)
                     s = bedLp * 0.7f * am
                 }
                 Material.FOOD -> {
                     lfo1 += 0.7f * invSr
                     val w = white()
-                    bedLp += 0.038f * (w - bedLp)
+                    bedLp += bedCoefFood * (w - bedLp)
                     s = bedLp * 0.8f * (0.6f + 0.4f * sin(TWO_PI * lfo1))
                 }
                 Material.NEUTRAL -> {
-                    phase += 340f * invSr
+                    phase += neutralFreq * invSr
                     lfo1 += 0.5f * invSr
                     s = sin(TWO_PI * phase) * 0.4f * (0.6f + 0.4f * sin(TWO_PI * lfo1))
                     val w = white()
@@ -222,11 +257,11 @@ class TextureGenerator(
         when (m) {
             Material.WOOD ->
                 strike(
-                    150f + rng.nextFloat() * 90f,
+                    (150f + rng.nextFloat() * 90f) * fMul,
                     RATIOS_WOOD, AMPS_3, DECAYS_WOOD, 0.35f, 140f
                 )
             Material.METAL -> {
-                val f = 380f + rng.nextFloat() * 340f
+                val f = (380f + rng.nextFloat() * 340f) * fMul
                 strike(f, RATIOS_METAL, AMPS_4, DECAYS_METAL, 0.12f, 90f)
                 if (rng.nextFloat() < 0.35f) {
                     strike(f, RATIOS_METAL, AMPS_4, DECAYS_METAL, 0.12f, 90f, ageOffset = -0.16f)
@@ -234,12 +269,12 @@ class TextureGenerator(
             }
             Material.GLASS ->
                 strike(
-                    1250f + rng.nextFloat() * 1150f,
+                    (1250f + rng.nextFloat() * 1150f) * fMul,
                     RATIOS_GLASS, AMPS_3, DECAYS_GLASS, 0.2f, 300f
                 )
             Material.CERAMIC ->
                 strike(
-                    680f + rng.nextFloat() * 340f,
+                    (680f + rng.nextFloat() * 340f) * fMul,
                     RATIOS_CERAMIC, AMPS_3, DECAYS_CERAMIC, 0.25f, 250f
                 )
             Material.PAPER -> noiseBurst(0.5f, 380f, 0.02f, 0.5f)

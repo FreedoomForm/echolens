@@ -23,6 +23,8 @@
     <string name="haptic_toggle">Vibrate on new objects</string>
     <string name="screen_toggle">Keep screen on</string>
     <string name="invert_toggle">Invert left/right (mount mirrored)</string>
+    <string name="speaker_toggle">Play through phone speaker (no headphones)</string>
+    <string name="diag_fmt">Camera: %1$s · Frames: %2$d · Detection: %3$d ms · Depth: %4$s</string>
     <string name="volume_label">Volume: %1$d%%</string>
     <string name="cone_label">Attention cone width: %1$d°</string>
     <string name="streams_label">Max simultaneous sound sources: %1$d</string>

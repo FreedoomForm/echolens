@@ -37,9 +37,10 @@ import com.echolens.app.core.RuText
 import com.echolens.app.core.TrackSnapshot
 import com.echolens.app.head.HeadTracker
 import com.echolens.app.util.Angles
-import com.echolens.app.vision.DetectorEngine
+import com.echolens.app.vision.DepthEstimator
 import com.echolens.app.vision.FrameConverter
 import com.echolens.app.vision.SceneTracker
+import com.echolens.app.vision.YoloDetector
 import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -61,6 +62,7 @@ class AudioSceneService : LifecycleService() {
         const val KEY_HAPTIC = "haptic"
         const val KEY_SCREEN = "keep_screen"
         const val KEY_INVERT = "invert_azimuth"
+        const val KEY_SPEAKER = "speaker_mode"
         const val KEY_VOLUME = "master_volume"
         const val KEY_CONE_DEG = "cone_deg"
         const val KEY_STREAMS = "max_streams"
@@ -80,7 +82,11 @@ class AudioSceneService : LifecycleService() {
         val fps: Float,
         val detectorMs: Float,
         val activeStreams: Int,
-        val tracks: List<TrackSnapshot>
+        val tracks: List<TrackSnapshot>,
+        val frames: Long,
+        val camError: String?,
+        val depthMs: Int,
+        val depthOn: Boolean
     )
 
     inner class LocalBinder : Binder() {
@@ -90,7 +96,8 @@ class AudioSceneService : LifecycleService() {
     private val binder = LocalBinder()
 
     private var headTracker: HeadTracker? = null
-    private var detector: DetectorEngine? = null
+    private var detector: YoloDetector? = null
+    private var depthEstimator: DepthEstimator? = null
     private var sceneTracker: SceneTracker? = null
     private var audioEngine: AudioEngine? = null
     private var cameraProvider: ProcessCameraProvider? = null
@@ -107,6 +114,10 @@ class AudioSceneService : LifecycleService() {
     @Volatile private var lastTtsMs = 0L
     @Volatile private var fps = 0f
     @Volatile private var detectorMs = 0f
+    @Volatile var camError: String? = null
+        private set
+    @Volatile private var frameCount = 0L
+    private var rebindAttempts = 0
 
     // Analyzer-thread only
     private val frameTimes = ArrayDeque<Long>()
@@ -129,7 +140,12 @@ class AudioSceneService : LifecycleService() {
                 stopSession()
                 stopSelf()
             }
-            else -> if (!sessionRunning) startSession()
+            else -> if (!sessionRunning) {
+                rebindAttempts = 0
+                frameCount = 0L
+                camError = null
+                startSession()
+            }
         }
         return START_NOT_STICKY
     }
@@ -162,7 +178,19 @@ class AudioSceneService : LifecycleService() {
         }
 
         headTracker = HeadTracker(this).also { it.start() }
-        detector = DetectorEngine(this)
+        try {
+            detector = YoloDetector(this)
+            camError = null
+        } catch (e: Exception) {
+            Log.e(TAG, "Detector load failed", e)
+            camError = "детектор: " + (e.message ?: "ошибка загрузки")
+        }
+        depthEstimator = try {
+            DepthEstimator(this)
+        } catch (e: Exception) {
+            Log.w(TAG, "Depth model unavailable", e)
+            null
+        }
         sceneTracker = SceneTracker()
         frameConverter = FrameConverter()
 
@@ -189,6 +217,7 @@ class AudioSceneService : LifecycleService() {
             coneWidthRad = Angles.rad(prefs.getInt(KEY_CONE_DEG, DEFAULT_CONE_DEG).toFloat())
             maxSources = prefs.getInt(KEY_STREAMS, DEFAULT_STREAMS).coerceIn(2, 6)
             invertAzimuth = prefs.getBoolean(KEY_INVERT, false)
+            speakerMode = prefs.getBoolean(KEY_SPEAKER, true)
         }
     }
 
@@ -198,19 +227,9 @@ class AudioSceneService : LifecycleService() {
             try {
                 val provider = future.get()
                 cameraProvider = provider
+                // Default YUV_420_888 output and default resolution — the most
+                // universally compatible camera configuration.
                 val analysis = ImageAnalysis.Builder()
-                    .setResolutionSelector(
-                        androidx.camera.core.resolutionselector.ResolutionSelector.Builder()
-                            .setResolutionStrategy(
-                                androidx.camera.core.resolutionselector.ResolutionStrategy(
-                                    android.util.Size(640, 480),
-                                    androidx.camera.core.resolutionselector.ResolutionStrategy
-                                        .FALLBACK_RULE_CLOSEST_LOWER_THEN_HIGHER
-                                )
-                            )
-                            .build()
-                    )
-                    .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
                     .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                     .build()
                 val executor = Executors.newSingleThreadExecutor()
@@ -218,8 +237,22 @@ class AudioSceneService : LifecycleService() {
                 analysis.setAnalyzer(executor, ::analyzeFrame)
                 provider.unbindAll()
                 provider.bindToLifecycle(this, CameraSelector.DEFAULT_BACK_CAMERA, analysis)
+                // Watchdog: if no frames arrive, rebind once, then report an error.
+                mainHandler.postDelayed({
+                    if (sessionRunning && frameCount == 0L) {
+                        if (rebindAttempts < 1) {
+                            rebindAttempts++
+                            Log.w(TAG, "No camera frames — rebinding")
+                            runCatching { cameraProvider?.unbindAll() }
+                            startCamera()
+                        } else {
+                            camError = "камера не выдаёт кадры — закройте другие приложения с камерой"
+                        }
+                    }
+                }, 3500)
             } catch (e: Exception) {
                 Log.e(TAG, "Camera init failed", e)
+                camError = "камера: " + (e.message ?: "ошибка запуска")
                 stopSession()
                 stopSelf()
             }
@@ -235,8 +268,25 @@ class AudioSceneService : LifecycleService() {
 
             val t0 = SystemClock.elapsedRealtime()
             val bitmap = converter.toUprightBitmap(image)
+            frameCount++
+
+            // Relative depth on every 5th frame (~2-3 Hz).
+            val depth = depthEstimator
+            if (depth != null && frameCount % 5 == 0L) {
+                depth.estimate(bitmap)
+            }
+
             val detections = detector.detect(bitmap)
             val now = SystemClock.elapsedRealtime()
+
+            // Attach relative depth to each detection.
+            if (depth != null && depth.hasMap) {
+                for (idx in detections.indices) {
+                    val d = detections[idx]
+                    val rd = depth.sampleAt(d.cxNorm, d.cyNorm)
+                    if (rd != null) detections[idx] = d.withDepth(rd)
+                }
+            }
 
             if (head != null) {
                 scene.onDetections(detections, head.yaw, head.pitch, now)
@@ -325,7 +375,11 @@ class AudioSceneService : LifecycleService() {
             fps = fps,
             detectorMs = detectorMs,
             activeStreams = audioEngine?.activeStreams ?: 0,
-            tracks = sceneTracker?.snapshot(SystemClock.elapsedRealtime()) ?: emptyList()
+            tracks = sceneTracker?.snapshot(SystemClock.elapsedRealtime()) ?: emptyList(),
+            frames = frameCount,
+            camError = camError,
+            depthMs = depthEstimator?.lastMs?.toInt() ?: 0,
+            depthOn = depthEstimator != null
         )
     }
 
@@ -343,6 +397,8 @@ class AudioSceneService : LifecycleService() {
         headTracker = null
         detector?.close()
         detector = null
+        depthEstimator?.close()
+        depthEstimator = null
         sceneTracker?.clear()
         sceneTracker = null
         frameConverter = null

@@ -14,8 +14,12 @@ android {
         applicationId = "com.echolens.app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.1.0"
+
+        ndk {
+            abiFilters += listOf("arm64-v8a", "x86_64")
+        }
     }
 
     if (hasCiSigning) {
@@ -70,6 +74,6 @@ dependencies {
     // Foreground service with lifecycle
     implementation("androidx.lifecycle:lifecycle-service:2.8.4")
 
-    // TensorFlow Lite — on-device object detection
-    implementation("org.tensorflow:tensorflow-lite:2.14.0")
+    // ONNX Runtime — YOLO26-N detector + Depth Anything V2 (both offline, on-device)
+    implementation("com.microsoft.onnxruntime:onnxruntime-android:1.19.2")
 }

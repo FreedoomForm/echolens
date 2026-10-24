@@ -46,6 +46,8 @@ class AudioEngine(
         @Volatile var coneFloor = 0.12f
         @Volatile var maxSources = 4
         @Volatile var invertAzimuth = false
+        /** True = phone speaker playback (brighter textures, deeper head shadow, gentler limiter). */
+        @Volatile var speakerMode = true
     }
 
     val settings = Settings()
@@ -124,7 +126,7 @@ class AudioEngine(
         val track = AudioTrack.Builder()
             .setAudioAttributes(
                 AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_NAVIGATION_GUIDANCE)
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                     .build()
             )
@@ -173,10 +175,11 @@ class AudioEngine(
         reverb.process(mixL, mixR, blockFrames)
 
         val mv = settings.masterVolume
+        val knee = if (settings.speakerMode) 0.78f else 0.9f
         var i = 0
         for (f in 0 until blockFrames) {
-            val l = softClip(mixL[f] * mv)
-            val r = softClip(mixR[f] * mv)
+            val l = softClip(mixL[f] * mv, knee)
+            val r = softClip(mixR[f] * mv, knee)
             out[i++] = l
             out[i++] = r
         }
@@ -258,7 +261,7 @@ class AudioEngine(
             s.trackId = c.t.id
             s.ruName = c.t.ruName
             s.spec = c.t.spec
-            s.generator = TextureGenerator(c.t.spec, sampleRate, c.t.id * 6364136223846793005L)
+            s.generator = TextureGenerator(c.t.spec, sampleRate, c.t.id * 6364136223846793005L, settings.speakerMode)
             s.azWorld = c.t.azWorld
             s.elevWorld = c.t.elevWorld
             s.distance = c.t.distance
@@ -315,11 +318,13 @@ class AudioEngine(
         s.delayR = (-w * maxItdSamples).coerceIn(0f, 60f)
 
         // Contralateral head-shadow low-pass + elevation brightness tilt.
+        // Deeper shadow in speaker mode compensates for the missing HRTF.
+        val shadowK = if (settings.speakerMode) 7f else 4.5f
         val shadowL = Angles.smoothstep(0f, 1.05f, if (az > 0f) az else 0f)
         val shadowR = Angles.smoothstep(0f, 1.05f, if (az < 0f) -az else 0f)
         val bright = 1f + 0.3f * sin(elev)
-        s.lpCoefL = lpCoef((12000f / (1f + shadowL * 4.5f)) * bright)
-        s.lpCoefR = lpCoef((12000f / (1f + shadowR * 4.5f)) * bright)
+        s.lpCoefL = lpCoef((12000f / (1f + shadowL * shadowK)) * bright)
+        s.lpCoefR = lpCoef((12000f / (1f + shadowR * shadowK)) * bright)
 
         var wp = s.writePos
         var gainL = s.gainL
@@ -368,9 +373,9 @@ class AudioEngine(
     private fun lpCoef(fc: Float): Float =
         (1f - exp(-TWO_PI * fc / sampleRate)).coerceIn(0.0005f, 1f)
 
-    private fun softClip(x: Float): Float {
+    private fun softClip(x: Float, knee: Float = 0.9f): Float {
         val a = abs(x)
-        return if (a < 0.9f) x else sign(x) * (0.9f + 0.1f * (1f - exp(-(a - 0.9f) / 0.1f)))
+        return if (a < knee) x else sign(x) * (knee + (1f - knee) * (1f - exp(-(a - knee) / (1f - knee))))
     }
 
     // ----------------------------------------------------------- test mode

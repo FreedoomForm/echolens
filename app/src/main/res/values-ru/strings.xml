@@ -23,6 +23,8 @@
     <string name="haptic_toggle">Вибрация при новых объектах</string>
     <string name="screen_toggle">Не выключать экран</string>
     <string name="invert_toggle">Инвертировать лево/право (перевёрнутое крепление)</string>
+    <string name="speaker_toggle">Звук через динамик телефона (без наушников)</string>
+    <string name="diag_fmt">Камера: %1$s · Кадры: %2$d · Детекция: %3$d мс · Глубина: %4$s</string>
     <string name="volume_label">Громкость: %1$d%%</string>
     <string name="cone_label">Ширина конуса внимания: %1$d°</string>
     <string name="streams_label">Максимум звуковых источников: %1$d</string>

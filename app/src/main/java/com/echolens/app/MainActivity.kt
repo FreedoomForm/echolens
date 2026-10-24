@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var swHaptic: MaterialSwitch
     private lateinit var swScreen: MaterialSwitch
     private lateinit var swInvert: MaterialSwitch
+    private lateinit var swSpeaker: MaterialSwitch
+    private lateinit var tvDiag: TextView
     private lateinit var tvVolumeValue: TextView
     private lateinit var sbVolume: SeekBar
     private lateinit var tvConeValue: TextView
@@ -92,6 +94,8 @@ class MainActivity : AppCompatActivity() {
         swHaptic = findViewById(R.id.sw_haptic)
         swScreen = findViewById(R.id.sw_screen)
         swInvert = findViewById(R.id.sw_invert)
+        swSpeaker = findViewById(R.id.sw_speaker)
+        tvDiag = findViewById(R.id.tv_diag)
         tvVolumeValue = findViewById(R.id.tv_volume_value)
         sbVolume = findViewById(R.id.sb_volume)
         tvConeValue = findViewById(R.id.tv_cone_value)
@@ -191,6 +195,10 @@ class MainActivity : AppCompatActivity() {
             prefs.edit().putBoolean(AudioSceneService.KEY_INVERT, checked).apply()
             persistAndApply()
         }
+        swSpeaker.setOnCheckedChangeListener { _, checked ->
+            prefs.edit().putBoolean(AudioSceneService.KEY_SPEAKER, checked).apply()
+            persistAndApply()
+        }
 
         sbVolume.max = 100
         sbVolume.setOnSeekBarChangeListener(object : SimpleSeekBar() {
@@ -240,6 +248,7 @@ class MainActivity : AppCompatActivity() {
         swHaptic.isChecked = prefs.getBoolean(AudioSceneService.KEY_HAPTIC, true)
         swScreen.isChecked = prefs.getBoolean(AudioSceneService.KEY_SCREEN, true)
         swInvert.isChecked = prefs.getBoolean(AudioSceneService.KEY_INVERT, false)
+        swSpeaker.isChecked = prefs.getBoolean(AudioSceneService.KEY_SPEAKER, true)
         val volume = prefs.getInt(AudioSceneService.KEY_VOLUME, AudioSceneService.DEFAULT_VOLUME)
         sbVolume.progress = volume
         tvVolumeValue.text = getString(R.string.volume_label, volume)
@@ -274,6 +283,12 @@ class MainActivity : AppCompatActivity() {
             val headDeg = Math.round(state.headYawDeg).toInt()
             tvStatus.text = getString(R.string.status_fmt, headDeg, state.tracks.size, state.fps)
 
+            val camState = state.camError ?: "OK"
+            val depthStr = if (!state.depthOn) "выкл" else "${state.depthMs} мс"
+            tvDiag.text = getString(
+                R.string.diag_fmt, camState, state.frames, Math.round(state.detectorMs), depthStr
+            )
+
             if (state.tracks.isEmpty()) {
                 tvTracks.text = getString(R.string.no_tracks)
             } else {
@@ -301,6 +316,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             tvStatus.text = getString(R.string.status_idle)
             tvTracks.text = getString(R.string.no_tracks)
+            tvDiag.text = ""
             applyKeepScreenOn(false)
         }
     }
