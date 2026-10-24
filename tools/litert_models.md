@@ -6,18 +6,52 @@ Small (341M, Stability AI Community License) through LiteRT, following the
 official Arm reference implementation (Apache-2.0):
 https://github.com/ARM-software/ML-examples/tree/main/kleidiai-examples/audiogen
 
-## 1. Convert the model (one-time, on a PC with ~16 GB RAM)
+App side: `NeuralTextureEngine.kt` binds model inputs **by shape** — the
+LiteRT export reorders the DiT arguments relative to the torch signature, so
+any conversion with the geometry below works. Requires **app v1.2.1+**
+(v1.2.0 assumed the torch argument order and silently fell back to
+procedural synthesis with the real models).
+
+## Verified tensor signatures (probed from the real .tflite files)
+
+| Model | Inputs | Outputs |
+|---|---|---|
+| `conditioners_float32.tflite` | `input_ids` int64 (1,128) · `attention_mask` int64 (1,128) · `seconds_total` f32 **(1)** | `[0]` cross embeds f32 (1,65,768) · `[1]` cross mask (1,65) · `[2]` global f32 (1,768) |
+| `dit_model.tflite` | cross (1,65,768) · global (1,768) · x (1,64,256) · sigma f32 **(1)** | denoised latent (1,64,256) |
+| `autoencoder_model.tflite` | latent (1,64,256) | planar stereo f32 (2,524288) — 11.9 s @ 44.1 kHz |
+
+Reference golden run (x86, 4 threads): conditioners 0.2 s + DiT 8 steps 2.6 s
++ VAE 14.6 s → 11.6 s of audio. On a Snapdragon flagship expect ~15–40 s for
+the whole texture.
+
+## 1. Get the models (one-time, ~1.1 GB)
+
+### Option A — download the prebuilt Arm-converted package (recommended)
+
+```bash
+pip install -U "huggingface_hub[cli]"
+hf download jegly/audio conditioners_float32.tflite dit_model.tflite \
+    autoencoder_model.tflite spiece.model --local-dir models
+```
+
+This is the byte-exact Arm pipeline package (identical files as the gated
+mirror `innermost47/stable-audio-open-small-tflite`, which requires accepting
+the license on https://huggingface.co/stabilityai/stable-audio-open-small
+first). The weights are covered by the Stability AI Community License —
+commercial use is allowed for organizations under $1M revenue
+(see `THIRD_PARTY_LICENSES.md`).
+
+### Option B — convert yourself from the gated checkpoint (PC with ~16 GB RAM)
 
 ```bash
 python3.10 -m venv .venv && source .venv/bin/activate
 pip install "stable_audio_tools==0.0.19" "litert-torch==0.9.0" "numpy==1.26.4"
 
 # Download the gated checkpoint (accept the license on HF first):
-#   https://huggingface.co/stabilityai/stable-audio-open-small
 huggingface-cli download stabilityai/stable-audio-open-small \
     model_config.json model.ckpt --local-dir workspace
 
-# Export the three LiteRT modules (script copied from Arm ML-examples, Apache-2.0):
+# Export the three LiteRT modules (script from Arm ML-examples, Apache-2.0):
 wget https://raw.githubusercontent.com/ARM-software/ML-examples/main/kleidiai-examples/audiogen/scripts/export_sao.py
 wget https://raw.githubusercontent.com/ARM-software/ML-examples/main/kleidiai-examples/audiogen/scripts/model.py
 python3 export_sao.py --model_config workspace/model_config.json \
@@ -36,12 +70,13 @@ This produces:
 
 ```bash
 adb shell mkdir -p /sdcard/Android/data/com.echolens.app/files/models
-adb push out/conditioners_float32.tflite out/dit_model.tflite \
-         out/autoencoder_model.tflite \
+adb push conditioners_float32.tflite dit_model.tflite \
+         autoencoder_model.tflite \
          /sdcard/Android/data/com.echolens.app/files/models/
 ```
 
-(Or copy with any file manager into the same folder.)
+(Or copy with any file manager into the same folder. `spiece.model` is not
+needed — EchoLens ships pretokenized prompts in `MaterialPrompts.kt`.)
 
 ## 3. In the app
 

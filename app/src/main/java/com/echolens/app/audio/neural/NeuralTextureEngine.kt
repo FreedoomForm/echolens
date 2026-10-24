@@ -1,5 +1,6 @@
 package com.echolens.app.audio.neural
 
+import org.tensorflow.lite.DataType
 import org.tensorflow.lite.Interpreter
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -11,14 +12,30 @@ import kotlin.math.roundToInt
  * On-device neural texture generator: Stable Audio Open Small (341M) on LiteRT.
  *
  * Kotlin port of the Apache-2.0 reference pipeline from Arm ML-examples
- * (kleidiai-examples/audiogen, app/audiogen.cpp):
+ * (kleidiai-examples/audiogen, app/audiogen.cpp), verified against the real
+ * Arm-converted .tflite signatures (probe on x86, golden run reproduced audio):
  *
- *   1. conditioners_float32.tflite — T5 text embeds + number conditioner
- *      inputs:  [0] ids int64, [1] attention mask int64, [2] seconds float32
- *      outputs: [0] cross-attention embeds, [2] global conditioning
- *   2. dit_model.tflite — diffusion transformer (dynamic int8), 8 steps of a
- *      ping-pong sampler with the sigmoid-sigma schedule
- *   3. autoencoder_model.tflite — VAE decoder (fp16) -> planar stereo 44.1 kHz
+ *   conditioners_float32.tflite
+ *     inputs:  input_ids int64 (1,128) | attention_mask int64 (1,128)
+ *              | seconds_total f32 (1)                      [4-byte tensor!]
+ *     outputs: [0] cross embeds f32 (1,65,768)
+ *              [1] cross mask f32 (1,65)   (unused)
+ *              [2] global conditioning f32 (1,768)
+ *
+ *   dit_model.tflite
+ *     inputs:  cross (1,65,768) | global (1,768) | x (1,64,256) | t f32 (1)
+ *              The LiteRT export REORDERS arguments relative to the torch
+ *              signature, so input roles are bound by SHAPE at probe time
+ *              (v1.2.0 assumed the torch order and produced garbage).
+ *     output:  denoised latent (1,64,256)
+ *
+ *   autoencoder_model.tflite
+ *     input:   latent (1,64,256)
+ *     output:  planar stereo f32 (2,524288) @ 44.1 kHz  [left..., right...]
+ *
+ * Sampling: 8-step ping-pong with the sigmoid-sigma schedule (log-SNR
+ * linspace -6..2), initial noise from java.util.Random(seed), per-step noise
+ * reseeded with seed+i+4564 — exactly as the Arm reference runner.
  *
  * All model files are provisioned outside the APK (see NeuralModels);
  * if anything is missing or fails, the caller silently falls back to
@@ -64,49 +81,94 @@ class NeuralTextureEngine private constructor(
         }
     }
 
-    // Probed tensor geometry
+    // ------------------------------------------------------- probed geometry
+    private var idsIdx = -1   // conditioners: input_ids (int64)
+    private var maskIdx = -1  // conditioners: attention_mask (int64)
+    private var secIdx = -1   // conditioners: seconds_total (f32, 4 bytes)
+
+    private var idxCross = -1 // dit input: cross embeds  (== conditioners out0)
+    private var idxGlobal = -1// dit input: global cond    (== conditioners out2)
+    private var idxX = -1     // dit input: latent noise   (1,64,256)
+    private var idxT = -1     // dit input: sigma scalar   (1)
+
     private var idsElems = 0
     private var crossElems = 0
     private var globalElems = 0
     private var latentElems = 0
     private var aeElems = 0
 
-    // Reusable direct buffers
+    // Reusable direct buffers (sizes MUST match the tensors byte-for-byte)
     private lateinit var idsBuf: ByteBuffer
     private lateinit var maskBuf: ByteBuffer
     private lateinit var secBuf: ByteBuffer
     private lateinit var crossBuf: ByteBuffer
     private lateinit var globalBuf: ByteBuffer
+    private lateinit var xBuf: ByteBuffer
     private lateinit var ditOutBuf: ByteBuffer
     private lateinit var aeOutBuf: ByteBuffer
     private lateinit var tBuf: ByteBuffer
 
     @Synchronized
     private fun probe() {
-        idsElems = numElems(conditioners.getInputTensor(0).shape(), fallback = 128)
-        crossElems = numElems(conditioners.getOutputTensor(0).shape(), fallback = 98304)
-        globalElems = numElems(conditioners.getOutputTensor(2).shape(), fallback = 768)
-        latentElems = numElems(dit.getInputTensor(0).shape(), fallback = 0)
-        aeElems = numElems(vae.getOutputTensor(0).shape(), fallback = 0)
-        require(latentElems > 0 && aeElems > 0 && idsElems > 0) { "bad tensor geometry" }
+        // ---- conditioners: bind inputs by dtype (ids/mask int64, seconds f32)
+        for (i in 0 until conditioners.inputTensorCount) {
+            val t = conditioners.getInputTensor(i)
+            when (t.dataType()) {
+                DataType.INT64 -> if (idsIdx < 0) idsIdx = i else maskIdx = i
+                DataType.FLOAT32 -> if (secIdx < 0) secIdx = i
+                else -> Unit
+            }
+        }
+        require(idsIdx >= 0 && maskIdx >= 0 && secIdx >= 0) { "conditioners: inputs not found" }
+        idsElems = elems(conditioners.getInputTensor(idsIdx).shape())
+        require(idsElems > 0) { "conditioners: dynamic ids shape" }
+
+        // outputs: [0] cross, [1] cross mask (unused), [2] global
+        require(conditioners.outputTensorCount >= 3) { "conditioners: unexpected outputs" }
+        crossElems = elems(conditioners.getOutputTensor(0).shape())
+        globalElems = elems(conditioners.getOutputTensor(2).shape())
+        require(crossElems > globalElems && globalElems > 0) { "conditioners: bad outputs" }
+
+        // ---- dit: bind ALL inputs by shape (export reorders arguments!)
+        var found = 0
+        for (i in 0 until dit.inputTensorCount) {
+            val e = elems(dit.getInputTensor(i).shape())
+            when {
+                e == crossElems -> { idxCross = i; found++ }
+                e == globalElems -> { idxGlobal = i; found++ }
+                e == 1 -> { idxT = i; found++ }
+                e > 0 -> { idxX = i; found++ }
+                else -> Unit // dynamic shape — will fail the require below
+            }
+        }
+        require(found == 4 && idxCross != idxGlobal && idxX != idxT) { "dit: cannot bind inputs" }
+        latentElems = elems(dit.getInputTensor(idxX).shape())
+        require(latentElems > 0) { "dit: dynamic latent shape" }
+
+        // ---- autoencoder: latent in, planar stereo out
+        require(elems(vae.getInputTensor(0).shape()) == latentElems) { "vae: latent mismatch" }
+        aeElems = elems(vae.getOutputTensor(0).shape())
+        require(aeElems >= latentElems * 4) { "vae: bad output shape" }
 
         idsBuf = direct(idsElems * 8)
         maskBuf = direct(idsElems * 8)
-        secBuf = direct(16)
+        secBuf = direct(4)          // seconds_total is a (1) f32 tensor
         crossBuf = direct(crossElems * 4)
         globalBuf = direct(globalElems * 4)
+        xBuf = direct(latentElems * 4)
         ditOutBuf = direct(latentElems * 4)
         aeOutBuf = direct(aeElems * 4)
-        tBuf = direct(16)
+        tBuf = direct(4)            // sigma is a (1) f32 tensor
 
         android.util.Log.i(
             TAG, "probed: ids=$idsElems cross=$crossElems global=$globalElems " +
-                "latent=$latentElems ae=$aeElems"
+                "latent=$latentElems ae=$aeElems | dit in-map " +
+                "cross=$idxCross global=$idxGlobal x=$idxX t=$idxT"
         )
     }
 
     /**
-     * Generates one ~10 s texture. Returns mono samples at 48 kHz,
+     * Generates one ~12 s texture. Returns mono samples at 48 kHz,
      * peak-normalized and loop-crossfaded, or null on any failure.
      * Must be called from a background thread.
      */
@@ -151,19 +213,29 @@ class NeuralTextureEngine private constructor(
         secBuf.putFloat(secondsTotal)
         secBuf.rewind()
 
-        val condIn = arrayOf<Any>(idsBuf, maskBuf, secBuf)
+        val condIn = arrayOfNulls<Any>(conditioners.inputTensorCount)
+        condIn[idsIdx] = idsBuf
+        condIn[maskIdx] = maskBuf
+        condIn[secIdx] = secBuf
         val condOut = mapOf(0 to crossBuf, 2 to globalBuf)
-        conditioners.runForMultipleInputsOutputs(condIn, condOut)
+        conditioners.runForMultipleInputsOutputs(condIn.requireNoNulls(), condOut)
 
         // ---- 2. DiT ping-pong sampling --------------------------------------
-        val x = FloatArray(latentElems)
+        val xf = FloatArray(latentElems)
         val rng = java.util.Random(seed)
-        for (i in 0 until latentElems) x[i] = rng.nextGaussian().toFloat() * SIGMA_MAX
+        for (i in 0 until latentElems) xf[i] = rng.nextGaussian().toFloat() * SIGMA_MAX
 
         val sigmas = FloatArray(steps + 1)
         fillSigmas(sigmas, LOGSNR_MAX, 2.0f)
 
-        val ditIn = arrayOf<Any>(x, tBuf, crossBuf, globalBuf)
+        val xF = xBuf.order(ByteOrder.nativeOrder()).asFloatBuffer()
+        val dF = ditOutBuf.order(ByteOrder.nativeOrder()).asFloatBuffer()
+
+        val ditIn = arrayOfNulls<Any>(dit.inputTensorCount)
+        ditIn[idxCross] = crossBuf
+        ditIn[idxGlobal] = globalBuf
+        ditIn[idxX] = xBuf
+        ditIn[idxT] = tBuf
         val ditOut = mapOf(0 to ditOutBuf)
 
         for (i in 0 until steps) {
@@ -171,23 +243,23 @@ class NeuralTextureEngine private constructor(
             val next = sigmas[i + 1]
             tBuf.rewind()
             tBuf.putFloat(cur)
-            tBuf.rewind()
-            dit.runForMultipleInputsOutputs(ditIn, ditOut)
+            xF.rewind()
+            xF.put(xf)
+            dit.runForMultipleInputsOutputs(ditIn.requireNoNulls(), ditOut)
 
-            ditOutBuf.rewind()
-            val outF = ditOutBuf.order(ByteOrder.nativeOrder()).asFloatBuffer()
+            dF.rewind()
             val stepRng = java.util.Random(seed + i + RNG_OFFSET)
             for (j in 0 until latentElems) {
-                val denoised = x[j] - cur * outF.get(j)
-                x[j] = (1f - next) * denoised + next * stepRng.nextGaussian().toFloat()
+                val denoised = xf[j] - cur * dF.get(j)
+                xf[j] = (1f - next) * denoised + next * stepRng.nextGaussian().toFloat()
             }
             onProgress?.invoke(i + 1, steps)
         }
 
         // ---- 3. VAE decode --------------------------------------------------
-        val aeIn = arrayOf<Any>(x)
-        val aeOut = mapOf(0 to aeOutBuf)
-        vae.runForMultipleInputsOutputs(aeIn, aeOut)
+        xF.rewind()
+        xF.put(xf)
+        vae.runForMultipleInputsOutputs(arrayOf(xBuf), mapOf(0 to aeOutBuf))
 
         aeOutBuf.rewind()
         val audioF = aeOutBuf.order(ByteOrder.nativeOrder()).asFloatBuffer()
@@ -251,9 +323,12 @@ class NeuralTextureEngine private constructor(
         return out
     }
 
-    private fun numElems(shape: IntArray, fallback: Int): Int {
+    private fun elems(shape: IntArray): Int {
         var n = 1
-        for (d in shape) n *= if (d > 0) d else return fallback
+        for (d in shape) {
+            if (d <= 0) return -1
+            n *= d
+        }
         return n
     }
 
