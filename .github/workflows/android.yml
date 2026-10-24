@@ -31,20 +31,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Provision bundled neural models (download + quantize, ~850 MB)
-        run: |
-          mkdir -p app/src/main/assets/models
-          BASE=https://huggingface.co/jegly/audio/resolve/main
-          curl -sfL --retry 3 "$BASE/dit_model.tflite" -o app/src/main/assets/models/dit_model.tflite
-          curl -sfL --retry 3 "$BASE/autoencoder_model.tflite" -o app/src/main/assets/models/autoencoder_model.tflite
-          curl -sfL --retry 3 "$BASE/conditioners_float32.tflite" -o /tmp/conditioners_fp32.tflite
-          pip install --quiet ai-edge-quantizer
-          python3 tools/quantize_conditioner.py \
-            --src /tmp/conditioners_fp32.tflite \
-            --dst app/src/main/assets/models/conditioners_float32.tflite
-          rm -f /tmp/conditioners_fp32.tflite
-          ls -la app/src/main/assets/models/
-
       - name: Build release APK
         run: ./gradlew assembleRelease --stacktrace
 

@@ -140,6 +140,22 @@
             android:textSize="16sp" />
 
         <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/sw_model"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:text="@string/model_toggle"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_model_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/text_dim"
+            android:textSize="13sp" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/sw_neural"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

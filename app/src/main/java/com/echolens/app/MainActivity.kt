@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var swScreen: MaterialSwitch
     private lateinit var swInvert: MaterialSwitch
     private lateinit var swSpeaker: MaterialSwitch
+    private lateinit var swModel: MaterialSwitch
+    private lateinit var tvModelStatus: TextView
     private lateinit var swNeural: MaterialSwitch
     private lateinit var tvNeuralStatus: TextView
     private lateinit var tvDiag: TextView
@@ -98,6 +100,8 @@ class MainActivity : AppCompatActivity() {
         swScreen = findViewById(R.id.sw_screen)
         swInvert = findViewById(R.id.sw_invert)
         swSpeaker = findViewById(R.id.sw_speaker)
+        swModel = findViewById(R.id.sw_model)
+        tvModelStatus = findViewById(R.id.tv_model_status)
         swNeural = findViewById(R.id.sw_neural)
         tvNeuralStatus = findViewById(R.id.tv_neural_status)
         tvDiag = findViewById(R.id.tv_diag)
@@ -204,6 +208,9 @@ class MainActivity : AppCompatActivity() {
             prefs.edit().putBoolean(AudioSceneService.KEY_SPEAKER, checked).apply()
             persistAndApply()
         }
+        swModel.setOnCheckedChangeListener { _, checked ->
+            prefs.edit().putBoolean(AudioSceneService.KEY_MODEL_ACCURATE, checked).apply()
+        }
         swNeural.setOnCheckedChangeListener { _, checked ->
             prefs.edit().putBoolean(AudioSceneService.KEY_NEURAL, checked).apply()
             persistAndApply()
@@ -233,7 +240,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        sbStreams.max = 4 // 2..6
+        sbStreams.max = 14 // 2..16 voices
         sbStreams.setOnSeekBarChangeListener(object : SimpleSeekBar() {
             override fun onProgressChanged(bar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val n = progress + 2
@@ -259,7 +266,9 @@ class MainActivity : AppCompatActivity() {
         swScreen.isChecked = prefs.getBoolean(AudioSceneService.KEY_SCREEN, true)
         swInvert.isChecked = prefs.getBoolean(AudioSceneService.KEY_INVERT, false)
         swSpeaker.isChecked = prefs.getBoolean(AudioSceneService.KEY_SPEAKER, true)
-        swNeural.isChecked = prefs.getBoolean(AudioSceneService.KEY_NEURAL, true)
+        swModel.isChecked = prefs.getBoolean(AudioSceneService.KEY_MODEL_ACCURATE, true)
+        tvModelStatus.text = getString(R.string.model_hint)
+        swNeural.isChecked = prefs.getBoolean(AudioSceneService.KEY_NEURAL, false)
         refreshNeuralStatus()
         val volume = prefs.getInt(AudioSceneService.KEY_VOLUME, AudioSceneService.DEFAULT_VOLUME)
         sbVolume.progress = volume
@@ -268,7 +277,7 @@ class MainActivity : AppCompatActivity() {
         sbCone.progress = (cone - 20).coerceIn(0, 40)
         tvConeValue.text = getString(R.string.cone_label, cone)
         val streams = prefs.getInt(AudioSceneService.KEY_STREAMS, AudioSceneService.DEFAULT_STREAMS)
-        sbStreams.progress = (streams - 2).coerceIn(0, 4)
+        sbStreams.progress = (streams - 2).coerceIn(0, 14)
         tvStreamsValue.text = getString(R.string.streams_label, streams)
     }
 
@@ -312,6 +321,8 @@ class MainActivity : AppCompatActivity() {
             val depthStr = if (!state.depthOn) "выкл" else "${state.depthMs} мс"
             tvDiag.text = getString(
                 R.string.diag_fmt, camState, state.frames, Math.round(state.detectorMs), depthStr
+            ) + "\n" + getString(
+                R.string.diag_lib_fmt, state.detectorModel, state.sampleCount, state.materialClfOn
             )
 
             if (state.neuralStatus.isNotEmpty()) {

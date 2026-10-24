@@ -26,14 +26,20 @@ import kotlin.math.sign
  *
  * Pipeline per 20 ms block:
  *  1. Pull the current head pose and the world-anchored track list.
- *  2. Rank tracks (importance × proximity × centrality), keep the top N,
- *     gate them with the attention cone (±cone width around the head
- *     direction — objects the user "looks at" sound; the rest is quiet).
- *  3. Render each active object's material texture.
+ *  2. Rank tracks (importance × proximity × centrality), keep the top N
+ *     (up to 16 concurrent voices), gate them with the attention cone.
+ *  3. Render each object's sound source, in order of preference:
+ *       neural texture loop (optional, models provisioned separately) →
+ *       bundled sample library loop (per-material variant, per-object pitch) →
+ *       procedural DSP fallback.
+ *     A short material-matched one-shot "accent" plays when a NEW object
+ *     appears, giving instant feedback about what was just recognized.
  *  4. Spatialize: constant-power ILD panning + Woodworth ITD (inter-ear
  *     delay) + contralateral head-shadow low-pass + distance gain —
  *     all relative to the CURRENT head yaw, so sounds stay anchored in
  *     the world when the head turns (externalization).
+ *     Each voice also has its own slow gain LFO so parallel sources
+ *     stay distinguishable ("different volumes over time").
  *  5. Add a light stereo reverb and a soft limiter, write to a low-latency
  *     AudioTrack.
  */
@@ -43,6 +49,7 @@ class AudioEngine(
     private val headProvider: () -> HeadPose,
     private val tracksProvider: () -> List<TrackSnapshot>,
     private val onObjectActivated: ((ruName: String) -> Unit)? = null,
+    private val sampleLibrary: SampleLibrary? = null,
     private val textureCache: TextureCache? = null,
     private val provisioner: NeuralTextureProvisioner? = null
 ) : Thread("EchoLensAudio"), NeuralTextureProvisioner.Listener {
@@ -51,12 +58,12 @@ class AudioEngine(
         @Volatile var masterVolume = 0.85f
         @Volatile var coneWidthRad = 0.524f // 30°
         @Volatile var coneFloor = 0.12f
-        @Volatile var maxSources = 4
+        @Volatile var maxSources = 10
         @Volatile var invertAzimuth = false
         /** True = phone speaker playback (brighter textures, deeper head shadow, gentler limiter). */
         @Volatile var speakerMode = true
         /** Neural textures: crossfade procedural -> on-device generated loops. */
-        @Volatile var neuralTextures = true
+        @Volatile var neuralTextures = false
     }
 
     val settings = Settings()
@@ -89,6 +96,17 @@ class AudioEngine(
         var loopLp = 0f
         var loopGainSmooth = 0f
 
+        // Bundled sample library state (per-object variant, pitch and LFO)
+        var sampleEntry: SampleLibrary.Entry? = null
+        var sample: FloatArray? = null
+        var samplePos = 0f
+        var sampleBlend = 0f
+        var samplePitch = 1f
+        var entryGain = 1f
+        var lfoPhase = 0f
+        var lfoFreq = 0.2f
+        var lfoDepth = 0.25f
+
         // Spatial state (updated per block)
         var panL = 0.707f
         var panR = 0.707f
@@ -106,7 +124,20 @@ class AudioEngine(
         var writePos = 0
     }
 
-    private val slots = Array(8) { Slot() }
+    private val slots = Array(20) { Slot() }
+
+    /** Short one-shot accents played when a new object appears. */
+    private inner class OneShot {
+        var samples: FloatArray? = null
+        var pos = 0f
+        var azWorld = 0f
+        var distance = 2f
+        var gain = 0.6f
+        var rate = 1f
+    }
+
+    private val oneShots = Array(4) { OneShot() }
+
     private val mixL = FloatArray(blockFrames)
     private val mixR = FloatArray(blockFrames)
     private val out = FloatArray(blockFrames * 2)
@@ -199,9 +230,19 @@ class AudioEngine(
             assignSlots(tracksProvider(), pose, nowMs)
         }
 
+        // Attach samples that finished decoding in the background.
+        for (s in slots) {
+            val e = s.sampleEntry
+            if (e != null && s.sample == null && s.loopSamples == null && s.trackId != -1L) {
+                s.sample = sampleLibrary?.getOrRequest(e)
+            }
+        }
+
         for (s in slots) {
             if (s.trackId != -1L) spatialize(s, pose)
         }
+
+        renderOneShots(pose)
 
         reverb.process(mixL, mixR, blockFrames)
 
@@ -251,7 +292,7 @@ class AudioEngine(
             }
         }
 
-        val max = settings.maxSources.coerceIn(1, 8)
+        val max = settings.maxSources.coerceIn(2, 16)
         val cands = ArrayList<Candidate>(tracks.size)
         for (t in tracks) {
             val az = relAz(t.azWorld, pose)
@@ -295,8 +336,10 @@ class AudioEngine(
             s.targetGain = c.gain
             s.currentGain = 0f
             s.silencingBlocks = 0
+            attachSample(s, c.t)
             attachNeuralLoop(s, c.t)
             maybeAnnounce(c.t.id, c.t.ruName, nowMs, c.gain)
+            triggerEvent(c.t, c.gain)
         }
 
         // Retire fully faded-out slots.
@@ -318,6 +361,135 @@ class AudioEngine(
         s.loopGainSmooth = 0f
         s.material = null
         s.variant = 0
+        s.sampleEntry = null
+        s.sample = null
+        s.samplePos = 0f
+        s.sampleBlend = 0f
+        s.samplePitch = 1f
+        s.entryGain = 1f
+        s.lfoPhase = 0f
+    }
+
+    // ------------------------------------------------------------ samples
+
+    /** Deterministic per-object hash in 0..1 for variant/pitch selection. */
+    private fun hash01(seed: Long): Float {
+        var z = seed + 0x9E3779B97F4A7C15UL.toLong()
+        z = (z xor (z ushr 30)) * 0xBF58476D1CE4E5B9UL.toLong()
+        z = (z xor (z ushr 27)) * 0x94D049BB133111EBUL.toLong()
+        z = z xor (z ushr 31)
+        return ((z ushr 11) and 0x1FFFFFFFFFFFFFL).toFloat() / 9007199254740992f
+    }
+
+    /** Picks a library loop for this object and requests an async decode. */
+    private fun attachSample(s: Slot, t: TrackSnapshot) {
+        val lib = sampleLibrary ?: return
+        val list = lib.loopsFor(t.label, t.spec.material) ?: return
+        if (list.isEmpty()) return
+        val idx = Math.floorMod(t.id * 2862933555777941757L ushr 1, list.size.toLong()).toInt()
+        val entry = list[idx]
+        s.sampleEntry = entry
+        s.entryGain = 0.9f + 0.2f * hash01(t.id * 31L + 7L)
+        s.sample = lib.getOrRequest(entry)
+        s.samplePos = 0f
+        s.sampleBlend = if (s.sample != null) 1f else 0f
+        s.samplePitch = 0.86f + 0.34f * hash01(t.id * 747796405L + 2891336453L)
+        s.lfoFreq = 0.08f + 0.30f * hash01(t.id * 10259L + 5L)
+        s.lfoPhase = TWO_PI * hash01(t.id * 7919L + 3L)
+        s.loopLp = 0f
+        s.loopGainSmooth = 0f
+    }
+
+    /** Material-matched one-shot accent at the position of a newly seen object. */
+    private fun triggerEvent(t: TrackSnapshot, gain: Float) {
+        val lib = sampleLibrary ?: return
+        val entry = lib.eventFor(t.spec.material, t.id) ?: return
+        val samples = lib.getOrRequest(entry) ?: return // decoded already or queued; skip if not ready
+        val os = oneShots.firstOrNull { it.samples == null } ?: return
+        os.samples = samples
+        os.pos = 0f
+        os.azWorld = t.azWorld
+        os.distance = t.distance.coerceIn(0.4f, 10f)
+        os.gain = (0.35f + 0.45f * gain)
+        os.rate = 0.92f + 0.16f * hash01(t.id * 104729L + 11L)
+    }
+
+    /** Renders the bundled-sample loop with per-object pitch, LFO breathing
+     *  and the distance low-pass. Reuses the neural-loop smoothing state. */
+    private fun renderSampleInto(dest: FloatArray, s: Slot, distanceM: Float, gain: Float) {
+        val samples = s.sample ?: return
+        val n = samples.size
+        if (n < 64) return
+        val invSr = 1f / sampleRate
+        val fc = 12000f / (1f + distanceM * distanceM * 0.16f)
+        val a = (1f - exp(-TWO_PI * fc * invSr)).coerceIn(0.001f, 1f)
+        var lp = s.loopLp
+        var g = s.loopGainSmooth
+        var pos = s.samplePos
+        var lfo = s.lfoPhase
+        val rate = s.samplePitch
+        val lfoStep = TWO_PI * s.lfoFreq * invSr
+        val lfoDepth = s.lfoDepth
+        val eg = s.entryGain
+        for (i in 0 until blockFrames) {
+            val i0 = pos.toInt()
+            val f = pos - i0
+            val j0 = i0 % n
+            val j1 = (i0 + 1) % n
+            val v = (samples[j0] + (samples[j1] - samples[j0]) * f) * eg
+            pos += rate
+            if (pos >= n) pos -= n
+            lp += a * (v - lp)
+            g += 0.0045f * (gain - g)
+            lfo += lfoStep
+            if (lfo > TWO_PI) lfo -= TWO_PI
+            val breath = 1f - lfoDepth + lfoDepth * (0.5f + 0.5f * sin(lfo))
+            dest[i] = lp * g * breath
+        }
+        s.samplePos = pos
+        s.loopLp = lp
+        s.loopGainSmooth = g
+        s.lfoPhase = lfo
+    }
+
+    /** Mixes active one-shot accents (pan + shadow low-pass + distance gain). */
+    private fun renderOneShots(pose: HeadPose) {
+        for (os in oneShots) {
+            val samples = os.samples ?: continue
+            val n = samples.size
+            val az = relAz(os.azWorld, pose)
+            val pan = Angles.clamp(az / HALF_PI, -1f, 1f) * QUARTER_PI + QUARTER_PI
+            val pl = cos(pan)
+            val pr = sin(pan)
+            val shadowK = if (settings.speakerMode) 7f else 4.5f
+            val shadowL = Angles.smoothstep(0f, 1.05f, if (az > 0f) az else 0f)
+            val shadowR = Angles.smoothstep(0f, 1.05f, if (az < 0f) -az else 0f)
+            val coefL = lpCoef(12000f / (1f + shadowL * shadowK))
+            val coefR = lpCoef(12000f / (1f + shadowR * shadowK))
+            val distGain = (1.5f / os.distance).pow(1.15f).coerceIn(0.15f, 1.6f) * os.gain
+            var lpL = 0f
+            var lpR = 0f
+            var pos = os.pos
+            val fadeN = 0.06f * sampleRate
+            var i = 0
+            while (i < blockFrames) {
+                if (pos >= n) break
+                val i0 = pos.toInt()
+                val f = pos - i0
+                val j1 = (i0 + 1).coerceAtMost(n - 1)
+                var env = 1f
+                val rem = n - pos
+                if (rem < fadeN) env = rem / fadeN
+                val v = (samples[i0] + (samples[j1] - samples[i0]) * f) * env * distGain
+                lpL += coefL * (v - lpL)
+                lpR += coefR * (v - lpR)
+                mixL[i] += lpL * pl
+                mixR[i] += lpR * pr
+                pos += os.rate
+                i++
+            }
+            if (pos >= n) os.samples = null else os.pos = pos
+        }
     }
 
     // ------------------------------------------------------------- neural
@@ -412,8 +584,9 @@ class AudioEngine(
         } else {
             val distGain = (spec.refDistanceM / s.distance).pow(1.15f).coerceAtMost(1.7f)
             val target = s.targetGain * distGain
-            val loopReady = s.loopSamples != null && settings.neuralTextures
-            if (loopReady) {
+            val neuralReady = s.loopSamples != null && settings.neuralTextures
+            val sampleReady = s.sample != null
+            if (neuralReady) {
                 // Crossfade procedural -> neural loop (~1 s), then free the DSP.
                 if (s.loopBlend < 1f) s.loopBlend = (s.loopBlend + 0.02f).coerceAtMost(1f)
                 val gen = s.generator
@@ -426,7 +599,23 @@ class AudioEngine(
                     }
                 } else {
                     s.generator = null
+                    s.sample = null
                     renderLoopInto(s.dry, s, s.distance, target)
+                }
+            } else if (sampleReady) {
+                // Crossfade whatever is playing -> bundled sample loop (~0.5 s).
+                if (s.sampleBlend < 1f) s.sampleBlend = (s.sampleBlend + 0.05f).coerceAtMost(1f)
+                val gen = s.generator
+                if (gen != null && s.sampleBlend < 1f) {
+                    gen.process(s.dry, blockFrames, s.distance, target)
+                    renderSampleInto(tmpDry, s, s.distance, target)
+                    val b = s.sampleBlend
+                    for (i in 0 until blockFrames) {
+                        s.dry[i] = s.dry[i] * (1f - b) + tmpDry[i] * b
+                    }
+                } else {
+                    s.generator = null
+                    renderSampleInto(s.dry, s, s.distance, target)
                 }
             } else {
                 val gen = s.generator ?: return

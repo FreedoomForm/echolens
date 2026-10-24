@@ -11,17 +11,20 @@ import com.echolens.app.core.TextureLibrary
 import java.nio.FloatBuffer
 
 /**
- * Real-time object detector: YOLO26-Nano (COCO-80), exported to ONNX,
- * running on ONNX Runtime. End-to-end (NMS-free) output: [1, 300, 6]
- * = x1, y1, x2, y2, score, class_id in letterboxed input pixels.
+ * Real-time object detector: YOLO26-S (COCO-80) or YOLO26-Nano fallback,
+ * exported to ONNX, running on ONNX Runtime. End-to-end (NMS-free) output:
+ * [1, 300, 6] = x1, y1, x2, y2, score, class_id in letterboxed input pixels.
  *
- * COCO mAP50-95 ≈ 40.3 (YOLO26-N) vs ≈ 23-25 (SSD MobileNet v1) —
- * roughly +70% relative quality at similar on-device latency.
+ * v1.4.0: default model upgraded to YOLO26-S @640 px (COCO mAP50-95 ≈ 47.5
+ * vs ≈ 40.3 for the Nano @480) with a lower score threshold (0.24) and up
+ * to 24 parallel detections — this is what makes crowded scenes (dozens of
+ * different objects) actually sound as multiple parallel voices.
  */
 class YoloDetector(
     context: Context,
-    modelAsset: String = "yolo26n.onnx",
-    private val scoreThreshold: Float = 0.35f
+    modelAsset: String = MODEL_ACCURATE,
+    private val scoreThreshold: Float = 0.24f,
+    private val maxDetections: Int = 24
 ) : AutoCloseable {
 
     class Detection(
@@ -64,7 +67,7 @@ class YoloDetector(
         inputName = session.inputNames.iterator().next()
         val info = session.getInputInfo()[inputName]!!.info as TensorInfo
         val dims = info.shape
-        inputSize = if (dims.size >= 4 && dims[2] > 0) dims[2].toInt() else 480
+        inputSize = if (dims.size >= 4 && dims[2] > 0) dims[2].toInt() else 640
         net = FloatArray(3 * inputSize * inputSize)
     }
 
@@ -123,7 +126,7 @@ class YoloDetector(
                     out.add(Detection(label, spec.ruName, spec, score, cx, cy, hf, null))
                 }
                 out.sortByDescending { it.score }
-                if (out.size > 12) out.subList(12, out.size).clear()
+                if (out.size > maxDetections) out.subList(maxDetections, out.size).clear()
                 return out
             }
         }
@@ -134,6 +137,31 @@ class YoloDetector(
     }
 
     companion object {
+        const val MODEL_ACCURATE = "yolo26s.onnx"
+        const val MODEL_FAST = "yolo26n.onnx"
+
+        /**
+         * Creates a detector with graceful fallback: accurate (yolo26s) first,
+         * then fast (yolo26n). Throws only when no model ships in the APK.
+         */
+        fun create(context: Context, accurate: Boolean): YoloDetector {
+            val order = if (accurate) {
+                listOf(MODEL_ACCURATE, MODEL_FAST)
+            } else {
+                listOf(MODEL_FAST, MODEL_ACCURATE)
+            }
+            var last: Exception? = null
+            for (m in order) {
+                try {
+                    context.assets.open(m).use { it.read() }
+                    return YoloDetector(context, m)
+                } catch (e: Exception) {
+                    last = e
+                }
+            }
+            throw IllegalStateException("Detector model not found in assets: ${last?.message}")
+        }
+
         private const val GRAY = 114f / 255f
         private const val INV255 = 1f / 255f
 

@@ -2,7 +2,12 @@
 
 ## Neural network models (bundled in APK assets)
 
-### yolo26n.onnx — YOLO26-Nano object detector (COCO-80)
+### yolo26s.onnx — YOLO26-S object detector (COCO-80, default since v1.4.0)
+- Source: exported from Ultralytics YOLO26-S official weights (imgsz=640, end-to-end)
+- License: **AGPL-3.0** (Ultralytics); same terms as the Nano below.
+- https://docs.ultralytics.com/models/yolo26/
+
+### yolo26n.onnx — YOLO26-Nano object detector (COCO-80, fast fallback)
 - Source: exported from Ultralytics YOLO26-N official weights
 - License: **AGPL-3.0** (Ultralytics). The model file is distributed under its
   own license; EchoLens application code remains MIT. If AGPL does not suit
@@ -15,6 +20,14 @@
   (onnx/model_quantized.onnx, INT8 dynamic)
 - Base model: https://huggingface.co/depth-anything/Depth-Anything-V2-Small
 - License: **Apache-2.0**
+
+## Sound texture library (assets/sounds/, v1.4.0)
+
+- 924 OGG samples (loops / events / class signatures) are **synthesized by
+  the EchoLens project** (offline physical-model rendering: modal synthesis,
+  shaped-noise granulation, FM chirps) — no third-party recordings.
+- License: **MIT** (same as the project). Generation script:
+  `scripts/render_sound_library.py` in the project workspace.
 
 ## Runtime libraries
 

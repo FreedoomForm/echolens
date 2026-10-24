@@ -29,24 +29,29 @@ class SceneTracker(
     private val vFovPortrait = 1.082f   // ~62°  vertical
     private val tanHalfV = tan(vFovPortrait / 2f)
 
-    private val matchAzRad = 0.35f      // ~20°
-    private val matchElevRad = 0.5f     // ~29°
+    private val matchAzRad = 0.26f      // ~15°
+    private val matchElevRad = 0.42f    // ~24°
     private val maxTracks = 24
+    private val labelSwitchVotes = 3
 
     // Global depth calibration: distance ≈ depthScale / relativeDepth.
     private var depthScale = 0f
 
     private class Track(
         val id: Long,
-        val label: String,
-        val ruName: String,
-        val spec: MaterialSpec,
+        var label: String,
+        var ruName: String,
+        var spec: MaterialSpec,
         var azWorld: Float,
         var elevWorld: Float,
         var distance: Float,
         var lastSeenMs: Long,
         var confidence: Float
-    )
+    ) {
+        /** Consecutive frames voting for a different label (hysteresis). */
+        var pendingLabel: String? = null
+        var pendingVotes = 0
+    }
 
     private val tracks = ArrayList<Track>(16)
     private var nextId = 1L
@@ -79,13 +84,28 @@ class SceneTracker(
             }
 
             var best: Track? = null
+            // Pass 1: same-label match (the common, stable case).
             for (t in tracks) {
-                if (t.label != d.label || used.contains(t.id)) continue
+                if (used.contains(t.id) || t.label != d.label) continue
                 val dAz = abs(Angles.normalize(azWorld - t.azWorld))
                 val dEl = abs(elevWorld - t.elevWorld)
                 if (dAz < matchAzRad && dEl < matchElevRad) {
                     best = t
                     break
+                }
+            }
+            // Pass 2: any-label match in a tighter window — prevents the same
+            // object from spawning a second track when the detector flickers
+            // between similar classes (cup/bowl, chair/table, cat/dog).
+            if (best == null) {
+                for (t in tracks) {
+                    if (used.contains(t.id)) continue
+                    val dAz = abs(Angles.normalize(azWorld - t.azWorld))
+                    val dEl = abs(elevWorld - t.elevWorld)
+                    if (dAz < matchAzRad * 0.6f && dEl < matchElevRad * 0.6f) {
+                        best = t
+                        break
+                    }
                 }
             }
             if (best != null) {
@@ -95,6 +115,7 @@ class SceneTracker(
                 best.distance += 0.25f * (dist - best.distance)
                 best.lastSeenMs = nowMs
                 best.confidence = d.score
+                applyLabelHysteresis(best, d)
                 used.add(best.id)
             } else {
                 val t = Track(nextId++, d.label, d.ruName, d.spec, azWorld, elevWorld, dist, nowMs, d.score)
@@ -105,6 +126,36 @@ class SceneTracker(
                     tracks.removeAt(0)
                 }
             }
+        }
+    }
+
+    /**
+     * Switches a track's label only after several consecutive confident
+     * detections of the new class — single-frame flicker no longer changes
+     * what the object sounds like or how it is announced.
+     */
+    private fun applyLabelHysteresis(t: Track, d: YoloDetector.Detection) {
+        if (d.label == t.label) {
+            t.pendingLabel = null
+            t.pendingVotes = 0
+            return
+        }
+        if (d.score < t.confidence - 0.10f) {
+            // A weaker detection of a different class is likely noise.
+            return
+        }
+        if (t.pendingLabel == d.label) {
+            t.pendingVotes++
+        } else {
+            t.pendingLabel = d.label
+            t.pendingVotes = 1
+        }
+        if (t.pendingVotes >= labelSwitchVotes) {
+            t.label = d.label
+            t.ruName = d.ruName
+            t.spec = d.spec
+            t.pendingLabel = null
+            t.pendingVotes = 0
         }
     }
 

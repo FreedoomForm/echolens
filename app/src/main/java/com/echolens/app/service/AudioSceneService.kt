@@ -32,10 +32,12 @@ import androidx.lifecycle.LifecycleService
 import com.echolens.app.MainActivity
 import com.echolens.app.R
 import com.echolens.app.audio.AudioEngine
+import com.echolens.app.audio.SampleLibrary
 import com.echolens.app.audio.neural.NeuralModels
 import com.echolens.app.audio.neural.NeuralTextureProvisioner
 import com.echolens.app.audio.neural.TextureCache
 import com.echolens.app.core.HeadPose
+import com.echolens.app.core.Material
 import com.echolens.app.core.RuText
 import com.echolens.app.core.TrackSnapshot
 import com.echolens.app.head.HeadTracker
@@ -71,6 +73,7 @@ class AudioSceneService : LifecycleService() {
         const val KEY_CONE_DEG = "cone_deg"
         const val KEY_STREAMS = "max_streams"
         const val KEY_NEURAL = "neural_textures"
+        const val KEY_MODEL_ACCURATE = "detector_accurate"
 
         private const val CHANNEL_ID = "session"
         private const val NOTIFICATION_ID = 42
@@ -78,7 +81,7 @@ class AudioSceneService : LifecycleService() {
 
         const val DEFAULT_VOLUME = 85
         const val DEFAULT_CONE_DEG = 30
-        const val DEFAULT_STREAMS = 4
+        const val DEFAULT_STREAMS = 10
     }
 
     class UiState(
@@ -94,7 +97,9 @@ class AudioSceneService : LifecycleService() {
         val depthOn: Boolean,
         val neuralStatus: String,
         val neuralAvailable: Boolean,
-        val materialClfOn: Boolean
+        val materialClfOn: Boolean,
+        val sampleCount: Int,
+        val detectorModel: String
     )
 
     inner class LocalBinder : Binder() {
@@ -109,6 +114,7 @@ class AudioSceneService : LifecycleService() {
     private var materialClassifier: MaterialClassifier? = null
     private var sceneTracker: SceneTracker? = null
     private var audioEngine: AudioEngine? = null
+    private var sampleLibrary: SampleLibrary? = null
     private var textureCache: TextureCache? = null
     private var provisioner: NeuralTextureProvisioner? = null
     private var cameraProvider: ProcessCameraProvider? = null
@@ -129,6 +135,7 @@ class AudioSceneService : LifecycleService() {
         private set
     @Volatile private var frameCount = 0L
     private var rebindAttempts = 0
+    @Volatile private var detectorModelName = ""
 
     // Analyzer-thread only
     private val frameTimes = ArrayDeque<Long>()
@@ -189,8 +196,11 @@ class AudioSceneService : LifecycleService() {
         }
 
         headTracker = HeadTracker(this).also { it.start() }
+        val prefs = getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        val accurate = prefs.getBoolean(KEY_MODEL_ACCURATE, true)
         try {
-            detector = YoloDetector(this)
+            detector = YoloDetector.create(this, accurate)
+            detectorModelName = if (accurate) "S@640" else "N@480"
             camError = null
         } catch (e: Exception) {
             Log.e(TAG, "Detector load failed", e)
@@ -204,6 +214,10 @@ class AudioSceneService : LifecycleService() {
         }
         sceneTracker = SceneTracker()
         frameConverter = FrameConverter()
+
+        // Bundled sound texture library (no downloads needed).
+        val samples = SampleLibrary(this)
+        sampleLibrary = samples
 
         // Neural texture pipeline: cache + background on-device generation.
         val cache = TextureCache(this)
@@ -225,12 +239,14 @@ class AudioSceneService : LifecycleService() {
                 sceneTracker?.snapshot(SystemClock.elapsedRealtime()) ?: emptyList()
             },
             onObjectActivated = { ruName -> onObjectActivated(ruName) },
+            sampleLibrary = samples,
             textureCache = cache,
             provisioner = prov
         )
         audioEngine = engine
         applySettings()
         engine.startEngine()
+        samples.preloadEvents(Material.values().toList())
 
         acquireWakeLock()
         startCamera()
@@ -242,12 +258,12 @@ class AudioSceneService : LifecycleService() {
             masterVolume = (prefs.getInt(KEY_VOLUME, DEFAULT_VOLUME) / 100f)
                 .coerceIn(0.05f, 1f)
             coneWidthRad = Angles.rad(prefs.getInt(KEY_CONE_DEG, DEFAULT_CONE_DEG).toFloat())
-            maxSources = prefs.getInt(KEY_STREAMS, DEFAULT_STREAMS).coerceIn(2, 6)
+            maxSources = prefs.getInt(KEY_STREAMS, DEFAULT_STREAMS).coerceIn(2, 16)
             invertAzimuth = prefs.getBoolean(KEY_INVERT, false)
             speakerMode = prefs.getBoolean(KEY_SPEAKER, true)
-            neuralTextures = prefs.getBoolean(KEY_NEURAL, true)
+            neuralTextures = prefs.getBoolean(KEY_NEURAL, false)
         }
-        provisioner?.enabled = prefs.getBoolean(KEY_NEURAL, true)
+        provisioner?.enabled = prefs.getBoolean(KEY_NEURAL, false)
     }
 
     private fun startCamera() {
@@ -317,13 +333,15 @@ class AudioSceneService : LifecycleService() {
                 }
             }
 
-            // Optional material refinement on the top detection (~2 Hz).
+            // Optional material refinement — round-robin over the top-3
+            // detections (~2 Hz each) instead of only the single best box.
             val clf = materialClassifier
-            if (clf != null && frameCount % 15 == 0L && detections.isNotEmpty()) {
-                val d = detections[0]
+            if (clf != null && frameCount % 10 == 0L && detections.isNotEmpty()) {
+                val slot = ((frameCount / 10) % minOf(3, detections.size)).toInt()
+                val d = detections[slot]
                 val res = clf.classify(bitmap, d.cxNorm, d.cyNorm, d.hFrac)
                 if (res != null) {
-                    detections[0] = d.withSpec(clf.refine(d.spec, res))
+                    detections[slot] = d.withSpec(clf.refine(d.spec, res))
                 }
             }
 
@@ -422,7 +440,9 @@ class AudioSceneService : LifecycleService() {
             depthOn = depthEstimator != null,
             neuralStatus = prov?.status ?: "",
             neuralAvailable = NeuralModels.status(this).available,
-            materialClfOn = materialClassifier != null
+            materialClfOn = materialClassifier != null,
+            sampleCount = sampleLibrary?.sampleCount ?: 0,
+            detectorModel = detectorModelName
         )
     }
 
@@ -438,6 +458,8 @@ class AudioSceneService : LifecycleService() {
         audioEngine = null
         provisioner?.clearPending()
         provisioner?.releaseEngine()
+        sampleLibrary?.close()
+        sampleLibrary = null
         headTracker?.stop()
         headTracker = null
         detector?.close()

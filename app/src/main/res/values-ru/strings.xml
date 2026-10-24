@@ -24,13 +24,16 @@
     <string name="screen_toggle">Не выключать экран</string>
     <string name="invert_toggle">Инвертировать лево/право (перевёрнутое крепление)</string>
     <string name="speaker_toggle">Звук через динамик телефона (без наушников)</string>
-    <string name="neural_toggle">Нейро-текстуры материалов (генерация на телефоне)</string>
+    <string name="neural_toggle">Нейро-текстуры материалов (опция, требует файлов моделей)</string>
+    <string name="model_toggle">Точный детектор: YOLO26-S @640 (выше качество)</string>
+    <string name="model_hint">Вступает в силу с нового запуска сессии. Выкл = быстрый YOLO26-N @480 для слабых телефонов</string>
     <string name="neural_ready">Нейро-текстуры: модели найдены — новые материалы будут генерироваться в фоне (~20–40 с один раз на материал)</string>
     <string name="neural_bundled">Нейро-текстуры: модели встроены в приложение (~850 МБ) — распакуются автоматически при первом использовании</string>
     <string name="neural_no_models">Нейро-текстуры: файлы моделей не найдены. Процедурные звуки продолжают работать. Положите conditioners_float32.tflite, dit_model.tflite, autoencoder_model.tflite в %1$s</string>
     <string name="neural_weak_device">Нейро-текстуры: недостаточно оперативной памяти (%1$d ГБ). Процедурные звуки продолжают работать</string>
     <string name="neural_gen">Нейро-текстура: %1$s</string>
     <string name="diag_fmt">Камера: %1$s · Кадры: %2$d · Детекция: %3$d мс · Глубина: %4$s</string>
+    <string name="diag_lib_fmt">Детектор: %1$s · Библиотека звуков: %2$d сэмплов · Материал-ИИ: %3$s</string>
     <string name="volume_label">Громкость: %1$d%%</string>
     <string name="cone_label">Ширина конуса внимания: %1$d°</string>
     <string name="streams_label">Максимум звуковых источников: %1$d</string>
