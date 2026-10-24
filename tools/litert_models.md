@@ -24,17 +24,18 @@ Reference golden run (x86, 4 threads): conditioners 0.2 s + DiT 8 steps 2.6 s
 + VAE 14.6 s → 11.6 s of audio. On a Snapdragon flagship expect ~15–40 s for
 the whole texture.
 
-## 1. Get the models (one-time, ~1.1 GB)
+## 1. Get the models (one-time)
 
-### Option 0 — ready-made zip from the GitHub release (no tools needed)
+### Option 0 — already bundled in the APK (v1.3.0+)
 
-Download
-[`EchoLens-models-v1.2.1.zip`](https://github.com/FreedoomForm/echolens/releases/download/v1.2.1/EchoLens-models-v1.2.1.zip)
-(1.05 GB) straight from the v1.2.1 release page, unpack, and copy the three
-`.tflite` files to `/sdcard/Android/data/com.echolens.app/files/models/`.
-It is the same Arm-converted package as in Option A, bundled for convenience
-(also includes `spiece.model` and a phone install guide). By downloading you
-accept the Stability AI Community License — see the release notes.
+Nothing to do. The APK ships all three `.tflite` files as assets
+(weight-only int8 conditioner 186 MB + int8 DiT 344 MB + fp16 VAE 313 MB
+≈ 844 MB; the quantized conditioner verified against fp32: output cosine
+similarity ≥ 0.9998, spectral profile within 8%). On first use the app
+unpacks them into `/sdcard/Android/data/com.echolens.app/files/models/`.
+
+Use the options below only if you want the *original fp32* conditioner,
+custom conversions, or RAVE/MINC extras.
 
 ### Option A — download the prebuilt Arm-converted package (HF CLI)
 

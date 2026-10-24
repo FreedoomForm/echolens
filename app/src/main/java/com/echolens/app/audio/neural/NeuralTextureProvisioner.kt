@@ -130,7 +130,19 @@ class NeuralTextureProvisioner private constructor(
         if (!enabled || running.get().not()) return
         if (cache.find(job.material, job.variant) != null) return
 
-        val status0 = NeuralModels.status(context)
+        var status0 = NeuralModels.status(context)
+
+        // ---- First use: unpack models bundled in the APK (v1.3.0) --------
+        if (!status0.available && status0.deviceCapable && status0.bundledInApk) {
+            status = "первый запуск: распаковка встроенных моделей (~850 МБ)…"
+            val err = NeuralModels.unpackBundledModels(context) { line -> status = line }
+            if (err != null) {
+                status = "нейро-текстуры: $err"
+                markFail(job)
+                return
+            }
+            status0 = NeuralModels.status(context)
+        }
 
         // ---- Backend 1: RAVE (per-material, cheap) --------------------------
         val raveFile = status0.raveFor(job.material.name)

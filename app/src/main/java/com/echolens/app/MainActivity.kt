@@ -282,6 +282,7 @@ class MainActivity : AppCompatActivity() {
                 (st.totalRamBytes / (1024L * 1024 * 1024)).toInt()
             )
             st.complete -> getString(R.string.neural_ready)
+            st.bundledInApk -> getString(R.string.neural_bundled)
             else -> getString(R.string.neural_no_models, st.modelsDir?.absolutePath ?: "")
         }
     }

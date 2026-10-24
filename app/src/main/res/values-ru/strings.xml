@@ -26,6 +26,7 @@
     <string name="speaker_toggle">Звук через динамик телефона (без наушников)</string>
     <string name="neural_toggle">Нейро-текстуры материалов (генерация на телефоне)</string>
     <string name="neural_ready">Нейро-текстуры: модели найдены — новые материалы будут генерироваться в фоне (~20–40 с один раз на материал)</string>
+    <string name="neural_bundled">Нейро-текстуры: модели встроены в приложение (~850 МБ) — распакуются автоматически при первом использовании</string>
     <string name="neural_no_models">Нейро-текстуры: файлы моделей не найдены. Процедурные звуки продолжают работать. Положите conditioners_float32.tflite, dit_model.tflite, autoencoder_model.tflite в %1$s</string>
     <string name="neural_weak_device">Нейро-текстуры: недостаточно оперативной памяти (%1$d ГБ). Процедурные звуки продолжают работать</string>
     <string name="neural_gen">Нейро-текстура: %1$s</string>

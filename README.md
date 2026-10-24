@@ -76,18 +76,15 @@ AudioTrack 48 кГц, стерео → динамик или наушники
    голову по кругу, чтобы убедиться, что лево/право совпадают
    (если перепутаны — включите настройку «Инвертировать лево/право»).
 
-### Нейро-текстуры (опционально, v1.2+)
+### Нейро-текстуры (v1.3+ — ничего докачивать не нужно)
 
-Чтобы объекты звучали не процедурным DSP, а настоящими нейро-текстурами
-(Stable Audio Open Small, генерация на самом телефоне):
+Модели Stable Audio Open Small **встроены прямо в APK** (~850 МБ, квантизация:
+T5-кодировщик weight-only int8, DiT int8, VAE fp16 — качество проверено,
+cosine ≥ 0.9998 против fp32). Первый запуск с включённым тумблером
+распакует их автоматически — качать zip и копировать файлы не нужно.
 
-1. Скачайте [`EchoLens-models-v1.2.1.zip`](https://github.com/FreedoomForm/echolens/releases/download/v1.2.1/EchoLens-models-v1.2.1.zip)
-   (1.05 ГБ) — он приложен прямо к [релизу v1.2.1](https://github.com/FreedoomForm/echolens/releases/tag/v1.2.1).
-2. Распакуйте и скопируйте 3 файла `.tflite` в
-   `/sdcard/Android/data/com.echolens.app/files/models/` (файловый менеджер или USB).
-3. Включите тумблер **«Нейро-текстуры»** в приложении.
-
-Требуется телефон с 6+ ГБ RAM; без моделей приложение работает как раньше.
+Требования: телефон с 6+ ГБ RAM и ~1 ГБ свободного места; без распаковки
+(или на слабых устройствах) приложение работает на процедурном DSP как раньше.
 Подробности и сигнатуры тензоров — `tools/litert_models.md`.
 
 ## Управление
@@ -116,18 +113,18 @@ AudioTrack 48 кГц, стерео → динамик или наушники
 |---|---|---|---|---|
 | Детекция объектов | YOLO26-Nano, ONNX, 480px | 9.9 МБ | ~40.3 mAP50-95 COCO | AGPL-3.0 |
 | Глубина сцены | Depth Anything V2 Small, INT8, 308px | 27.3 МБ | SOTA среди компактных | Apache-2.0 |
-| Звук (v1.2+) | Stable Audio Open Small 341M → LiteRT, генерация на телефоне; процедурный DSP — мгновенный fallback | 1.05 ГБ (провижинится отдельно, не в APK) | 11 с стерео за ~20–40 с на флагмане | Stability AI Community |
+| Звук (v1.3+) | Stable Audio Open Small 341M → LiteRT, генерация на телефоне; процедурный DSP — мгновенный fallback | 844 МБ встроены в APK (T5 int8 / DiT int8 / VAE fp16) | 11 с стерео за ~20–40 с на флагмане | Stability AI Community |
 | Звук (альтернатива) | RAVE per-материал (`rave_МАТЕРИАЛ.onnx`) | 10–100 МБ/материал | реальное время ~20× RT | MIT |
 
 Глубина обновляется 2–3 раза в секунду и откалибрована по типовым высотам
 объектов — громкость и фильтр звука следуют реальному расстоянию.
 
-Нейро-текстуры (v1.2+): материал впервые появился в кадре — текстура
+Нейро-текстуры (v1.3+): материал впервые появился в кадре — текстура
 генерируется в фоне прямо на телефоне (11 с стерео 44.1 кГц), становится
 бесшовным лупом и навсегда попадает в кэш. Пока нейро-луп не готов,
-мгновенно звучит процедурный DSP — затем кроссфейд. Пакет моделей приложен
-к [релизу v1.2.1](https://github.com/FreedoomForm/echolens/releases/tag/v1.2.1);
-там же — демо-WAV, сгенерированные этим же пайплайном на CPU.
+мгновенно звучит процедурный DSP — затем кроссфейд. Модели встроены в APK
+и распаковываются автоматически; квантизация проверена золотым тестом
+(спектр совпадает с fp32 в пределах 8%).
 
 ## Диагностика
 
@@ -162,7 +159,7 @@ AudioTrack 48 кГц, стерео → динамик или наушники
 - [ ] Персонализация HRTF (подбор по антропометрии ушей)
 - [x] Глубина от моно-нейросети (Depth Anything V2, INT8) — сделано в v1.1.0
 - [x] Нейро-текстуры на устройстве (Stable Audio Open Small via LiteRT) — сделано в v1.2.1
-- [ ] Скачивание нейро-моделей прямо из приложения (без файлового менеджера)
+- [x] Модели встроены в APK с квантизацией (не нужен отдельный пакет) — сделано в v1.3.0
 - [ ] D-FINE-N (4M, 42.8 AP, Apache-2.0) как замена детектора
 - [ ] GPU/NNAPI-делегат детектора
 - [ ] Окклюзия и задержка звука за углами, сезонная реверберация помещений
@@ -199,5 +196,5 @@ and world-anchored — when you turn your head, sounds stay where the objects ar
 Only the top 3–4 most important objects inside a ±30° attention cone sound at once.
 Everything runs offline on-device: CameraX → ONNX YOLO26-N → Depth Anything V2 →
 IMU world tracking → on-device neural sound-texture generation (Stable Audio Open Small
-via LiteRT, optional model package; instant procedural DSP fallback) → custom binaural
-renderer. No cloud, no accounts, MIT license.
+via LiteRT, quantized models bundled in the APK; instant procedural DSP fallback) →
+custom binaural renderer. No cloud, no accounts, MIT license.
