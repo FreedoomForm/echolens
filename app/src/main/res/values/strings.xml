@@ -25,8 +25,8 @@
     <string name="invert_toggle">Invert left/right (mount mirrored)</string>
     <string name="speaker_toggle">Play through phone speaker (no headphones)</string>
     <string name="neural_toggle">Neural material textures (optional, needs model files)</string>
-    <string name="model_toggle">Accurate detector: YOLO26-S @640 (higher quality)</string>
-    <string name="model_hint">Takes effect on the next session start. Off = fast YOLO26-N @480 for weaker phones</string>
+    <string name="model_toggle">Accurate detector: YOLOE-26s @640 — 426 object classes (open vocabulary)</string>
+    <string name="model_hint">Takes effect on the next session start. Off = fast YOLO26-N @480 (80 classes) for weaker phones</string>
     <string name="neural_ready">Neural textures: models found — new materials will be generated in the background (~20–40 s once per material)</string>
     <string name="neural_bundled">Neural textures: models are bundled with the app (~850 MB) and unpack automatically on first use</string>
     <string name="neural_no_models">Neural textures: model files not found. Procedural sounds stay active. Put conditioners_float32.tflite, dit_model.tflite, autoencoder_model.tflite into %1$s</string>

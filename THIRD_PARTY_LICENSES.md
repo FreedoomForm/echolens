@@ -7,6 +7,13 @@
 - License: **AGPL-3.0** (Ultralytics); same terms as the Nano below.
 - https://docs.ultralytics.com/models/yolo26/
 
+### yoloe26s.onnx — YOLOE-26s open-vocabulary detector (default since v1.5.0)
+- Source: Ultralytics YOLOE-26s (detection-only head), exported to ONNX @640 with
+  the EchoLens 426-class vocabulary baked in as text-prompt embeddings
+  (mobileclip2_b text encoder, Apache-2.0, Apple MobileCLIP weights).
+- License: **AGPL-3.0** (Ultralytics), same terms as the other Ultralytics models
+  below; the EchoLens application code remains MIT.
+
 ### yolo26n.onnx — YOLO26-Nano object detector (COCO-80, fast fallback)
 - Source: exported from Ultralytics YOLO26-N official weights
 - License: **AGPL-3.0** (Ultralytics). The model file is distributed under its

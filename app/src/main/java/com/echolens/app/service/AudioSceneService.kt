@@ -200,7 +200,10 @@ class AudioSceneService : LifecycleService() {
         val accurate = prefs.getBoolean(KEY_MODEL_ACCURATE, true)
         try {
             detector = YoloDetector.create(this, accurate)
-            detectorModelName = if (accurate) "S@640" else "N@480"
+            detectorModelName = when {
+                accurate -> "YOLOE-26s@640 · 426 классов"
+                else -> "YOLO26-N@480 · COCO"
+            }
             camError = null
         } catch (e: Exception) {
             Log.e(TAG, "Detector load failed", e)

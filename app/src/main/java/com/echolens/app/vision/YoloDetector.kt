@@ -6,24 +6,30 @@ import ai.onnxruntime.OrtSession
 import ai.onnxruntime.TensorInfo
 import android.content.Context
 import android.graphics.Bitmap
+import com.echolens.app.core.LabelTable
 import com.echolens.app.core.MaterialSpec
 import com.echolens.app.core.TextureLibrary
 import java.nio.FloatBuffer
 
 /**
- * Real-time object detector: YOLO26-S (COCO-80) or YOLO26-Nano fallback,
- * exported to ONNX, running on ONNX Runtime. End-to-end (NMS-free) output:
- * [1, 300, 6] = x1, y1, x2, y2, score, class_id in letterboxed input pixels.
+ * Real-time object detector running on ONNX Runtime, end-to-end (NMS-free)
+ * output [1, max_det, 6] = x1, y1, x2, y2, score, class_id in letterboxed
+ * input pixels.
  *
- * v1.4.0: default model upgraded to YOLO26-S @640 px (COCO mAP50-95 ≈ 47.5
- * vs ≈ 40.3 for the Nano @480) with a lower score threshold (0.24) and up
- * to 24 parallel detections — this is what makes crowded scenes (dozens of
- * different objects) actually sound as multiple parallel voices.
+ * v1.5.0: the accurate model is now YOLOE-26s @640 with the EchoLens
+ * vocabulary (426 classes, baked text-embedding prompts at export) —
+ * household objects COCO never knew (wardrobe, towel, radiator, kettle,
+ * washing machine, door, stairs...) finally get named. Zero-shot open-
+ * vocabulary scores run lower than closed-set ones, hence the 0.20
+ * threshold; latency stayed on par with (or better than) YOLO26-S thanks
+ * to the smaller detection-only head.
+ *
+ * Fallbacks keep COCO-80: YOLO26-S @640, then YOLO26-N @480.
  */
 class YoloDetector(
     context: Context,
     modelAsset: String = MODEL_ACCURATE,
-    private val scoreThreshold: Float = 0.24f,
+    private val scoreThreshold: Float = thresholdFor(MODEL_ACCURATE),
     private val maxDetections: Int = 24
 ) : AutoCloseable {
 
@@ -53,6 +59,8 @@ class YoloDetector(
     private val session: OrtSession
     private val inputName: String
     private val inputSize: Int
+    /** True when the model speaks the 426-class EchoLens vocabulary. */
+    private val echoVocab: Boolean
     private var pixels = IntArray(0)
     private var net = FloatArray(0)
     private var srcW = 0
@@ -69,6 +77,7 @@ class YoloDetector(
         val dims = info.shape
         inputSize = if (dims.size >= 4 && dims[2] > 0) dims[2].toInt() else 640
         net = FloatArray(3 * inputSize * inputSize)
+        echoVocab = modelAsset.startsWith("yoloe")
     }
 
     fun detect(upright: Bitmap): MutableList<Detection> {
@@ -106,14 +115,22 @@ class YoloDetector(
         ).use { tensor ->
             session.run(mapOf(inputName to tensor)).use { results ->
                 @Suppress("UNCHECKED_CAST")
-                val rows = (results[0].value as Array<Array<FloatArray>>)[0] // [300][6]
+                val rows = (results[0].value as Array<Array<FloatArray>>)[0] // [48][6]
                 val out = ArrayList<Detection>(12)
                 for (row in rows) {
                     val score = row[4]
                     if (score < scoreThreshold) continue
-                    val cls = row[5].toInt().coerceIn(0, LABELS.size - 1)
-                    val label = LABELS[cls]
-                    val spec = TextureLibrary.spec(label)
+                    val cls = row[5].toInt()
+                    val label: String
+                    val spec: MaterialSpec
+                    if (echoVocab) {
+                        val i = cls.coerceIn(0, LabelTable.SIZE - 1)
+                        label = LabelTable.EN[i]
+                        spec = LabelTable.spec(i)
+                    } else {
+                        label = LABELS[cls.coerceIn(0, LABELS.size - 1)]
+                        spec = TextureLibrary.spec(label)
+                    }
                     // Un-letterbox back to upright pixel coords, then normalize.
                     val x1 = (row[0] - px) / scale
                     val x2 = (row[2] - px) / scale
@@ -137,24 +154,29 @@ class YoloDetector(
     }
 
     companion object {
-        const val MODEL_ACCURATE = "yolo26s.onnx"
+        /** YOLOE-26s @640, 426-class EchoLens vocabulary baked in. */
+        const val MODEL_ACCURATE = "yoloe26s.onnx"
+        const val MODEL_BALANCED = "yolo26s.onnx"
         const val MODEL_FAST = "yolo26n.onnx"
 
+        /** Open-vocabulary scores run lower than closed-set ones. */
+        fun thresholdFor(asset: String): Float = if (asset.startsWith("yoloe")) 0.20f else 0.24f
+
         /**
-         * Creates a detector with graceful fallback: accurate (yolo26s) first,
-         * then fast (yolo26n). Throws only when no model ships in the APK.
+         * Creates a detector with graceful fallback: YOLOE first for accurate,
+         * YOLO26-N first for fast. Throws only when no model ships in the APK.
          */
         fun create(context: Context, accurate: Boolean): YoloDetector {
             val order = if (accurate) {
-                listOf(MODEL_ACCURATE, MODEL_FAST)
+                listOf(MODEL_ACCURATE, MODEL_BALANCED, MODEL_FAST)
             } else {
-                listOf(MODEL_FAST, MODEL_ACCURATE)
+                listOf(MODEL_FAST, MODEL_BALANCED, MODEL_ACCURATE)
             }
             var last: Exception? = null
             for (m in order) {
                 try {
                     context.assets.open(m).use { it.read() }
-                    return YoloDetector(context, m)
+                    return YoloDetector(context, m, thresholdFor(m))
                 } catch (e: Exception) {
                     last = e
                 }

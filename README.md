@@ -31,8 +31,9 @@ EchoLens превращает камеру телефона в «звуково�
 ```
 камера телефона (YUV 640×480 — нативный формат, макс. совместимость)
       ↓
-нейросеть №1 — детекция: YOLO26-S @640px (ONNX Runtime, COCO-80, офлайн, ~47.5 mAP;
-            опция «Быстрая модель» — YOLO26-N @480, ~40.3 mAP)
+нейросеть №1 — детекция: YOLOE-26s @640px (ONNX Runtime, офлайн; открытый словарь
+            EchoLens — 426 классов предметов: COCO-80 + бытовые/кухня/одежда/улица;
+            опция «Быстрая модель» — YOLO26-N @480, COCO-80, ~40.3 mAP)
       ↓ до 24 объектов в кадре, готовые боксы без NMS (end-to-end)
 нейросеть №2 — глубина: Depth Anything V2 Small INT8 (каждый 5-й кадр)
       ↓ относительная глубина, откалиброванная по типовым размерам объектов
@@ -118,7 +119,8 @@ AudioTrack 48 кГц, стерео → динамик или наушники
 
 | Задача | Модель | Размер | Качество | Лицензия |
 |---|---|---|---|---|
-| Детекция объектов (по умолчанию) | YOLO26-S, ONNX, 640px | 38 МБ | ~47.5 mAP50-95 COCO | AGPL-3.0 |
+| Детекция объектов (по умолчанию) | YOLOE-26s, ONNX, 640px | 39 МБ | открытый словарь 426 классов (LVIS-протокол ~30 mAP; COCO-классы — качество YOLO26-класса) | AGPL-3.0 |
+| Детекция (запасные) | YOLO26-S @640 / YOLO26-N @480, ONNX | 38/10 МБ | ~47.5 / ~40.3 mAP50-95 COCO | AGPL-3.0 |
 | Детекция (опция «быстрая») | YOLO26-Nano, ONNX, 480px | 9.9 МБ | ~40.3 mAP50-95 COCO | AGPL-3.0 |
 | Глубина сцены | Depth Anything V2 Small, INT8, 308px | 27.3 МБ | SOTA среди компактных | Apache-2.0 |
 | Звук | **библиотека 924 сэмпла** (синтезированы офлайн, 15 материалов + 33 сигнатуры классов + события) | 11 МБ в APK | тысячи уникальных голосов (вариант × питч × дистанция) | MIT (наши) |
@@ -180,6 +182,7 @@ AudioTrack 48 кГц, стерео → динамик или наушники
 - [x] Модели встроены в APK с квантизацией — сделано в v1.3.0 (в v1.4.0 убраны из APK по размеру)
 - [x] Библиотека звуковых текстур + полифония до 16 голосов — сделано в v1.4.0
 - [x] Детектор YOLO26-S @640 + сглаживание меток треков — сделано в v1.4.0
+- [x] Детектор с открытым словарём (426 классов: шкаф, полотенце, чайник, дверь, лестница…) — сделано в v1.5.0
 - [ ] D-FINE-N (4M, 42.8 AP, Apache-2.0) как замена детектора
 - [ ] GPU/NNAPI-делегат детектора
 - [ ] Окклюзия и задержка звука за углами, сезонная реверберация помещений
@@ -217,8 +220,8 @@ Since v1.4.0 every object gets its own voice from a bundled 924-sample sound lib
 (15 materials × 36 loops + 33 class signatures + 120 events, all synthesized, MIT):
 up to **16 parallel voices**, each with its own pitch and slow gain breathing, so a
 scene with 15 different objects sounds as 15 distinguishable directional sources.
-Everything runs offline on-device: CameraX → ONNX YOLO26-S @640 (Nano fallback) →
-Depth Anything V2 → IMU world tracking with label-smoothed tracks →
-sample library → custom binaural renderer. Optional neural textures (Stable Audio
+Everything runs offline on-device: CameraX → ONNX YOLOE-26s @640 with a 426-class
+open vocabulary (YOLO26-S/N COCO fallbacks) → Depth Anything V2 → IMU world
+tracking with label-smoothed tracks → sample library → custom binaural renderer. Optional neural textures (Stable Audio
 Open Small via LiteRT) remain available for flagship phones. No cloud, no accounts,
 MIT license.

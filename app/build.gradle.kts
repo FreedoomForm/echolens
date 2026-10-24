@@ -14,8 +14,8 @@ android {
         applicationId = "com.echolens.app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 6
-        versionName = "1.4.0"
+        versionCode = 7
+        versionName = "1.5.0"
 
         ndk {
             abiFilters += listOf("arm64-v8a", "x86_64")
@@ -56,6 +56,12 @@ android {
         // OGG samples must stay uncompressed so MediaExtractor can open them
         // directly through AssetFileDescriptor (sound texture library).
         noCompress += "ogg"
+    }
+
+    // Pin the toolchain so Gradle provisions a full JDK (javac) even on
+    // machines that only ship a JRE; CI already has Temurin 17.
+    kotlin {
+        jvmToolchain(17)
     }
 
     lint {
