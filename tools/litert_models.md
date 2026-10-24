@@ -26,7 +26,17 @@ the whole texture.
 
 ## 1. Get the models (one-time, ~1.1 GB)
 
-### Option A — download the prebuilt Arm-converted package (recommended)
+### Option 0 — ready-made zip from the GitHub release (no tools needed)
+
+Download
+[`EchoLens-models-v1.2.1.zip`](https://github.com/FreedoomForm/echolens/releases/download/v1.2.1/EchoLens-models-v1.2.1.zip)
+(1.05 GB) straight from the v1.2.1 release page, unpack, and copy the three
+`.tflite` files to `/sdcard/Android/data/com.echolens.app/files/models/`.
+It is the same Arm-converted package as in Option A, bundled for convenience
+(also includes `spiece.model` and a phone install guide). By downloading you
+accept the Stability AI Community License — see the release notes.
+
+### Option A — download the prebuilt Arm-converted package (HF CLI)
 
 ```bash
 pip install -U "huggingface_hub[cli]"
