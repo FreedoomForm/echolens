@@ -1,0 +1,22 @@
+# Build outputs
+build/
+app/build/
+
+# IDE
+.idea/
+*.iml
+.kotlin/
+.vscode/
+
+# Local configuration (SDK path)
+local.properties
+
+# Gradle
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# OS
+.DS_Store
+
+# NOTE: signing/ci-release.jks IS committed intentionally — it is a public CI-only
+# key for sideloaded APKs. Replace it with your own key for production signing.

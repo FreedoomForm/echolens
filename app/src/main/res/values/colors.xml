@@ -1,0 +1,8 @@
+<resources>
+    <color name="background">#0D1117</color>
+    <color name="text">#E6EDF3</color>
+    <color name="text_dim">#8B949E</color>
+    <color name="primary">#4FC3F7</color>
+    <color name="accent">#2EA043</color>
+    <color name="icon_bg">#0D1B2A</color>
+</resources>
