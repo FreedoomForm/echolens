@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 /**
- * Bundled sound texture library (assets/sounds/, see tools/render_sound_library.py).
+ * Bundled sound texture library (assets/sounds/, see tools/fsd_pipeline.py (FSD50K curation pipeline)).
  *
  * The library ships inside the APK: ~880 seamless loops, one-shot events and
  * object-class signature textures, all synthesized offline at 48 kHz mono and
@@ -52,7 +52,7 @@ class SampleLibrary(private val context: Context) {
     companion object {
         private const val MANIFEST = "sounds/manifest.json"
         private const val TARGET_SR = 48000
-        private const val MAX_CACHED = 30 // ~30 x 2 s x 48 kHz x float ≈ 11 MB
+        private const val MAX_CACHED = 48 // ~48 x 3 s x 48 kHz x float ≈ 27 MB
 
         fun isAvailable(context: Context): Boolean = try {
             context.assets.open(MANIFEST).use { it.read() } >= 0
@@ -197,8 +197,13 @@ class SampleLibrary(private val context: Context) {
 
     // -------------------------------------------------------------- decode
 
-    /** Decodes an asset OGG/PCM file to 48 kHz mono float. */
-    private fun decodeAsset(path: String): FloatArray? {
+    /**
+     * Decodes an asset OGG/PCM file to 48 kHz mono float.
+     * Manifest paths are relative to "sounds/" — normalize here so entries
+     * like "class/clock/clock_00.ogg" resolve to "sounds/class/...".
+     */
+    private fun decodeAsset(rawPath: String): FloatArray? {
+        val path = if (rawPath.startsWith("sounds/")) rawPath else "sounds/$rawPath"
         val afd = context.assets.openFd(path)
         val mex = MediaExtractor()
         var codec: MediaCodec? = null

@@ -1,1 +1,3099 @@
-{"v":1,"loops":{"WOOD":["loops/WOOD/wood_00.ogg","loops/WOOD/wood_01.ogg","loops/WOOD/wood_02.ogg","loops/WOOD/wood_03.ogg","loops/WOOD/wood_04.ogg","loops/WOOD/wood_05.ogg","loops/WOOD/wood_06.ogg","loops/WOOD/wood_07.ogg","loops/WOOD/wood_08.ogg","loops/WOOD/wood_09.ogg","loops/WOOD/wood_10.ogg","loops/WOOD/wood_11.ogg","loops/WOOD/wood_12.ogg","loops/WOOD/wood_13.ogg","loops/WOOD/wood_14.ogg","loops/WOOD/wood_15.ogg","loops/WOOD/wood_16.ogg","loops/WOOD/wood_17.ogg","loops/WOOD/wood_18.ogg","loops/WOOD/wood_19.ogg","loops/WOOD/wood_20.ogg","loops/WOOD/wood_21.ogg","loops/WOOD/wood_22.ogg","loops/WOOD/wood_23.ogg","loops/WOOD/wood_24.ogg","loops/WOOD/wood_25.ogg","loops/WOOD/wood_26.ogg","loops/WOOD/wood_27.ogg","loops/WOOD/wood_28.ogg","loops/WOOD/wood_29.ogg","loops/WOOD/wood_30.ogg","loops/WOOD/wood_31.ogg","loops/WOOD/wood_32.ogg","loops/WOOD/wood_33.ogg","loops/WOOD/wood_34.ogg","loops/WOOD/wood_35.ogg"],"METAL":["loops/METAL/metal_00.ogg","loops/METAL/metal_01.ogg","loops/METAL/metal_02.ogg","loops/METAL/metal_03.ogg","loops/METAL/metal_04.ogg","loops/METAL/metal_05.ogg","loops/METAL/metal_06.ogg","loops/METAL/metal_07.ogg","loops/METAL/metal_08.ogg","loops/METAL/metal_09.ogg","loops/METAL/metal_10.ogg","loops/METAL/metal_11.ogg","loops/METAL/metal_12.ogg","loops/METAL/metal_13.ogg","loops/METAL/metal_14.ogg","loops/METAL/metal_15.ogg","loops/METAL/metal_16.ogg","loops/METAL/metal_17.ogg","loops/METAL/metal_18.ogg","loops/METAL/metal_19.ogg","loops/METAL/metal_20.ogg","loops/METAL/metal_21.ogg","loops/METAL/metal_22.ogg","loops/METAL/metal_23.ogg","loops/METAL/metal_24.ogg","loops/METAL/metal_25.ogg","loops/METAL/metal_26.ogg","loops/METAL/metal_27.ogg","loops/METAL/metal_28.ogg","loops/METAL/metal_29.ogg","loops/METAL/metal_30.ogg","loops/METAL/metal_31.ogg","loops/METAL/metal_32.ogg","loops/METAL/metal_33.ogg","loops/METAL/metal_34.ogg","loops/METAL/metal_35.ogg"],"GLASS":["loops/GLASS/glass_00.ogg","loops/GLASS/glass_01.ogg","loops/GLASS/glass_02.ogg","loops/GLASS/glass_03.ogg","loops/GLASS/glass_04.ogg","loops/GLASS/glass_05.ogg","loops/GLASS/glass_06.ogg","loops/GLASS/glass_07.ogg","loops/GLASS/glass_08.ogg","loops/GLASS/glass_09.ogg","loops/GLASS/glass_10.ogg","loops/GLASS/glass_11.ogg","loops/GLASS/glass_12.ogg","loops/GLASS/glass_13.ogg","loops/GLASS/glass_14.ogg","loops/GLASS/glass_15.ogg","loops/GLASS/glass_16.ogg","loops/GLASS/glass_17.ogg","loops/GLASS/glass_18.ogg","loops/GLASS/glass_19.ogg","loops/GLASS/glass_20.ogg","loops/GLASS/glass_21.ogg","loops/GLASS/glass_22.ogg","loops/GLASS/glass_23.ogg","loops/GLASS/glass_24.ogg","loops/GLASS/glass_25.ogg","loops/GLASS/glass_26.ogg","loops/GLASS/glass_27.ogg","loops/GLASS/glass_28.ogg","loops/GLASS/glass_29.ogg","loops/GLASS/glass_30.ogg","loops/GLASS/glass_31.ogg","loops/GLASS/glass_32.ogg","loops/GLASS/glass_33.ogg","loops/GLASS/glass_34.ogg","loops/GLASS/glass_35.ogg"],"CERAMIC":["loops/CERAMIC/ceramic_00.ogg","loops/CERAMIC/ceramic_01.ogg","loops/CERAMIC/ceramic_02.ogg","loops/CERAMIC/ceramic_03.ogg","loops/CERAMIC/ceramic_04.ogg","loops/CERAMIC/ceramic_05.ogg","loops/CERAMIC/ceramic_06.ogg","loops/CERAMIC/ceramic_07.ogg","loops/CERAMIC/ceramic_08.ogg","loops/CERAMIC/ceramic_09.ogg","loops/CERAMIC/ceramic_10.ogg","loops/CERAMIC/ceramic_11.ogg","loops/CERAMIC/ceramic_12.ogg","loops/CERAMIC/ceramic_13.ogg","loops/CERAMIC/ceramic_14.ogg","loops/CERAMIC/ceramic_15.ogg","loops/CERAMIC/ceramic_16.ogg","loops/CERAMIC/ceramic_17.ogg","loops/CERAMIC/ceramic_18.ogg","loops/CERAMIC/ceramic_19.ogg","loops/CERAMIC/ceramic_20.ogg","loops/CERAMIC/ceramic_21.ogg","loops/CERAMIC/ceramic_22.ogg","loops/CERAMIC/ceramic_23.ogg","loops/CERAMIC/ceramic_24.ogg","loops/CERAMIC/ceramic_25.ogg","loops/CERAMIC/ceramic_26.ogg","loops/CERAMIC/ceramic_27.ogg","loops/CERAMIC/ceramic_28.ogg","loops/CERAMIC/ceramic_29.ogg","loops/CERAMIC/ceramic_30.ogg","loops/CERAMIC/ceramic_31.ogg","loops/CERAMIC/ceramic_32.ogg","loops/CERAMIC/ceramic_33.ogg","loops/CERAMIC/ceramic_34.ogg","loops/CERAMIC/ceramic_35.ogg"],"ENGINE":["loops/ENGINE/engine_00.ogg","loops/ENGINE/engine_01.ogg","loops/ENGINE/engine_02.ogg","loops/ENGINE/engine_03.ogg","loops/ENGINE/engine_04.ogg","loops/ENGINE/engine_05.ogg","loops/ENGINE/engine_06.ogg","loops/ENGINE/engine_07.ogg","loops/ENGINE/engine_08.ogg","loops/ENGINE/engine_09.ogg","loops/ENGINE/engine_10.ogg","loops/ENGINE/engine_11.ogg","loops/ENGINE/engine_12.ogg","loops/ENGINE/engine_13.ogg","loops/ENGINE/engine_14.ogg","loops/ENGINE/engine_15.ogg","loops/ENGINE/engine_16.ogg","loops/ENGINE/engine_17.ogg","loops/ENGINE/engine_18.ogg","loops/ENGINE/engine_19.ogg","loops/ENGINE/engine_20.ogg","loops/ENGINE/engine_21.ogg","loops/ENGINE/engine_22.ogg","loops/ENGINE/engine_23.ogg","loops/ENGINE/engine_24.ogg","loops/ENGINE/engine_25.ogg","loops/ENGINE/engine_26.ogg","loops/ENGINE/engine_27.ogg","loops/ENGINE/engine_28.ogg","loops/ENGINE/engine_29.ogg","loops/ENGINE/engine_30.ogg","loops/ENGINE/engine_31.ogg","loops/ENGINE/engine_32.ogg","loops/ENGINE/engine_33.ogg","loops/ENGINE/engine_34.ogg","loops/ENGINE/engine_35.ogg"],"WATER":["loops/WATER/water_00.ogg","loops/WATER/water_01.ogg","loops/WATER/water_02.ogg","loops/WATER/water_03.ogg","loops/WATER/water_04.ogg","loops/WATER/water_05.ogg","loops/WATER/water_06.ogg","loops/WATER/water_07.ogg","loops/WATER/water_08.ogg","loops/WATER/water_09.ogg","loops/WATER/water_10.ogg","loops/WATER/water_11.ogg","loops/WATER/water_12.ogg","loops/WATER/water_13.ogg","loops/WATER/water_14.ogg","loops/WATER/water_15.ogg","loops/WATER/water_16.ogg","loops/WATER/water_17.ogg","loops/WATER/water_18.ogg","loops/WATER/water_19.ogg","loops/WATER/water_20.ogg","loops/WATER/water_21.ogg","loops/WATER/water_22.ogg","loops/WATER/water_23.ogg","loops/WATER/water_24.ogg","loops/WATER/water_25.ogg","loops/WATER/water_26.ogg","loops/WATER/water_27.ogg","loops/WATER/water_28.ogg","loops/WATER/water_29.ogg","loops/WATER/water_30.ogg","loops/WATER/water_31.ogg","loops/WATER/water_32.ogg","loops/WATER/water_33.ogg","loops/WATER/water_34.ogg","loops/WATER/water_35.ogg"],"ELECTRONICS":["loops/ELECTRONICS/electronics_00.ogg","loops/ELECTRONICS/electronics_01.ogg","loops/ELECTRONICS/electronics_02.ogg","loops/ELECTRONICS/electronics_03.ogg","loops/ELECTRONICS/electronics_04.ogg","loops/ELECTRONICS/electronics_05.ogg","loops/ELECTRONICS/electronics_06.ogg","loops/ELECTRONICS/electronics_07.ogg","loops/ELECTRONICS/electronics_08.ogg","loops/ELECTRONICS/electronics_09.ogg","loops/ELECTRONICS/electronics_10.ogg","loops/ELECTRONICS/electronics_11.ogg","loops/ELECTRONICS/electronics_12.ogg","loops/ELECTRONICS/electronics_13.ogg","loops/ELECTRONICS/electronics_14.ogg","loops/ELECTRONICS/electronics_15.ogg","loops/ELECTRONICS/electronics_16.ogg","loops/ELECTRONICS/electronics_17.ogg","loops/ELECTRONICS/electronics_18.ogg","loops/ELECTRONICS/electronics_19.ogg","loops/ELECTRONICS/electronics_20.ogg","loops/ELECTRONICS/electronics_21.ogg","loops/ELECTRONICS/electronics_22.ogg","loops/ELECTRONICS/electronics_23.ogg","loops/ELECTRONICS/electronics_24.ogg","loops/ELECTRONICS/electronics_25.ogg","loops/ELECTRONICS/electronics_26.ogg","loops/ELECTRONICS/electronics_27.ogg","loops/ELECTRONICS/electronics_28.ogg","loops/ELECTRONICS/electronics_29.ogg","loops/ELECTRONICS/electronics_30.ogg","loops/ELECTRONICS/electronics_31.ogg","loops/ELECTRONICS/electronics_32.ogg","loops/ELECTRONICS/electronics_33.ogg","loops/ELECTRONICS/electronics_34.ogg","loops/ELECTRONICS/electronics_35.ogg"],"FABRIC":["loops/FABRIC/fabric_00.ogg","loops/FABRIC/fabric_01.ogg","loops/FABRIC/fabric_02.ogg","loops/FABRIC/fabric_03.ogg","loops/FABRIC/fabric_04.ogg","loops/FABRIC/fabric_05.ogg","loops/FABRIC/fabric_06.ogg","loops/FABRIC/fabric_07.ogg","loops/FABRIC/fabric_08.ogg","loops/FABRIC/fabric_09.ogg","loops/FABRIC/fabric_10.ogg","loops/FABRIC/fabric_11.ogg","loops/FABRIC/fabric_12.ogg","loops/FABRIC/fabric_13.ogg","loops/FABRIC/fabric_14.ogg","loops/FABRIC/fabric_15.ogg","loops/FABRIC/fabric_16.ogg","loops/FABRIC/fabric_17.ogg","loops/FABRIC/fabric_18.ogg","loops/FABRIC/fabric_19.ogg","loops/FABRIC/fabric_20.ogg","loops/FABRIC/fabric_21.ogg","loops/FABRIC/fabric_22.ogg","loops/FABRIC/fabric_23.ogg","loops/FABRIC/fabric_24.ogg","loops/FABRIC/fabric_25.ogg","loops/FABRIC/fabric_26.ogg","loops/FABRIC/fabric_27.ogg","loops/FABRIC/fabric_28.ogg","loops/FABRIC/fabric_29.ogg","loops/FABRIC/fabric_30.ogg","loops/FABRIC/fabric_31.ogg","loops/FABRIC/fabric_32.ogg","loops/FABRIC/fabric_33.ogg","loops/FABRIC/fabric_34.ogg","loops/FABRIC/fabric_35.ogg"],"PLANT":["loops/PLANT/plant_00.ogg","loops/PLANT/plant_01.ogg","loops/PLANT/plant_02.ogg","loops/PLANT/plant_03.ogg","loops/PLANT/plant_04.ogg","loops/PLANT/plant_05.ogg","loops/PLANT/plant_06.ogg","loops/PLANT/plant_07.ogg","loops/PLANT/plant_08.ogg","loops/PLANT/plant_09.ogg","loops/PLANT/plant_10.ogg","loops/PLANT/plant_11.ogg","loops/PLANT/plant_12.ogg","loops/PLANT/plant_13.ogg","loops/PLANT/plant_14.ogg","loops/PLANT/plant_15.ogg","loops/PLANT/plant_16.ogg","loops/PLANT/plant_17.ogg","loops/PLANT/plant_18.ogg","loops/PLANT/plant_19.ogg","loops/PLANT/plant_20.ogg","loops/PLANT/plant_21.ogg","loops/PLANT/plant_22.ogg","loops/PLANT/plant_23.ogg","loops/PLANT/plant_24.ogg","loops/PLANT/plant_25.ogg","loops/PLANT/plant_26.ogg","loops/PLANT/plant_27.ogg","loops/PLANT/plant_28.ogg","loops/PLANT/plant_29.ogg","loops/PLANT/plant_30.ogg","loops/PLANT/plant_31.ogg","loops/PLANT/plant_32.ogg","loops/PLANT/plant_33.ogg","loops/PLANT/plant_34.ogg","loops/PLANT/plant_35.ogg"],"PAPER":["loops/PAPER/paper_00.ogg","loops/PAPER/paper_01.ogg","loops/PAPER/paper_02.ogg","loops/PAPER/paper_03.ogg","loops/PAPER/paper_04.ogg","loops/PAPER/paper_05.ogg","loops/PAPER/paper_06.ogg","loops/PAPER/paper_07.ogg","loops/PAPER/paper_08.ogg","loops/PAPER/paper_09.ogg","loops/PAPER/paper_10.ogg","loops/PAPER/paper_11.ogg","loops/PAPER/paper_12.ogg","loops/PAPER/paper_13.ogg","loops/PAPER/paper_14.ogg","loops/PAPER/paper_15.ogg","loops/PAPER/paper_16.ogg","loops/PAPER/paper_17.ogg","loops/PAPER/paper_18.ogg","loops/PAPER/paper_19.ogg","loops/PAPER/paper_20.ogg","loops/PAPER/paper_21.ogg","loops/PAPER/paper_22.ogg","loops/PAPER/paper_23.ogg","loops/PAPER/paper_24.ogg","loops/PAPER/paper_25.ogg","loops/PAPER/paper_26.ogg","loops/PAPER/paper_27.ogg","loops/PAPER/paper_28.ogg","loops/PAPER/paper_29.ogg","loops/PAPER/paper_30.ogg","loops/PAPER/paper_31.ogg","loops/PAPER/paper_32.ogg","loops/PAPER/paper_33.ogg","loops/PAPER/paper_34.ogg","loops/PAPER/paper_35.ogg"],"PERSON":["loops/PERSON/person_00.ogg","loops/PERSON/person_01.ogg","loops/PERSON/person_02.ogg","loops/PERSON/person_03.ogg","loops/PERSON/person_04.ogg","loops/PERSON/person_05.ogg","loops/PERSON/person_06.ogg","loops/PERSON/person_07.ogg","loops/PERSON/person_08.ogg","loops/PERSON/person_09.ogg","loops/PERSON/person_10.ogg","loops/PERSON/person_11.ogg","loops/PERSON/person_12.ogg","loops/PERSON/person_13.ogg","loops/PERSON/person_14.ogg","loops/PERSON/person_15.ogg","loops/PERSON/person_16.ogg","loops/PERSON/person_17.ogg","loops/PERSON/person_18.ogg","loops/PERSON/person_19.ogg","loops/PERSON/person_20.ogg","loops/PERSON/person_21.ogg","loops/PERSON/person_22.ogg","loops/PERSON/person_23.ogg","loops/PERSON/person_24.ogg","loops/PERSON/person_25.ogg","loops/PERSON/person_26.ogg","loops/PERSON/person_27.ogg","loops/PERSON/person_28.ogg","loops/PERSON/person_29.ogg","loops/PERSON/person_30.ogg","loops/PERSON/person_31.ogg","loops/PERSON/person_32.ogg","loops/PERSON/person_33.ogg","loops/PERSON/person_34.ogg","loops/PERSON/person_35.ogg"],"ANIMAL":["loops/ANIMAL/animal_00.ogg","loops/ANIMAL/animal_01.ogg","loops/ANIMAL/animal_02.ogg","loops/ANIMAL/animal_03.ogg","loops/ANIMAL/animal_04.ogg","loops/ANIMAL/animal_05.ogg","loops/ANIMAL/animal_06.ogg","loops/ANIMAL/animal_07.ogg","loops/ANIMAL/animal_08.ogg","loops/ANIMAL/animal_09.ogg","loops/ANIMAL/animal_10.ogg","loops/ANIMAL/animal_11.ogg","loops/ANIMAL/animal_12.ogg","loops/ANIMAL/animal_13.ogg","loops/ANIMAL/animal_14.ogg","loops/ANIMAL/animal_15.ogg","loops/ANIMAL/animal_16.ogg","loops/ANIMAL/animal_17.ogg","loops/ANIMAL/animal_18.ogg","loops/ANIMAL/animal_19.ogg","loops/ANIMAL/animal_20.ogg","loops/ANIMAL/animal_21.ogg","loops/ANIMAL/animal_22.ogg","loops/ANIMAL/animal_23.ogg","loops/ANIMAL/animal_24.ogg","loops/ANIMAL/animal_25.ogg","loops/ANIMAL/animal_26.ogg","loops/ANIMAL/animal_27.ogg","loops/ANIMAL/animal_28.ogg","loops/ANIMAL/animal_29.ogg","loops/ANIMAL/animal_30.ogg","loops/ANIMAL/animal_31.ogg","loops/ANIMAL/animal_32.ogg","loops/ANIMAL/animal_33.ogg","loops/ANIMAL/animal_34.ogg","loops/ANIMAL/animal_35.ogg"],"BIRD":["loops/BIRD/bird_00.ogg","loops/BIRD/bird_01.ogg","loops/BIRD/bird_02.ogg","loops/BIRD/bird_03.ogg","loops/BIRD/bird_04.ogg","loops/BIRD/bird_05.ogg","loops/BIRD/bird_06.ogg","loops/BIRD/bird_07.ogg","loops/BIRD/bird_08.ogg","loops/BIRD/bird_09.ogg","loops/BIRD/bird_10.ogg","loops/BIRD/bird_11.ogg","loops/BIRD/bird_12.ogg","loops/BIRD/bird_13.ogg","loops/BIRD/bird_14.ogg","loops/BIRD/bird_15.ogg","loops/BIRD/bird_16.ogg","loops/BIRD/bird_17.ogg","loops/BIRD/bird_18.ogg","loops/BIRD/bird_19.ogg","loops/BIRD/bird_20.ogg","loops/BIRD/bird_21.ogg","loops/BIRD/bird_22.ogg","loops/BIRD/bird_23.ogg","loops/BIRD/bird_24.ogg","loops/BIRD/bird_25.ogg","loops/BIRD/bird_26.ogg","loops/BIRD/bird_27.ogg","loops/BIRD/bird_28.ogg","loops/BIRD/bird_29.ogg","loops/BIRD/bird_30.ogg","loops/BIRD/bird_31.ogg","loops/BIRD/bird_32.ogg","loops/BIRD/bird_33.ogg","loops/BIRD/bird_34.ogg","loops/BIRD/bird_35.ogg"],"FOOD":["loops/FOOD/food_00.ogg","loops/FOOD/food_01.ogg","loops/FOOD/food_02.ogg","loops/FOOD/food_03.ogg","loops/FOOD/food_04.ogg","loops/FOOD/food_05.ogg","loops/FOOD/food_06.ogg","loops/FOOD/food_07.ogg","loops/FOOD/food_08.ogg","loops/FOOD/food_09.ogg","loops/FOOD/food_10.ogg","loops/FOOD/food_11.ogg","loops/FOOD/food_12.ogg","loops/FOOD/food_13.ogg","loops/FOOD/food_14.ogg","loops/FOOD/food_15.ogg","loops/FOOD/food_16.ogg","loops/FOOD/food_17.ogg","loops/FOOD/food_18.ogg","loops/FOOD/food_19.ogg","loops/FOOD/food_20.ogg","loops/FOOD/food_21.ogg","loops/FOOD/food_22.ogg","loops/FOOD/food_23.ogg","loops/FOOD/food_24.ogg","loops/FOOD/food_25.ogg","loops/FOOD/food_26.ogg","loops/FOOD/food_27.ogg","loops/FOOD/food_28.ogg","loops/FOOD/food_29.ogg","loops/FOOD/food_30.ogg","loops/FOOD/food_31.ogg","loops/FOOD/food_32.ogg","loops/FOOD/food_33.ogg","loops/FOOD/food_34.ogg","loops/FOOD/food_35.ogg"],"NEUTRAL":["loops/NEUTRAL/neutral_00.ogg","loops/NEUTRAL/neutral_01.ogg","loops/NEUTRAL/neutral_02.ogg","loops/NEUTRAL/neutral_03.ogg","loops/NEUTRAL/neutral_04.ogg","loops/NEUTRAL/neutral_05.ogg","loops/NEUTRAL/neutral_06.ogg","loops/NEUTRAL/neutral_07.ogg","loops/NEUTRAL/neutral_08.ogg","loops/NEUTRAL/neutral_09.ogg","loops/NEUTRAL/neutral_10.ogg","loops/NEUTRAL/neutral_11.ogg","loops/NEUTRAL/neutral_12.ogg","loops/NEUTRAL/neutral_13.ogg","loops/NEUTRAL/neutral_14.ogg","loops/NEUTRAL/neutral_15.ogg","loops/NEUTRAL/neutral_16.ogg","loops/NEUTRAL/neutral_17.ogg","loops/NEUTRAL/neutral_18.ogg","loops/NEUTRAL/neutral_19.ogg","loops/NEUTRAL/neutral_20.ogg","loops/NEUTRAL/neutral_21.ogg","loops/NEUTRAL/neutral_22.ogg","loops/NEUTRAL/neutral_23.ogg","loops/NEUTRAL/neutral_24.ogg","loops/NEUTRAL/neutral_25.ogg","loops/NEUTRAL/neutral_26.ogg","loops/NEUTRAL/neutral_27.ogg","loops/NEUTRAL/neutral_28.ogg","loops/NEUTRAL/neutral_29.ogg","loops/NEUTRAL/neutral_30.ogg","loops/NEUTRAL/neutral_31.ogg","loops/NEUTRAL/neutral_32.ogg","loops/NEUTRAL/neutral_33.ogg","loops/NEUTRAL/neutral_34.ogg","loops/NEUTRAL/neutral_35.ogg"]},"events":{"WOOD":["events/WOOD/wood_e0.ogg","events/WOOD/wood_e1.ogg","events/WOOD/wood_e2.ogg","events/WOOD/wood_e3.ogg","events/WOOD/wood_e4.ogg","events/WOOD/wood_e5.ogg","events/WOOD/wood_e6.ogg","events/WOOD/wood_e7.ogg"],"METAL":["events/METAL/metal_e0.ogg","events/METAL/metal_e1.ogg","events/METAL/metal_e2.ogg","events/METAL/metal_e3.ogg","events/METAL/metal_e4.ogg","events/METAL/metal_e5.ogg","events/METAL/metal_e6.ogg","events/METAL/metal_e7.ogg"],"GLASS":["events/GLASS/glass_e0.ogg","events/GLASS/glass_e1.ogg","events/GLASS/glass_e2.ogg","events/GLASS/glass_e3.ogg","events/GLASS/glass_e4.ogg","events/GLASS/glass_e5.ogg","events/GLASS/glass_e6.ogg","events/GLASS/glass_e7.ogg"],"CERAMIC":["events/CERAMIC/ceramic_e0.ogg","events/CERAMIC/ceramic_e1.ogg","events/CERAMIC/ceramic_e2.ogg","events/CERAMIC/ceramic_e3.ogg","events/CERAMIC/ceramic_e4.ogg","events/CERAMIC/ceramic_e5.ogg","events/CERAMIC/ceramic_e6.ogg","events/CERAMIC/ceramic_e7.ogg"],"ENGINE":["events/ENGINE/engine_e0.ogg","events/ENGINE/engine_e1.ogg","events/ENGINE/engine_e2.ogg","events/ENGINE/engine_e3.ogg","events/ENGINE/engine_e4.ogg","events/ENGINE/engine_e5.ogg","events/ENGINE/engine_e6.ogg","events/ENGINE/engine_e7.ogg"],"WATER":["events/WATER/water_e0.ogg","events/WATER/water_e1.ogg","events/WATER/water_e2.ogg","events/WATER/water_e3.ogg","events/WATER/water_e4.ogg","events/WATER/water_e5.ogg","events/WATER/water_e6.ogg","events/WATER/water_e7.ogg"],"ELECTRONICS":["events/ELECTRONICS/electronics_e0.ogg","events/ELECTRONICS/electronics_e1.ogg","events/ELECTRONICS/electronics_e2.ogg","events/ELECTRONICS/electronics_e3.ogg","events/ELECTRONICS/electronics_e4.ogg","events/ELECTRONICS/electronics_e5.ogg","events/ELECTRONICS/electronics_e6.ogg","events/ELECTRONICS/electronics_e7.ogg"],"FABRIC":["events/FABRIC/fabric_e0.ogg","events/FABRIC/fabric_e1.ogg","events/FABRIC/fabric_e2.ogg","events/FABRIC/fabric_e3.ogg","events/FABRIC/fabric_e4.ogg","events/FABRIC/fabric_e5.ogg","events/FABRIC/fabric_e6.ogg","events/FABRIC/fabric_e7.ogg"],"PLANT":["events/PLANT/plant_e0.ogg","events/PLANT/plant_e1.ogg","events/PLANT/plant_e2.ogg","events/PLANT/plant_e3.ogg","events/PLANT/plant_e4.ogg","events/PLANT/plant_e5.ogg","events/PLANT/plant_e6.ogg","events/PLANT/plant_e7.ogg"],"PAPER":["events/PAPER/paper_e0.ogg","events/PAPER/paper_e1.ogg","events/PAPER/paper_e2.ogg","events/PAPER/paper_e3.ogg","events/PAPER/paper_e4.ogg","events/PAPER/paper_e5.ogg","events/PAPER/paper_e6.ogg","events/PAPER/paper_e7.ogg"],"PERSON":["events/PERSON/person_e0.ogg","events/PERSON/person_e1.ogg","events/PERSON/person_e2.ogg","events/PERSON/person_e3.ogg","events/PERSON/person_e4.ogg","events/PERSON/person_e5.ogg","events/PERSON/person_e6.ogg","events/PERSON/person_e7.ogg"],"ANIMAL":["events/ANIMAL/animal_e0.ogg","events/ANIMAL/animal_e1.ogg","events/ANIMAL/animal_e2.ogg","events/ANIMAL/animal_e3.ogg","events/ANIMAL/animal_e4.ogg","events/ANIMAL/animal_e5.ogg","events/ANIMAL/animal_e6.ogg","events/ANIMAL/animal_e7.ogg"],"BIRD":["events/BIRD/bird_e0.ogg","events/BIRD/bird_e1.ogg","events/BIRD/bird_e2.ogg","events/BIRD/bird_e3.ogg","events/BIRD/bird_e4.ogg","events/BIRD/bird_e5.ogg","events/BIRD/bird_e6.ogg","events/BIRD/bird_e7.ogg"],"FOOD":["events/FOOD/food_e0.ogg","events/FOOD/food_e1.ogg","events/FOOD/food_e2.ogg","events/FOOD/food_e3.ogg","events/FOOD/food_e4.ogg","events/FOOD/food_e5.ogg","events/FOOD/food_e6.ogg","events/FOOD/food_e7.ogg"],"NEUTRAL":["events/NEUTRAL/neutral_e0.ogg","events/NEUTRAL/neutral_e1.ogg","events/NEUTRAL/neutral_e2.ogg","events/NEUTRAL/neutral_e3.ogg","events/NEUTRAL/neutral_e4.ogg","events/NEUTRAL/neutral_e5.ogg","events/NEUTRAL/neutral_e6.ogg","events/NEUTRAL/neutral_e7.ogg"]},"class":{"clock":{"material":"ELECTRONICS","loops":["class/clock/clock_00.ogg","class/clock/clock_01.ogg","class/clock/clock_02.ogg","class/clock/clock_03.ogg","class/clock/clock_04.ogg","class/clock/clock_05.ogg","class/clock/clock_06.ogg","class/clock/clock_07.ogg"]},"cell phone":{"material":"ELECTRONICS","loops":["class/cell_phone/cell_phone_00.ogg","class/cell_phone/cell_phone_01.ogg","class/cell_phone/cell_phone_02.ogg","class/cell_phone/cell_phone_03.ogg","class/cell_phone/cell_phone_04.ogg","class/cell_phone/cell_phone_05.ogg","class/cell_phone/cell_phone_06.ogg","class/cell_phone/cell_phone_07.ogg"]},"laptop":{"material":"ELECTRONICS","loops":["class/laptop/laptop_00.ogg","class/laptop/laptop_01.ogg","class/laptop/laptop_02.ogg","class/laptop/laptop_03.ogg","class/laptop/laptop_04.ogg","class/laptop/laptop_05.ogg","class/laptop/laptop_06.ogg","class/laptop/laptop_07.ogg"]},"keyboard":{"material":"ELECTRONICS","loops":["class/keyboard/keyboard_00.ogg","class/keyboard/keyboard_01.ogg","class/keyboard/keyboard_02.ogg","class/keyboard/keyboard_03.ogg","class/keyboard/keyboard_04.ogg","class/keyboard/keyboard_05.ogg","class/keyboard/keyboard_06.ogg","class/keyboard/keyboard_07.ogg"]},"tv":{"material":"ELECTRONICS","loops":["class/tv/tv_00.ogg","class/tv/tv_01.ogg","class/tv/tv_02.ogg","class/tv/tv_03.ogg","class/tv/tv_04.ogg","class/tv/tv_05.ogg","class/tv/tv_06.ogg","class/tv/tv_07.ogg"]},"refrigerator":{"material":"ELECTRONICS","loops":["class/refrigerator/refrigerator_00.ogg","class/refrigerator/refrigerator_01.ogg","class/refrigerator/refrigerator_02.ogg","class/refrigerator/refrigerator_03.ogg","class/refrigerator/refrigerator_04.ogg","class/refrigerator/refrigerator_05.ogg","class/refrigerator/refrigerator_06.ogg","class/refrigerator/refrigerator_07.ogg"]},"microwave":{"material":"ELECTRONICS","loops":["class/microwave/microwave_00.ogg","class/microwave/microwave_01.ogg","class/microwave/microwave_02.ogg","class/microwave/microwave_03.ogg","class/microwave/microwave_04.ogg","class/microwave/microwave_05.ogg","class/microwave/microwave_06.ogg","class/microwave/microwave_07.ogg"]},"sink":{"material":"WATER","loops":["class/sink/sink_00.ogg","class/sink/sink_01.ogg","class/sink/sink_02.ogg","class/sink/sink_03.ogg","class/sink/sink_04.ogg","class/sink/sink_05.ogg","class/sink/sink_06.ogg","class/sink/sink_07.ogg"]},"toilet":{"material":"WATER","loops":["class/toilet/toilet_00.ogg","class/toilet/toilet_01.ogg","class/toilet/toilet_02.ogg","class/toilet/toilet_03.ogg","class/toilet/toilet_04.ogg","class/toilet/toilet_05.ogg","class/toilet/toilet_06.ogg","class/toilet/toilet_07.ogg"]},"book":{"material":"PAPER","loops":["class/book/book_00.ogg","class/book/book_01.ogg","class/book/book_02.ogg","class/book/book_03.ogg","class/book/book_04.ogg","class/book/book_05.ogg","class/book/book_06.ogg","class/book/book_07.ogg"]},"cup":{"material":"CERAMIC","loops":["class/cup/cup_00.ogg","class/cup/cup_01.ogg","class/cup/cup_02.ogg","class/cup/cup_03.ogg","class/cup/cup_04.ogg","class/cup/cup_05.ogg","class/cup/cup_06.ogg","class/cup/cup_07.ogg"]},"bottle":{"material":"GLASS","loops":["class/bottle/bottle_00.ogg","class/bottle/bottle_01.ogg","class/bottle/bottle_02.ogg","class/bottle/bottle_03.ogg","class/bottle/bottle_04.ogg","class/bottle/bottle_05.ogg","class/bottle/bottle_06.ogg","class/bottle/bottle_07.ogg"]},"wine glass":{"material":"GLASS","loops":["class/wine_glass/wine_glass_00.ogg","class/wine_glass/wine_glass_01.ogg","class/wine_glass/wine_glass_02.ogg","class/wine_glass/wine_glass_03.ogg","class/wine_glass/wine_glass_04.ogg","class/wine_glass/wine_glass_05.ogg","class/wine_glass/wine_glass_06.ogg","class/wine_glass/wine_glass_07.ogg"]},"chair":{"material":"WOOD","loops":["class/chair/chair_00.ogg","class/chair/chair_01.ogg","class/chair/chair_02.ogg","class/chair/chair_03.ogg","class/chair/chair_04.ogg","class/chair/chair_05.ogg","class/chair/chair_06.ogg","class/chair/chair_07.ogg"]},"dining table":{"material":"WOOD","loops":["class/dining_table/dining_table_00.ogg","class/dining_table/dining_table_01.ogg","class/dining_table/dining_table_02.ogg","class/dining_table/dining_table_03.ogg","class/dining_table/dining_table_04.ogg","class/dining_table/dining_table_05.ogg","class/dining_table/dining_table_06.ogg","class/dining_table/dining_table_07.ogg"]},"backpack":{"material":"FABRIC","loops":["class/backpack/backpack_00.ogg","class/backpack/backpack_01.ogg","class/backpack/backpack_02.ogg","class/backpack/backpack_03.ogg","class/backpack/backpack_04.ogg","class/backpack/backpack_05.ogg","class/backpack/backpack_06.ogg","class/backpack/backpack_07.ogg"]},"umbrella":{"material":"FABRIC","loops":["class/umbrella/umbrella_00.ogg","class/umbrella/umbrella_01.ogg","class/umbrella/umbrella_02.ogg","class/umbrella/umbrella_03.ogg","class/umbrella/umbrella_04.ogg","class/umbrella/umbrella_05.ogg","class/umbrella/umbrella_06.ogg","class/umbrella/umbrella_07.ogg"]},"potted plant":{"material":"PLANT","loops":["class/potted_plant/potted_plant_00.ogg","class/potted_plant/potted_plant_01.ogg","class/potted_plant/potted_plant_02.ogg","class/potted_plant/potted_plant_03.ogg","class/potted_plant/potted_plant_04.ogg","class/potted_plant/potted_plant_05.ogg","class/potted_plant/potted_plant_06.ogg","class/potted_plant/potted_plant_07.ogg"]},"teddy bear":{"material":"FABRIC","loops":["class/teddy_bear/teddy_bear_00.ogg","class/teddy_bear/teddy_bear_01.ogg","class/teddy_bear/teddy_bear_02.ogg","class/teddy_bear/teddy_bear_03.ogg","class/teddy_bear/teddy_bear_04.ogg","class/teddy_bear/teddy_bear_05.ogg","class/teddy_bear/teddy_bear_06.ogg","class/teddy_bear/teddy_bear_07.ogg"]},"scissors":{"material":"METAL","loops":["class/scissors/scissors_00.ogg","class/scissors/scissors_01.ogg","class/scissors/scissors_02.ogg","class/scissors/scissors_03.ogg","class/scissors/scissors_04.ogg","class/scissors/scissors_05.ogg","class/scissors/scissors_06.ogg","class/scissors/scissors_07.ogg"]},"sports ball":{"material":"NEUTRAL","loops":["class/sports_ball/sports_ball_00.ogg","class/sports_ball/sports_ball_01.ogg","class/sports_ball/sports_ball_02.ogg","class/sports_ball/sports_ball_03.ogg","class/sports_ball/sports_ball_04.ogg","class/sports_ball/sports_ball_05.ogg","class/sports_ball/sports_ball_06.ogg","class/sports_ball/sports_ball_07.ogg"]},"bicycle":{"material":"METAL","loops":["class/bicycle/bicycle_00.ogg","class/bicycle/bicycle_01.ogg","class/bicycle/bicycle_02.ogg","class/bicycle/bicycle_03.ogg","class/bicycle/bicycle_04.ogg","class/bicycle/bicycle_05.ogg","class/bicycle/bicycle_06.ogg","class/bicycle/bicycle_07.ogg"]},"vase":{"material":"CERAMIC","loops":["class/vase/vase_00.ogg","class/vase/vase_01.ogg","class/vase/vase_02.ogg","class/vase/vase_03.ogg","class/vase/vase_04.ogg","class/vase/vase_05.ogg","class/vase/vase_06.ogg","class/vase/vase_07.ogg"]},"remote":{"material":"ELECTRONICS","loops":["class/remote/remote_00.ogg","class/remote/remote_01.ogg","class/remote/remote_02.ogg","class/remote/remote_03.ogg","class/remote/remote_04.ogg","class/remote/remote_05.ogg","class/remote/remote_06.ogg","class/remote/remote_07.ogg"]},"mouse":{"material":"ELECTRONICS","loops":["class/mouse/mouse_00.ogg","class/mouse/mouse_01.ogg","class/mouse/mouse_02.ogg","class/mouse/mouse_03.ogg","class/mouse/mouse_04.ogg","class/mouse/mouse_05.ogg","class/mouse/mouse_06.ogg","class/mouse/mouse_07.ogg"]},"hair drier":{"material":"ELECTRONICS","loops":["class/hair_drier/hair_drier_00.ogg","class/hair_drier/hair_drier_01.ogg","class/hair_drier/hair_drier_02.ogg","class/hair_drier/hair_drier_03.ogg","class/hair_drier/hair_drier_04.ogg","class/hair_drier/hair_drier_05.ogg","class/hair_drier/hair_drier_06.ogg","class/hair_drier/hair_drier_07.ogg"]},"fork":{"material":"METAL","loops":["class/fork/fork_00.ogg","class/fork/fork_01.ogg","class/fork/fork_02.ogg","class/fork/fork_03.ogg","class/fork/fork_04.ogg","class/fork/fork_05.ogg","class/fork/fork_06.ogg","class/fork/fork_07.ogg"]},"knife":{"material":"METAL","loops":["class/knife/knife_00.ogg","class/knife/knife_01.ogg","class/knife/knife_02.ogg","class/knife/knife_03.ogg","class/knife/knife_04.ogg","class/knife/knife_05.ogg","class/knife/knife_06.ogg","class/knife/knife_07.ogg"]},"spoon":{"material":"METAL","loops":["class/spoon/spoon_00.ogg","class/spoon/spoon_01.ogg","class/spoon/spoon_02.ogg","class/spoon/spoon_03.ogg","class/spoon/spoon_04.ogg","class/spoon/spoon_05.ogg","class/spoon/spoon_06.ogg","class/spoon/spoon_07.ogg"]},"dog":{"material":"ANIMAL","loops":["class/dog/dog_00.ogg","class/dog/dog_01.ogg","class/dog/dog_02.ogg","class/dog/dog_03.ogg","class/dog/dog_04.ogg","class/dog/dog_05.ogg","class/dog/dog_06.ogg","class/dog/dog_07.ogg"]},"cat":{"material":"ANIMAL","loops":["class/cat/cat_00.ogg","class/cat/cat_01.ogg","class/cat/cat_02.ogg","class/cat/cat_03.ogg","class/cat/cat_04.ogg","class/cat/cat_05.ogg","class/cat/cat_06.ogg","class/cat/cat_07.ogg"]},"person":{"material":"PERSON","loops":["class/person/person_00.ogg","class/person/person_01.ogg","class/person/person_02.ogg","class/person/person_03.ogg","class/person/person_04.ogg","class/person/person_05.ogg","class/person/person_06.ogg","class/person/person_07.ogg"]},"bird":{"material":"BIRD","loops":["class/bird/bird_00.ogg","class/bird/bird_01.ogg","class/bird/bird_02.ogg","class/bird/bird_03.ogg","class/bird/bird_04.ogg","class/bird/bird_05.ogg","class/bird/bird_06.ogg","class/bird/bird_07.ogg"]}}}
+{
+ "v": 3,
+ "loops": {
+  "WOOD": [
+   "loops/WOOD/wood_00.ogg",
+   "loops/WOOD/wood_01.ogg",
+   "loops/WOOD/wood_02.ogg",
+   "loops/WOOD/wood_03.ogg",
+   "loops/WOOD/wood_04.ogg",
+   "loops/WOOD/wood_05.ogg",
+   "loops/WOOD/wood_06.ogg",
+   "loops/WOOD/wood_07.ogg",
+   "loops/WOOD/wood_08.ogg",
+   "loops/WOOD/wood_09.ogg"
+  ],
+  "METAL": [
+   "loops/METAL/metal_00.ogg",
+   "loops/METAL/metal_01.ogg",
+   "loops/METAL/metal_02.ogg",
+   "loops/METAL/metal_03.ogg",
+   "loops/METAL/metal_04.ogg",
+   "loops/METAL/metal_05.ogg",
+   "loops/METAL/metal_06.ogg",
+   "loops/METAL/metal_07.ogg",
+   "loops/METAL/metal_08.ogg",
+   "loops/METAL/metal_09.ogg"
+  ],
+  "GLASS": [
+   "loops/GLASS/glass_00.ogg",
+   "loops/GLASS/glass_01.ogg",
+   "loops/GLASS/glass_02.ogg",
+   "loops/GLASS/glass_03.ogg",
+   "loops/GLASS/glass_04.ogg",
+   "loops/GLASS/glass_05.ogg",
+   "loops/GLASS/glass_06.ogg",
+   "loops/GLASS/glass_07.ogg",
+   "loops/GLASS/glass_08.ogg",
+   "loops/GLASS/glass_09.ogg"
+  ],
+  "CERAMIC": [
+   "loops/CERAMIC/ceramic_00.ogg",
+   "loops/CERAMIC/ceramic_01.ogg",
+   "loops/CERAMIC/ceramic_02.ogg",
+   "loops/CERAMIC/ceramic_03.ogg",
+   "loops/CERAMIC/ceramic_04.ogg",
+   "loops/CERAMIC/ceramic_05.ogg",
+   "loops/CERAMIC/ceramic_06.ogg",
+   "loops/CERAMIC/ceramic_07.ogg",
+   "loops/CERAMIC/ceramic_08.ogg",
+   "loops/CERAMIC/ceramic_09.ogg"
+  ],
+  "ENGINE": [
+   "loops/ENGINE/engine_00.ogg",
+   "loops/ENGINE/engine_01.ogg",
+   "loops/ENGINE/engine_02.ogg",
+   "loops/ENGINE/engine_03.ogg",
+   "loops/ENGINE/engine_04.ogg",
+   "loops/ENGINE/engine_05.ogg",
+   "loops/ENGINE/engine_06.ogg",
+   "loops/ENGINE/engine_07.ogg",
+   "loops/ENGINE/engine_08.ogg",
+   "loops/ENGINE/engine_09.ogg"
+  ],
+  "WATER": [
+   "loops/WATER/water_00.ogg",
+   "loops/WATER/water_01.ogg",
+   "loops/WATER/water_02.ogg",
+   "loops/WATER/water_03.ogg",
+   "loops/WATER/water_04.ogg",
+   "loops/WATER/water_05.ogg",
+   "loops/WATER/water_06.ogg",
+   "loops/WATER/water_07.ogg",
+   "loops/WATER/water_08.ogg",
+   "loops/WATER/water_09.ogg"
+  ],
+  "ELECTRONICS": [
+   "loops/ELECTRONICS/electronics_00.ogg",
+   "loops/ELECTRONICS/electronics_01.ogg",
+   "loops/ELECTRONICS/electronics_02.ogg",
+   "loops/ELECTRONICS/electronics_03.ogg",
+   "loops/ELECTRONICS/electronics_04.ogg",
+   "loops/ELECTRONICS/electronics_05.ogg",
+   "loops/ELECTRONICS/electronics_06.ogg",
+   "loops/ELECTRONICS/electronics_07.ogg",
+   "loops/ELECTRONICS/electronics_08.ogg",
+   "loops/ELECTRONICS/electronics_09.ogg"
+  ],
+  "FABRIC": [
+   "loops/FABRIC/fabric_00.ogg",
+   "loops/FABRIC/fabric_01.ogg",
+   "loops/FABRIC/fabric_02.ogg",
+   "loops/FABRIC/fabric_03.ogg",
+   "loops/FABRIC/fabric_04.ogg",
+   "loops/FABRIC/fabric_05.ogg",
+   "loops/FABRIC/fabric_06.ogg",
+   "loops/FABRIC/fabric_07.ogg",
+   "loops/FABRIC/fabric_08.ogg",
+   "loops/FABRIC/fabric_09.ogg"
+  ],
+  "PLANT": [
+   "loops/PLANT/plant_00.ogg",
+   "loops/PLANT/plant_01.ogg",
+   "loops/PLANT/plant_02.ogg",
+   "loops/PLANT/plant_03.ogg",
+   "loops/PLANT/plant_04.ogg",
+   "loops/PLANT/plant_05.ogg",
+   "loops/PLANT/plant_06.ogg",
+   "loops/PLANT/plant_07.ogg",
+   "loops/PLANT/plant_08.ogg",
+   "loops/PLANT/plant_09.ogg"
+  ],
+  "PAPER": [
+   "loops/PAPER/paper_00.ogg",
+   "loops/PAPER/paper_01.ogg",
+   "loops/PAPER/paper_02.ogg",
+   "loops/PAPER/paper_03.ogg",
+   "loops/PAPER/paper_04.ogg",
+   "loops/PAPER/paper_05.ogg",
+   "loops/PAPER/paper_06.ogg",
+   "loops/PAPER/paper_07.ogg",
+   "loops/PAPER/paper_08.ogg",
+   "loops/PAPER/paper_09.ogg"
+  ],
+  "PERSON": [
+   "loops/PERSON/person_00.ogg",
+   "loops/PERSON/person_01.ogg",
+   "loops/PERSON/person_02.ogg",
+   "loops/PERSON/person_03.ogg",
+   "loops/PERSON/person_04.ogg",
+   "loops/PERSON/person_05.ogg",
+   "loops/PERSON/person_06.ogg",
+   "loops/PERSON/person_07.ogg",
+   "loops/PERSON/person_08.ogg",
+   "loops/PERSON/person_09.ogg"
+  ],
+  "ANIMAL": [
+   "loops/ANIMAL/animal_00.ogg",
+   "loops/ANIMAL/animal_01.ogg",
+   "loops/ANIMAL/animal_02.ogg",
+   "loops/ANIMAL/animal_03.ogg",
+   "loops/ANIMAL/animal_04.ogg",
+   "loops/ANIMAL/animal_05.ogg",
+   "loops/ANIMAL/animal_06.ogg",
+   "loops/ANIMAL/animal_07.ogg",
+   "loops/ANIMAL/animal_08.ogg",
+   "loops/ANIMAL/animal_09.ogg"
+  ],
+  "BIRD": [
+   "loops/BIRD/bird_00.ogg",
+   "loops/BIRD/bird_01.ogg",
+   "loops/BIRD/bird_02.ogg",
+   "loops/BIRD/bird_03.ogg",
+   "loops/BIRD/bird_04.ogg",
+   "loops/BIRD/bird_05.ogg",
+   "loops/BIRD/bird_06.ogg",
+   "loops/BIRD/bird_07.ogg",
+   "loops/BIRD/bird_08.ogg",
+   "loops/BIRD/bird_09.ogg"
+  ],
+  "FOOD": [
+   "loops/FOOD/food_00.ogg",
+   "loops/FOOD/food_01.ogg",
+   "loops/FOOD/food_02.ogg",
+   "loops/FOOD/food_03.ogg",
+   "loops/FOOD/food_04.ogg",
+   "loops/FOOD/food_05.ogg",
+   "loops/FOOD/food_06.ogg",
+   "loops/FOOD/food_07.ogg",
+   "loops/FOOD/food_08.ogg"
+  ],
+  "NEUTRAL": [
+   "loops/NEUTRAL/neutral_00.ogg",
+   "loops/NEUTRAL/neutral_01.ogg",
+   "loops/NEUTRAL/neutral_02.ogg",
+   "loops/NEUTRAL/neutral_03.ogg",
+   "loops/NEUTRAL/neutral_04.ogg",
+   "loops/NEUTRAL/neutral_05.ogg",
+   "loops/NEUTRAL/neutral_06.ogg",
+   "loops/NEUTRAL/neutral_07.ogg",
+   "loops/NEUTRAL/neutral_08.ogg",
+   "loops/NEUTRAL/neutral_09.ogg"
+  ]
+ },
+ "events": {
+  "WOOD": [
+   "events/WOOD/wood_e0.ogg",
+   "events/WOOD/wood_e1.ogg",
+   "events/WOOD/wood_e2.ogg",
+   "events/WOOD/wood_e3.ogg"
+  ],
+  "METAL": [
+   "events/METAL/metal_e0.ogg",
+   "events/METAL/metal_e1.ogg",
+   "events/METAL/metal_e2.ogg",
+   "events/METAL/metal_e3.ogg"
+  ],
+  "GLASS": [
+   "events/GLASS/glass_e0.ogg",
+   "events/GLASS/glass_e1.ogg",
+   "events/GLASS/glass_e2.ogg",
+   "events/GLASS/glass_e3.ogg"
+  ],
+  "CERAMIC": [
+   "events/CERAMIC/ceramic_e0.ogg",
+   "events/CERAMIC/ceramic_e1.ogg",
+   "events/CERAMIC/ceramic_e2.ogg",
+   "events/CERAMIC/ceramic_e3.ogg"
+  ],
+  "ENGINE": [
+   "events/ENGINE/engine_e0.ogg",
+   "events/ENGINE/engine_e1.ogg",
+   "events/ENGINE/engine_e2.ogg",
+   "events/ENGINE/engine_e3.ogg"
+  ],
+  "WATER": [
+   "events/WATER/water_e0.ogg",
+   "events/WATER/water_e1.ogg",
+   "events/WATER/water_e2.ogg",
+   "events/WATER/water_e3.ogg"
+  ],
+  "ELECTRONICS": [
+   "events/ELECTRONICS/electronics_e0.ogg",
+   "events/ELECTRONICS/electronics_e1.ogg",
+   "events/ELECTRONICS/electronics_e2.ogg",
+   "events/ELECTRONICS/electronics_e3.ogg"
+  ],
+  "FABRIC": [
+   "events/FABRIC/fabric_e0.ogg",
+   "events/FABRIC/fabric_e1.ogg",
+   "events/FABRIC/fabric_e2.ogg",
+   "events/FABRIC/fabric_e3.ogg"
+  ],
+  "PLANT": [
+   "events/PLANT/plant_e0.ogg",
+   "events/PLANT/plant_e1.ogg",
+   "events/PLANT/plant_e2.ogg",
+   "events/PLANT/plant_e3.ogg"
+  ],
+  "PAPER": [
+   "events/PAPER/paper_e0.ogg",
+   "events/PAPER/paper_e1.ogg",
+   "events/PAPER/paper_e2.ogg",
+   "events/PAPER/paper_e3.ogg"
+  ],
+  "PERSON": [
+   "events/PERSON/person_e0.ogg",
+   "events/PERSON/person_e1.ogg",
+   "events/PERSON/person_e2.ogg",
+   "events/PERSON/person_e3.ogg"
+  ],
+  "ANIMAL": [
+   "events/ANIMAL/animal_e0.ogg",
+   "events/ANIMAL/animal_e1.ogg",
+   "events/ANIMAL/animal_e2.ogg",
+   "events/ANIMAL/animal_e3.ogg"
+  ],
+  "BIRD": [
+   "events/BIRD/bird_e0.ogg",
+   "events/BIRD/bird_e1.ogg",
+   "events/BIRD/bird_e2.ogg",
+   "events/BIRD/bird_e3.ogg"
+  ],
+  "FOOD": [
+   "events/FOOD/food_e0.ogg",
+   "events/FOOD/food_e1.ogg",
+   "events/FOOD/food_e2.ogg",
+   "events/FOOD/food_e3.ogg"
+  ],
+  "NEUTRAL": [
+   "events/NEUTRAL/neutral_e0.ogg",
+   "events/NEUTRAL/neutral_e1.ogg",
+   "events/NEUTRAL/neutral_e2.ogg",
+   "events/NEUTRAL/neutral_e3.ogg"
+  ]
+ },
+ "class": {
+  "person": {
+   "material": "PERSON",
+   "loops": [
+    "class/person/person_00.ogg",
+    "class/person/person_01.ogg",
+    "class/person/person_02.ogg",
+    "class/person/person_03.ogg",
+    "class/person/person_04.ogg",
+    "class/person/person_05.ogg",
+    "class/person/person_06.ogg",
+    "class/person/person_07.ogg"
+   ]
+  },
+  "bicycle": {
+   "material": "METAL",
+   "loops": [
+    "class/bicycle/bicycle_00.ogg",
+    "class/bicycle/bicycle_01.ogg",
+    "class/bicycle/bicycle_02.ogg",
+    "class/bicycle/bicycle_03.ogg",
+    "class/bicycle/bicycle_04.ogg",
+    "class/bicycle/bicycle_05.ogg",
+    "class/bicycle/bicycle_06.ogg",
+    "class/bicycle/bicycle_07.ogg"
+   ]
+  },
+  "car": {
+   "material": "ENGINE",
+   "loops": [
+    "class/car/car_00.ogg",
+    "class/car/car_01.ogg",
+    "class/car/car_02.ogg",
+    "class/car/car_03.ogg",
+    "class/car/car_04.ogg",
+    "class/car/car_05.ogg",
+    "class/car/car_06.ogg",
+    "class/car/car_07.ogg"
+   ]
+  },
+  "motorcycle": {
+   "material": "ENGINE",
+   "loops": [
+    "class/motorcycle/motorcycle_00.ogg",
+    "class/motorcycle/motorcycle_01.ogg",
+    "class/motorcycle/motorcycle_02.ogg",
+    "class/motorcycle/motorcycle_03.ogg",
+    "class/motorcycle/motorcycle_04.ogg",
+    "class/motorcycle/motorcycle_05.ogg",
+    "class/motorcycle/motorcycle_06.ogg",
+    "class/motorcycle/motorcycle_07.ogg"
+   ]
+  },
+  "airplane": {
+   "material": "ENGINE",
+   "loops": [
+    "class/airplane/airplane_00.ogg",
+    "class/airplane/airplane_01.ogg",
+    "class/airplane/airplane_02.ogg",
+    "class/airplane/airplane_03.ogg",
+    "class/airplane/airplane_04.ogg",
+    "class/airplane/airplane_05.ogg",
+    "class/airplane/airplane_06.ogg",
+    "class/airplane/airplane_07.ogg"
+   ]
+  },
+  "bus": {
+   "material": "ENGINE",
+   "loops": [
+    "class/bus/bus_00.ogg",
+    "class/bus/bus_01.ogg",
+    "class/bus/bus_02.ogg",
+    "class/bus/bus_03.ogg",
+    "class/bus/bus_04.ogg",
+    "class/bus/bus_05.ogg",
+    "class/bus/bus_06.ogg",
+    "class/bus/bus_07.ogg"
+   ]
+  },
+  "train": {
+   "material": "ENGINE",
+   "loops": [
+    "class/train/train_00.ogg",
+    "class/train/train_01.ogg",
+    "class/train/train_02.ogg",
+    "class/train/train_03.ogg",
+    "class/train/train_04.ogg",
+    "class/train/train_05.ogg",
+    "class/train/train_06.ogg",
+    "class/train/train_07.ogg"
+   ]
+  },
+  "truck": {
+   "material": "ENGINE",
+   "loops": [
+    "class/truck/truck_00.ogg",
+    "class/truck/truck_01.ogg",
+    "class/truck/truck_02.ogg",
+    "class/truck/truck_03.ogg",
+    "class/truck/truck_04.ogg",
+    "class/truck/truck_05.ogg",
+    "class/truck/truck_06.ogg",
+    "class/truck/truck_07.ogg"
+   ]
+  },
+  "boat": {
+   "material": "WOOD",
+   "loops": [
+    "class/boat/boat_00.ogg",
+    "class/boat/boat_01.ogg",
+    "class/boat/boat_02.ogg",
+    "class/boat/boat_03.ogg",
+    "class/boat/boat_04.ogg",
+    "class/boat/boat_05.ogg",
+    "class/boat/boat_06.ogg",
+    "class/boat/boat_07.ogg"
+   ]
+  },
+  "bench": {
+   "material": "WOOD",
+   "loops": [
+    "class/bench/bench_00.ogg",
+    "class/bench/bench_01.ogg",
+    "class/bench/bench_02.ogg",
+    "class/bench/bench_03.ogg",
+    "class/bench/bench_04.ogg",
+    "class/bench/bench_05.ogg",
+    "class/bench/bench_06.ogg",
+    "class/bench/bench_07.ogg"
+   ]
+  },
+  "bird": {
+   "material": "BIRD",
+   "loops": [
+    "class/bird/bird_00.ogg",
+    "class/bird/bird_01.ogg",
+    "class/bird/bird_02.ogg",
+    "class/bird/bird_03.ogg",
+    "class/bird/bird_04.ogg",
+    "class/bird/bird_05.ogg",
+    "class/bird/bird_06.ogg",
+    "class/bird/bird_07.ogg"
+   ]
+  },
+  "cat": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/cat/cat_00.ogg",
+    "class/cat/cat_01.ogg",
+    "class/cat/cat_02.ogg",
+    "class/cat/cat_03.ogg",
+    "class/cat/cat_04.ogg",
+    "class/cat/cat_05.ogg",
+    "class/cat/cat_06.ogg",
+    "class/cat/cat_07.ogg"
+   ]
+  },
+  "dog": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/dog/dog_00.ogg",
+    "class/dog/dog_01.ogg",
+    "class/dog/dog_02.ogg",
+    "class/dog/dog_03.ogg",
+    "class/dog/dog_04.ogg",
+    "class/dog/dog_05.ogg",
+    "class/dog/dog_06.ogg",
+    "class/dog/dog_07.ogg"
+   ]
+  },
+  "horse": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/horse/horse_00.ogg",
+    "class/horse/horse_01.ogg",
+    "class/horse/horse_02.ogg",
+    "class/horse/horse_03.ogg",
+    "class/horse/horse_04.ogg",
+    "class/horse/horse_05.ogg",
+    "class/horse/horse_06.ogg",
+    "class/horse/horse_07.ogg"
+   ]
+  },
+  "sheep": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/sheep/sheep_00.ogg",
+    "class/sheep/sheep_01.ogg",
+    "class/sheep/sheep_02.ogg",
+    "class/sheep/sheep_03.ogg",
+    "class/sheep/sheep_04.ogg",
+    "class/sheep/sheep_05.ogg",
+    "class/sheep/sheep_06.ogg",
+    "class/sheep/sheep_07.ogg"
+   ]
+  },
+  "cow": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/cow/cow_00.ogg",
+    "class/cow/cow_01.ogg",
+    "class/cow/cow_02.ogg",
+    "class/cow/cow_03.ogg",
+    "class/cow/cow_04.ogg",
+    "class/cow/cow_05.ogg",
+    "class/cow/cow_06.ogg",
+    "class/cow/cow_07.ogg"
+   ]
+  },
+  "elephant": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/elephant/elephant_00.ogg",
+    "class/elephant/elephant_01.ogg",
+    "class/elephant/elephant_02.ogg",
+    "class/elephant/elephant_03.ogg",
+    "class/elephant/elephant_04.ogg",
+    "class/elephant/elephant_05.ogg",
+    "class/elephant/elephant_06.ogg",
+    "class/elephant/elephant_07.ogg"
+   ]
+  },
+  "bear": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/bear/bear_00.ogg",
+    "class/bear/bear_01.ogg",
+    "class/bear/bear_02.ogg",
+    "class/bear/bear_03.ogg",
+    "class/bear/bear_04.ogg",
+    "class/bear/bear_05.ogg",
+    "class/bear/bear_06.ogg",
+    "class/bear/bear_07.ogg"
+   ]
+  },
+  "backpack": {
+   "material": "FABRIC",
+   "loops": [
+    "class/backpack/backpack_00.ogg",
+    "class/backpack/backpack_01.ogg",
+    "class/backpack/backpack_02.ogg",
+    "class/backpack/backpack_03.ogg",
+    "class/backpack/backpack_04.ogg",
+    "class/backpack/backpack_05.ogg",
+    "class/backpack/backpack_06.ogg",
+    "class/backpack/backpack_07.ogg"
+   ]
+  },
+  "handbag": {
+   "material": "FABRIC",
+   "loops": [
+    "class/handbag/handbag_00.ogg",
+    "class/handbag/handbag_01.ogg",
+    "class/handbag/handbag_02.ogg",
+    "class/handbag/handbag_03.ogg",
+    "class/handbag/handbag_04.ogg",
+    "class/handbag/handbag_05.ogg",
+    "class/handbag/handbag_06.ogg",
+    "class/handbag/handbag_07.ogg"
+   ]
+  },
+  "suitcase": {
+   "material": "FABRIC",
+   "loops": [
+    "class/suitcase/suitcase_00.ogg",
+    "class/suitcase/suitcase_01.ogg",
+    "class/suitcase/suitcase_02.ogg",
+    "class/suitcase/suitcase_03.ogg",
+    "class/suitcase/suitcase_04.ogg",
+    "class/suitcase/suitcase_05.ogg",
+    "class/suitcase/suitcase_06.ogg",
+    "class/suitcase/suitcase_07.ogg"
+   ]
+  },
+  "skateboard": {
+   "material": "WOOD",
+   "loops": [
+    "class/skateboard/skateboard_00.ogg",
+    "class/skateboard/skateboard_01.ogg",
+    "class/skateboard/skateboard_02.ogg",
+    "class/skateboard/skateboard_03.ogg",
+    "class/skateboard/skateboard_04.ogg",
+    "class/skateboard/skateboard_05.ogg",
+    "class/skateboard/skateboard_06.ogg",
+    "class/skateboard/skateboard_07.ogg"
+   ]
+  },
+  "bottle": {
+   "material": "GLASS",
+   "loops": [
+    "class/bottle/bottle_00.ogg",
+    "class/bottle/bottle_01.ogg",
+    "class/bottle/bottle_02.ogg",
+    "class/bottle/bottle_03.ogg",
+    "class/bottle/bottle_04.ogg",
+    "class/bottle/bottle_05.ogg",
+    "class/bottle/bottle_06.ogg",
+    "class/bottle/bottle_07.ogg"
+   ]
+  },
+  "wine glass": {
+   "material": "GLASS",
+   "loops": [
+    "class/wine_glass/wine_glass_00.ogg",
+    "class/wine_glass/wine_glass_01.ogg",
+    "class/wine_glass/wine_glass_02.ogg",
+    "class/wine_glass/wine_glass_03.ogg",
+    "class/wine_glass/wine_glass_04.ogg",
+    "class/wine_glass/wine_glass_05.ogg",
+    "class/wine_glass/wine_glass_06.ogg",
+    "class/wine_glass/wine_glass_07.ogg"
+   ]
+  },
+  "cup": {
+   "material": "CERAMIC",
+   "loops": [
+    "class/cup/cup_00.ogg",
+    "class/cup/cup_01.ogg",
+    "class/cup/cup_02.ogg",
+    "class/cup/cup_03.ogg",
+    "class/cup/cup_04.ogg",
+    "class/cup/cup_05.ogg",
+    "class/cup/cup_06.ogg",
+    "class/cup/cup_07.ogg"
+   ]
+  },
+  "fork": {
+   "material": "METAL",
+   "loops": [
+    "class/fork/fork_00.ogg",
+    "class/fork/fork_01.ogg",
+    "class/fork/fork_02.ogg",
+    "class/fork/fork_03.ogg",
+    "class/fork/fork_04.ogg",
+    "class/fork/fork_05.ogg",
+    "class/fork/fork_06.ogg",
+    "class/fork/fork_07.ogg"
+   ]
+  },
+  "knife": {
+   "material": "METAL",
+   "loops": [
+    "class/knife/knife_00.ogg",
+    "class/knife/knife_01.ogg",
+    "class/knife/knife_02.ogg",
+    "class/knife/knife_03.ogg",
+    "class/knife/knife_04.ogg",
+    "class/knife/knife_05.ogg",
+    "class/knife/knife_06.ogg",
+    "class/knife/knife_07.ogg"
+   ]
+  },
+  "spoon": {
+   "material": "METAL",
+   "loops": [
+    "class/spoon/spoon_00.ogg",
+    "class/spoon/spoon_01.ogg",
+    "class/spoon/spoon_02.ogg",
+    "class/spoon/spoon_03.ogg",
+    "class/spoon/spoon_04.ogg",
+    "class/spoon/spoon_05.ogg",
+    "class/spoon/spoon_06.ogg",
+    "class/spoon/spoon_07.ogg"
+   ]
+  },
+  "bowl": {
+   "material": "CERAMIC",
+   "loops": [
+    "class/bowl/bowl_00.ogg",
+    "class/bowl/bowl_01.ogg",
+    "class/bowl/bowl_02.ogg",
+    "class/bowl/bowl_03.ogg",
+    "class/bowl/bowl_04.ogg",
+    "class/bowl/bowl_05.ogg",
+    "class/bowl/bowl_06.ogg",
+    "class/bowl/bowl_07.ogg"
+   ]
+  },
+  "banana": {
+   "material": "FOOD",
+   "loops": [
+    "class/banana/banana_00.ogg",
+    "class/banana/banana_01.ogg",
+    "class/banana/banana_02.ogg",
+    "class/banana/banana_03.ogg",
+    "class/banana/banana_04.ogg",
+    "class/banana/banana_05.ogg",
+    "class/banana/banana_06.ogg",
+    "class/banana/banana_07.ogg"
+   ]
+  },
+  "apple": {
+   "material": "FOOD",
+   "loops": [
+    "class/apple/apple_00.ogg",
+    "class/apple/apple_01.ogg",
+    "class/apple/apple_02.ogg",
+    "class/apple/apple_03.ogg",
+    "class/apple/apple_04.ogg",
+    "class/apple/apple_05.ogg",
+    "class/apple/apple_06.ogg",
+    "class/apple/apple_07.ogg"
+   ]
+  },
+  "sandwich": {
+   "material": "FOOD",
+   "loops": [
+    "class/sandwich/sandwich_00.ogg",
+    "class/sandwich/sandwich_01.ogg",
+    "class/sandwich/sandwich_02.ogg",
+    "class/sandwich/sandwich_03.ogg",
+    "class/sandwich/sandwich_04.ogg",
+    "class/sandwich/sandwich_05.ogg",
+    "class/sandwich/sandwich_06.ogg",
+    "class/sandwich/sandwich_07.ogg"
+   ]
+  },
+  "orange": {
+   "material": "FOOD",
+   "loops": [
+    "class/orange/orange_00.ogg",
+    "class/orange/orange_01.ogg",
+    "class/orange/orange_02.ogg",
+    "class/orange/orange_03.ogg",
+    "class/orange/orange_04.ogg",
+    "class/orange/orange_05.ogg",
+    "class/orange/orange_06.ogg",
+    "class/orange/orange_07.ogg"
+   ]
+  },
+  "carrot": {
+   "material": "FOOD",
+   "loops": [
+    "class/carrot/carrot_00.ogg",
+    "class/carrot/carrot_01.ogg",
+    "class/carrot/carrot_02.ogg",
+    "class/carrot/carrot_03.ogg",
+    "class/carrot/carrot_04.ogg",
+    "class/carrot/carrot_05.ogg",
+    "class/carrot/carrot_06.ogg",
+    "class/carrot/carrot_07.ogg"
+   ]
+  },
+  "pizza": {
+   "material": "FOOD",
+   "loops": [
+    "class/pizza/pizza_00.ogg",
+    "class/pizza/pizza_01.ogg",
+    "class/pizza/pizza_02.ogg",
+    "class/pizza/pizza_03.ogg",
+    "class/pizza/pizza_04.ogg",
+    "class/pizza/pizza_05.ogg",
+    "class/pizza/pizza_06.ogg",
+    "class/pizza/pizza_07.ogg"
+   ]
+  },
+  "hot dog": {
+   "material": "FOOD",
+   "loops": [
+    "class/hot_dog/hot_dog_00.ogg",
+    "class/hot_dog/hot_dog_01.ogg",
+    "class/hot_dog/hot_dog_02.ogg",
+    "class/hot_dog/hot_dog_03.ogg",
+    "class/hot_dog/hot_dog_04.ogg",
+    "class/hot_dog/hot_dog_05.ogg",
+    "class/hot_dog/hot_dog_06.ogg",
+    "class/hot_dog/hot_dog_07.ogg"
+   ]
+  },
+  "donut": {
+   "material": "FOOD",
+   "loops": [
+    "class/donut/donut_00.ogg",
+    "class/donut/donut_01.ogg",
+    "class/donut/donut_02.ogg",
+    "class/donut/donut_03.ogg",
+    "class/donut/donut_04.ogg",
+    "class/donut/donut_05.ogg",
+    "class/donut/donut_06.ogg",
+    "class/donut/donut_07.ogg"
+   ]
+  },
+  "cake": {
+   "material": "FOOD",
+   "loops": [
+    "class/cake/cake_00.ogg",
+    "class/cake/cake_01.ogg",
+    "class/cake/cake_02.ogg",
+    "class/cake/cake_03.ogg",
+    "class/cake/cake_04.ogg",
+    "class/cake/cake_05.ogg",
+    "class/cake/cake_06.ogg"
+   ]
+  },
+  "chair": {
+   "material": "WOOD",
+   "loops": [
+    "class/chair/chair_00.ogg",
+    "class/chair/chair_01.ogg",
+    "class/chair/chair_02.ogg",
+    "class/chair/chair_03.ogg",
+    "class/chair/chair_04.ogg",
+    "class/chair/chair_05.ogg",
+    "class/chair/chair_06.ogg",
+    "class/chair/chair_07.ogg"
+   ]
+  },
+  "dining table": {
+   "material": "WOOD",
+   "loops": [
+    "class/dining_table/dining_table_00.ogg",
+    "class/dining_table/dining_table_01.ogg",
+    "class/dining_table/dining_table_02.ogg",
+    "class/dining_table/dining_table_03.ogg",
+    "class/dining_table/dining_table_04.ogg",
+    "class/dining_table/dining_table_05.ogg",
+    "class/dining_table/dining_table_06.ogg",
+    "class/dining_table/dining_table_07.ogg"
+   ]
+  },
+  "toilet": {
+   "material": "CERAMIC",
+   "loops": [
+    "class/toilet/toilet_00.ogg",
+    "class/toilet/toilet_01.ogg",
+    "class/toilet/toilet_02.ogg",
+    "class/toilet/toilet_03.ogg",
+    "class/toilet/toilet_04.ogg",
+    "class/toilet/toilet_05.ogg",
+    "class/toilet/toilet_06.ogg",
+    "class/toilet/toilet_07.ogg"
+   ]
+  },
+  "tv": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/tv/tv_00.ogg",
+    "class/tv/tv_01.ogg",
+    "class/tv/tv_02.ogg",
+    "class/tv/tv_03.ogg",
+    "class/tv/tv_04.ogg",
+    "class/tv/tv_05.ogg",
+    "class/tv/tv_06.ogg",
+    "class/tv/tv_07.ogg",
+    "class/television/television_00.ogg",
+    "class/television/television_01.ogg",
+    "class/television/television_02.ogg",
+    "class/television/television_03.ogg",
+    "class/television/television_04.ogg",
+    "class/television/television_05.ogg",
+    "class/television/television_06.ogg",
+    "class/television/television_07.ogg"
+   ]
+  },
+  "laptop": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/laptop/laptop_00.ogg",
+    "class/laptop/laptop_01.ogg",
+    "class/laptop/laptop_02.ogg",
+    "class/laptop/laptop_03.ogg",
+    "class/laptop/laptop_04.ogg",
+    "class/laptop/laptop_05.ogg",
+    "class/laptop/laptop_06.ogg",
+    "class/laptop/laptop_07.ogg"
+   ]
+  },
+  "cell phone": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/cell_phone/cell_phone_00.ogg",
+    "class/cell_phone/cell_phone_01.ogg",
+    "class/cell_phone/cell_phone_02.ogg",
+    "class/cell_phone/cell_phone_03.ogg",
+    "class/cell_phone/cell_phone_04.ogg",
+    "class/cell_phone/cell_phone_05.ogg",
+    "class/cell_phone/cell_phone_06.ogg",
+    "class/cell_phone/cell_phone_07.ogg"
+   ]
+  },
+  "microwave": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/microwave/microwave_00.ogg",
+    "class/microwave/microwave_01.ogg",
+    "class/microwave/microwave_02.ogg",
+    "class/microwave/microwave_03.ogg",
+    "class/microwave/microwave_04.ogg",
+    "class/microwave/microwave_05.ogg",
+    "class/microwave/microwave_06.ogg",
+    "class/microwave/microwave_07.ogg"
+   ]
+  },
+  "sink": {
+   "material": "METAL",
+   "loops": [
+    "class/sink/sink_00.ogg",
+    "class/sink/sink_01.ogg",
+    "class/sink/sink_02.ogg",
+    "class/sink/sink_03.ogg",
+    "class/sink/sink_04.ogg",
+    "class/sink/sink_05.ogg",
+    "class/sink/sink_06.ogg",
+    "class/sink/sink_07.ogg"
+   ]
+  },
+  "refrigerator": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/refrigerator/refrigerator_00.ogg",
+    "class/refrigerator/refrigerator_01.ogg",
+    "class/refrigerator/refrigerator_02.ogg",
+    "class/refrigerator/refrigerator_03.ogg",
+    "class/refrigerator/refrigerator_04.ogg"
+   ]
+  },
+  "book": {
+   "material": "PAPER",
+   "loops": [
+    "class/book/book_00.ogg",
+    "class/book/book_01.ogg",
+    "class/book/book_02.ogg",
+    "class/book/book_03.ogg",
+    "class/book/book_04.ogg",
+    "class/book/book_05.ogg",
+    "class/book/book_06.ogg",
+    "class/book/book_07.ogg"
+   ]
+  },
+  "clock": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/clock/clock_00.ogg",
+    "class/clock/clock_01.ogg",
+    "class/clock/clock_02.ogg",
+    "class/clock/clock_03.ogg",
+    "class/clock/clock_04.ogg",
+    "class/clock/clock_05.ogg",
+    "class/clock/clock_06.ogg",
+    "class/clock/clock_07.ogg"
+   ]
+  },
+  "vase": {
+   "material": "CERAMIC",
+   "loops": [
+    "class/vase/vase_00.ogg",
+    "class/vase/vase_01.ogg",
+    "class/vase/vase_02.ogg",
+    "class/vase/vase_03.ogg",
+    "class/vase/vase_04.ogg",
+    "class/vase/vase_05.ogg",
+    "class/vase/vase_06.ogg",
+    "class/vase/vase_07.ogg"
+   ]
+  },
+  "scissors": {
+   "material": "METAL",
+   "loops": [
+    "class/scissors/scissors_00.ogg",
+    "class/scissors/scissors_01.ogg",
+    "class/scissors/scissors_02.ogg",
+    "class/scissors/scissors_03.ogg",
+    "class/scissors/scissors_04.ogg",
+    "class/scissors/scissors_05.ogg",
+    "class/scissors/scissors_06.ogg",
+    "class/scissors/scissors_07.ogg"
+   ]
+  },
+  "hair drier": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/hair_drier/hair_drier_00.ogg",
+    "class/hair_drier/hair_drier_01.ogg",
+    "class/hair_drier/hair_drier_02.ogg",
+    "class/hair_drier/hair_drier_03.ogg",
+    "class/hair_drier/hair_drier_04.ogg",
+    "class/hair_drier/hair_drier_05.ogg",
+    "class/hair_drier/hair_drier_06.ogg",
+    "class/hair_drier/hair_drier_07.ogg"
+   ]
+  },
+  "potted plant": {
+   "material": "PLANT",
+   "loops": [
+    "class/potted_plant/potted_plant_00.ogg",
+    "class/potted_plant/potted_plant_01.ogg",
+    "class/potted_plant/potted_plant_02.ogg",
+    "class/potted_plant/potted_plant_03.ogg",
+    "class/potted_plant/potted_plant_04.ogg",
+    "class/potted_plant/potted_plant_05.ogg",
+    "class/potted_plant/potted_plant_06.ogg",
+    "class/potted_plant/potted_plant_07.ogg"
+   ]
+  },
+  "wardrobe": {
+   "material": "WOOD",
+   "loops": [
+    "class/wardrobe/wardrobe_00.ogg",
+    "class/wardrobe/wardrobe_01.ogg",
+    "class/wardrobe/wardrobe_02.ogg",
+    "class/wardrobe/wardrobe_03.ogg",
+    "class/wardrobe/wardrobe_04.ogg",
+    "class/wardrobe/wardrobe_05.ogg",
+    "class/wardrobe/wardrobe_06.ogg",
+    "class/wardrobe/wardrobe_07.ogg"
+   ]
+  },
+  "cabinet": {
+   "material": "WOOD",
+   "loops": [
+    "class/cabinet/cabinet_00.ogg",
+    "class/cabinet/cabinet_01.ogg",
+    "class/cabinet/cabinet_02.ogg",
+    "class/cabinet/cabinet_03.ogg",
+    "class/cabinet/cabinet_04.ogg",
+    "class/cabinet/cabinet_05.ogg",
+    "class/cabinet/cabinet_06.ogg",
+    "class/cabinet/cabinet_07.ogg"
+   ]
+  },
+  "kitchen cabinet": {
+   "material": "WOOD",
+   "loops": [
+    "class/kitchen_cabinet/kitchen_cabinet_00.ogg",
+    "class/kitchen_cabinet/kitchen_cabinet_01.ogg",
+    "class/kitchen_cabinet/kitchen_cabinet_02.ogg",
+    "class/kitchen_cabinet/kitchen_cabinet_03.ogg",
+    "class/kitchen_cabinet/kitchen_cabinet_04.ogg",
+    "class/kitchen_cabinet/kitchen_cabinet_05.ogg",
+    "class/kitchen_cabinet/kitchen_cabinet_06.ogg",
+    "class/kitchen_cabinet/kitchen_cabinet_07.ogg"
+   ]
+  },
+  "dresser": {
+   "material": "WOOD",
+   "loops": [
+    "class/dresser/dresser_00.ogg",
+    "class/dresser/dresser_01.ogg",
+    "class/dresser/dresser_02.ogg",
+    "class/dresser/dresser_03.ogg",
+    "class/dresser/dresser_04.ogg",
+    "class/dresser/dresser_05.ogg",
+    "class/dresser/dresser_06.ogg",
+    "class/dresser/dresser_07.ogg"
+   ]
+  },
+  "nightstand": {
+   "material": "WOOD",
+   "loops": [
+    "class/nightstand/nightstand_00.ogg",
+    "class/nightstand/nightstand_01.ogg",
+    "class/nightstand/nightstand_02.ogg",
+    "class/nightstand/nightstand_03.ogg",
+    "class/nightstand/nightstand_04.ogg",
+    "class/nightstand/nightstand_05.ogg",
+    "class/nightstand/nightstand_06.ogg",
+    "class/nightstand/nightstand_07.ogg"
+   ]
+  },
+  "bookshelf": {
+   "material": "WOOD",
+   "loops": [
+    "class/bookshelf/bookshelf_00.ogg",
+    "class/bookshelf/bookshelf_01.ogg",
+    "class/bookshelf/bookshelf_02.ogg",
+    "class/bookshelf/bookshelf_03.ogg",
+    "class/bookshelf/bookshelf_04.ogg",
+    "class/bookshelf/bookshelf_05.ogg",
+    "class/bookshelf/bookshelf_06.ogg",
+    "class/bookshelf/bookshelf_07.ogg"
+   ]
+  },
+  "shelf": {
+   "material": "WOOD",
+   "loops": [
+    "class/shelf/shelf_00.ogg",
+    "class/shelf/shelf_01.ogg",
+    "class/shelf/shelf_02.ogg",
+    "class/shelf/shelf_03.ogg",
+    "class/shelf/shelf_04.ogg",
+    "class/shelf/shelf_05.ogg",
+    "class/shelf/shelf_06.ogg",
+    "class/shelf/shelf_07.ogg"
+   ]
+  },
+  "armchair": {
+   "material": "FABRIC",
+   "loops": [
+    "class/armchair/armchair_00.ogg",
+    "class/armchair/armchair_01.ogg",
+    "class/armchair/armchair_02.ogg",
+    "class/armchair/armchair_03.ogg",
+    "class/armchair/armchair_04.ogg",
+    "class/armchair/armchair_05.ogg",
+    "class/armchair/armchair_06.ogg",
+    "class/armchair/armchair_07.ogg"
+   ]
+  },
+  "stool": {
+   "material": "WOOD",
+   "loops": [
+    "class/stool/stool_00.ogg",
+    "class/stool/stool_01.ogg",
+    "class/stool/stool_02.ogg",
+    "class/stool/stool_03.ogg",
+    "class/stool/stool_04.ogg",
+    "class/stool/stool_05.ogg",
+    "class/stool/stool_06.ogg",
+    "class/stool/stool_07.ogg"
+   ]
+  },
+  "coffee table": {
+   "material": "WOOD",
+   "loops": [
+    "class/coffee_table/coffee_table_00.ogg",
+    "class/coffee_table/coffee_table_01.ogg",
+    "class/coffee_table/coffee_table_02.ogg",
+    "class/coffee_table/coffee_table_03.ogg",
+    "class/coffee_table/coffee_table_04.ogg",
+    "class/coffee_table/coffee_table_05.ogg",
+    "class/coffee_table/coffee_table_06.ogg",
+    "class/coffee_table/coffee_table_07.ogg"
+   ]
+  },
+  "desk": {
+   "material": "WOOD",
+   "loops": [
+    "class/desk/desk_00.ogg",
+    "class/desk/desk_01.ogg",
+    "class/desk/desk_02.ogg",
+    "class/desk/desk_03.ogg",
+    "class/desk/desk_04.ogg",
+    "class/desk/desk_05.ogg",
+    "class/desk/desk_06.ogg",
+    "class/desk/desk_07.ogg"
+   ]
+  },
+  "office chair": {
+   "material": "FABRIC",
+   "loops": [
+    "class/office_chair/office_chair_00.ogg",
+    "class/office_chair/office_chair_01.ogg",
+    "class/office_chair/office_chair_02.ogg",
+    "class/office_chair/office_chair_03.ogg",
+    "class/office_chair/office_chair_04.ogg",
+    "class/office_chair/office_chair_05.ogg",
+    "class/office_chair/office_chair_06.ogg",
+    "class/office_chair/office_chair_07.ogg"
+   ]
+  },
+  "door": {
+   "material": "WOOD",
+   "loops": [
+    "class/door/door_00.ogg",
+    "class/door/door_01.ogg",
+    "class/door/door_02.ogg",
+    "class/door/door_03.ogg",
+    "class/door/door_04.ogg",
+    "class/door/door_05.ogg",
+    "class/door/door_06.ogg",
+    "class/door/door_07.ogg"
+   ]
+  },
+  "window": {
+   "material": "GLASS",
+   "loops": [
+    "class/window/window_00.ogg",
+    "class/window/window_01.ogg",
+    "class/window/window_02.ogg",
+    "class/window/window_03.ogg",
+    "class/window/window_04.ogg",
+    "class/window/window_05.ogg",
+    "class/window/window_06.ogg",
+    "class/window/window_07.ogg"
+   ]
+  },
+  "mirror": {
+   "material": "GLASS",
+   "loops": [
+    "class/mirror/mirror_00.ogg",
+    "class/mirror/mirror_01.ogg",
+    "class/mirror/mirror_02.ogg",
+    "class/mirror/mirror_03.ogg",
+    "class/mirror/mirror_04.ogg",
+    "class/mirror/mirror_05.ogg",
+    "class/mirror/mirror_06.ogg",
+    "class/mirror/mirror_07.ogg"
+   ]
+  },
+  "picture frame": {
+   "material": "WOOD",
+   "loops": [
+    "class/picture_frame/picture_frame_00.ogg",
+    "class/picture_frame/picture_frame_01.ogg",
+    "class/picture_frame/picture_frame_02.ogg",
+    "class/picture_frame/picture_frame_03.ogg",
+    "class/picture_frame/picture_frame_04.ogg",
+    "class/picture_frame/picture_frame_05.ogg",
+    "class/picture_frame/picture_frame_06.ogg",
+    "class/picture_frame/picture_frame_07.ogg"
+   ]
+  },
+  "wall clock": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/wall_clock/wall_clock_00.ogg",
+    "class/wall_clock/wall_clock_01.ogg",
+    "class/wall_clock/wall_clock_02.ogg",
+    "class/wall_clock/wall_clock_03.ogg",
+    "class/wall_clock/wall_clock_04.ogg",
+    "class/wall_clock/wall_clock_05.ogg",
+    "class/wall_clock/wall_clock_06.ogg",
+    "class/wall_clock/wall_clock_07.ogg"
+   ]
+  },
+  "lamp": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/lamp/lamp_00.ogg",
+    "class/lamp/lamp_01.ogg",
+    "class/lamp/lamp_02.ogg",
+    "class/lamp/lamp_03.ogg",
+    "class/lamp/lamp_04.ogg",
+    "class/lamp/lamp_05.ogg",
+    "class/lamp/lamp_06.ogg",
+    "class/lamp/lamp_07.ogg"
+   ]
+  },
+  "table lamp": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/table_lamp/table_lamp_00.ogg",
+    "class/table_lamp/table_lamp_01.ogg",
+    "class/table_lamp/table_lamp_02.ogg",
+    "class/table_lamp/table_lamp_03.ogg",
+    "class/table_lamp/table_lamp_04.ogg",
+    "class/table_lamp/table_lamp_05.ogg",
+    "class/table_lamp/table_lamp_06.ogg",
+    "class/table_lamp/table_lamp_07.ogg"
+   ]
+  },
+  "floor lamp": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/floor_lamp/floor_lamp_00.ogg",
+    "class/floor_lamp/floor_lamp_01.ogg",
+    "class/floor_lamp/floor_lamp_02.ogg",
+    "class/floor_lamp/floor_lamp_03.ogg",
+    "class/floor_lamp/floor_lamp_04.ogg",
+    "class/floor_lamp/floor_lamp_05.ogg"
+   ]
+  },
+  "ceiling light": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/ceiling_light/ceiling_light_00.ogg",
+    "class/ceiling_light/ceiling_light_01.ogg",
+    "class/ceiling_light/ceiling_light_02.ogg",
+    "class/ceiling_light/ceiling_light_03.ogg",
+    "class/ceiling_light/ceiling_light_04.ogg",
+    "class/ceiling_light/ceiling_light_05.ogg"
+   ]
+  },
+  "candle": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/candle/candle_00.ogg",
+    "class/candle/candle_01.ogg",
+    "class/candle/candle_02.ogg",
+    "class/candle/candle_03.ogg",
+    "class/candle/candle_04.ogg",
+    "class/candle/candle_05.ogg",
+    "class/candle/candle_06.ogg",
+    "class/candle/candle_07.ogg"
+   ]
+  },
+  "trash bin": {
+   "material": "METAL",
+   "loops": [
+    "class/trash_bin/trash_bin_00.ogg",
+    "class/trash_bin/trash_bin_01.ogg",
+    "class/trash_bin/trash_bin_02.ogg",
+    "class/trash_bin/trash_bin_03.ogg",
+    "class/trash_bin/trash_bin_04.ogg",
+    "class/trash_bin/trash_bin_05.ogg",
+    "class/trash_bin/trash_bin_06.ogg",
+    "class/trash_bin/trash_bin_07.ogg"
+   ]
+  },
+  "vacuum cleaner": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/vacuum_cleaner/vacuum_cleaner_00.ogg",
+    "class/vacuum_cleaner/vacuum_cleaner_01.ogg",
+    "class/vacuum_cleaner/vacuum_cleaner_02.ogg",
+    "class/vacuum_cleaner/vacuum_cleaner_03.ogg",
+    "class/vacuum_cleaner/vacuum_cleaner_04.ogg",
+    "class/vacuum_cleaner/vacuum_cleaner_05.ogg",
+    "class/vacuum_cleaner/vacuum_cleaner_06.ogg",
+    "class/vacuum_cleaner/vacuum_cleaner_07.ogg"
+   ]
+  },
+  "washing machine": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/washing_machine/washing_machine_00.ogg",
+    "class/washing_machine/washing_machine_01.ogg",
+    "class/washing_machine/washing_machine_02.ogg",
+    "class/washing_machine/washing_machine_03.ogg",
+    "class/washing_machine/washing_machine_04.ogg",
+    "class/washing_machine/washing_machine_05.ogg",
+    "class/washing_machine/washing_machine_06.ogg",
+    "class/washing_machine/washing_machine_07.ogg"
+   ]
+  },
+  "dishwasher": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/dishwasher/dishwasher_00.ogg",
+    "class/dishwasher/dishwasher_01.ogg",
+    "class/dishwasher/dishwasher_02.ogg",
+    "class/dishwasher/dishwasher_03.ogg",
+    "class/dishwasher/dishwasher_04.ogg",
+    "class/dishwasher/dishwasher_05.ogg",
+    "class/dishwasher/dishwasher_06.ogg",
+    "class/dishwasher/dishwasher_07.ogg"
+   ]
+  },
+  "fan": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/fan/fan_00.ogg",
+    "class/fan/fan_01.ogg",
+    "class/fan/fan_02.ogg",
+    "class/fan/fan_03.ogg",
+    "class/fan/fan_04.ogg",
+    "class/fan/fan_05.ogg",
+    "class/fan/fan_06.ogg",
+    "class/fan/fan_07.ogg"
+   ]
+  },
+  "air conditioner": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/air_conditioner/air_conditioner_00.ogg",
+    "class/air_conditioner/air_conditioner_01.ogg",
+    "class/air_conditioner/air_conditioner_02.ogg",
+    "class/air_conditioner/air_conditioner_03.ogg"
+   ]
+  },
+  "box": {
+   "material": "PAPER",
+   "loops": [
+    "class/box/box_00.ogg",
+    "class/box/box_01.ogg",
+    "class/box/box_02.ogg",
+    "class/box/box_03.ogg",
+    "class/box/box_04.ogg",
+    "class/box/box_05.ogg",
+    "class/box/box_06.ogg",
+    "class/box/box_07.ogg"
+   ]
+  },
+  "speaker": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/speaker/speaker_00.ogg",
+    "class/speaker/speaker_01.ogg",
+    "class/speaker/speaker_02.ogg",
+    "class/speaker/speaker_03.ogg",
+    "class/speaker/speaker_04.ogg",
+    "class/speaker/speaker_05.ogg",
+    "class/speaker/speaker_06.ogg",
+    "class/speaker/speaker_07.ogg"
+   ]
+  },
+  "camera": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/camera/camera_00.ogg",
+    "class/camera/camera_01.ogg",
+    "class/camera/camera_02.ogg",
+    "class/camera/camera_03.ogg",
+    "class/camera/camera_04.ogg",
+    "class/camera/camera_05.ogg",
+    "class/camera/camera_06.ogg",
+    "class/camera/camera_07.ogg"
+   ]
+  },
+  "video camera": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/video_camera/video_camera_00.ogg",
+    "class/video_camera/video_camera_01.ogg",
+    "class/video_camera/video_camera_02.ogg",
+    "class/video_camera/video_camera_03.ogg",
+    "class/video_camera/video_camera_04.ogg",
+    "class/video_camera/video_camera_05.ogg",
+    "class/video_camera/video_camera_06.ogg",
+    "class/video_camera/video_camera_07.ogg"
+   ]
+  },
+  "computer monitor": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/computer_monitor/computer_monitor_00.ogg",
+    "class/computer_monitor/computer_monitor_01.ogg",
+    "class/computer_monitor/computer_monitor_02.ogg",
+    "class/computer_monitor/computer_monitor_03.ogg",
+    "class/computer_monitor/computer_monitor_04.ogg",
+    "class/computer_monitor/computer_monitor_05.ogg",
+    "class/computer_monitor/computer_monitor_06.ogg",
+    "class/computer_monitor/computer_monitor_07.ogg"
+   ]
+  },
+  "desktop computer": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/desktop_computer/desktop_computer_00.ogg",
+    "class/desktop_computer/desktop_computer_01.ogg",
+    "class/desktop_computer/desktop_computer_02.ogg",
+    "class/desktop_computer/desktop_computer_03.ogg",
+    "class/desktop_computer/desktop_computer_04.ogg",
+    "class/desktop_computer/desktop_computer_05.ogg",
+    "class/desktop_computer/desktop_computer_06.ogg",
+    "class/desktop_computer/desktop_computer_07.ogg"
+   ]
+  },
+  "printer": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/printer/printer_00.ogg",
+    "class/printer/printer_01.ogg",
+    "class/printer/printer_02.ogg",
+    "class/printer/printer_03.ogg",
+    "class/printer/printer_04.ogg",
+    "class/printer/printer_05.ogg",
+    "class/printer/printer_06.ogg",
+    "class/printer/printer_07.ogg"
+   ]
+  },
+  "stove": {
+   "material": "METAL",
+   "loops": [
+    "class/stove/stove_00.ogg",
+    "class/stove/stove_01.ogg",
+    "class/stove/stove_02.ogg",
+    "class/stove/stove_03.ogg",
+    "class/stove/stove_04.ogg",
+    "class/stove/stove_05.ogg",
+    "class/stove/stove_06.ogg",
+    "class/stove/stove_07.ogg"
+   ]
+  },
+  "kettle": {
+   "material": "METAL",
+   "loops": [
+    "class/kettle/kettle_00.ogg",
+    "class/kettle/kettle_01.ogg",
+    "class/kettle/kettle_02.ogg",
+    "class/kettle/kettle_03.ogg",
+    "class/kettle/kettle_04.ogg",
+    "class/kettle/kettle_05.ogg",
+    "class/kettle/kettle_06.ogg",
+    "class/kettle/kettle_07.ogg"
+   ]
+  },
+  "teapot": {
+   "material": "CERAMIC",
+   "loops": [
+    "class/teapot/teapot_00.ogg",
+    "class/teapot/teapot_01.ogg",
+    "class/teapot/teapot_02.ogg"
+   ]
+  },
+  "frying pan": {
+   "material": "METAL",
+   "loops": [
+    "class/frying_pan/frying_pan_00.ogg",
+    "class/frying_pan/frying_pan_01.ogg",
+    "class/frying_pan/frying_pan_02.ogg",
+    "class/frying_pan/frying_pan_03.ogg",
+    "class/frying_pan/frying_pan_04.ogg",
+    "class/frying_pan/frying_pan_05.ogg",
+    "class/frying_pan/frying_pan_06.ogg",
+    "class/frying_pan/frying_pan_07.ogg"
+   ]
+  },
+  "cooking pot": {
+   "material": "METAL",
+   "loops": [
+    "class/cooking_pot/cooking_pot_00.ogg",
+    "class/cooking_pot/cooking_pot_01.ogg",
+    "class/cooking_pot/cooking_pot_02.ogg",
+    "class/cooking_pot/cooking_pot_03.ogg",
+    "class/cooking_pot/cooking_pot_04.ogg",
+    "class/cooking_pot/cooking_pot_05.ogg",
+    "class/cooking_pot/cooking_pot_06.ogg",
+    "class/cooking_pot/cooking_pot_07.ogg"
+   ]
+  },
+  "plate": {
+   "material": "CERAMIC",
+   "loops": [
+    "class/plate/plate_00.ogg",
+    "class/plate/plate_01.ogg",
+    "class/plate/plate_02.ogg",
+    "class/plate/plate_03.ogg",
+    "class/plate/plate_04.ogg",
+    "class/plate/plate_05.ogg",
+    "class/plate/plate_06.ogg",
+    "class/plate/plate_07.ogg"
+   ]
+  },
+  "saucer": {
+   "material": "CERAMIC",
+   "loops": [
+    "class/saucer/saucer_00.ogg",
+    "class/saucer/saucer_01.ogg",
+    "class/saucer/saucer_02.ogg",
+    "class/saucer/saucer_03.ogg",
+    "class/saucer/saucer_04.ogg",
+    "class/saucer/saucer_05.ogg",
+    "class/saucer/saucer_06.ogg",
+    "class/saucer/saucer_07.ogg"
+   ]
+  },
+  "tray": {
+   "material": "METAL",
+   "loops": [
+    "class/tray/tray_00.ogg",
+    "class/tray/tray_01.ogg",
+    "class/tray/tray_02.ogg",
+    "class/tray/tray_03.ogg",
+    "class/tray/tray_04.ogg",
+    "class/tray/tray_05.ogg",
+    "class/tray/tray_06.ogg",
+    "class/tray/tray_07.ogg"
+   ]
+  },
+  "mug": {
+   "material": "CERAMIC",
+   "loops": [
+    "class/mug/mug_00.ogg",
+    "class/mug/mug_01.ogg",
+    "class/mug/mug_02.ogg",
+    "class/mug/mug_03.ogg",
+    "class/mug/mug_04.ogg",
+    "class/mug/mug_05.ogg",
+    "class/mug/mug_06.ogg",
+    "class/mug/mug_07.ogg"
+   ]
+  },
+  "drinking glass": {
+   "material": "GLASS",
+   "loops": [
+    "class/drinking_glass/drinking_glass_00.ogg",
+    "class/drinking_glass/drinking_glass_01.ogg",
+    "class/drinking_glass/drinking_glass_02.ogg",
+    "class/drinking_glass/drinking_glass_03.ogg",
+    "class/drinking_glass/drinking_glass_04.ogg",
+    "class/drinking_glass/drinking_glass_05.ogg",
+    "class/drinking_glass/drinking_glass_06.ogg",
+    "class/drinking_glass/drinking_glass_07.ogg"
+   ]
+  },
+  "glass jar": {
+   "material": "GLASS",
+   "loops": [
+    "class/glass_jar/glass_jar_00.ogg",
+    "class/glass_jar/glass_jar_01.ogg",
+    "class/glass_jar/glass_jar_02.ogg",
+    "class/glass_jar/glass_jar_03.ogg",
+    "class/glass_jar/glass_jar_04.ogg",
+    "class/glass_jar/glass_jar_05.ogg",
+    "class/glass_jar/glass_jar_06.ogg",
+    "class/glass_jar/glass_jar_07.ogg"
+   ]
+  },
+  "pitcher": {
+   "material": "GLASS",
+   "loops": [
+    "class/pitcher/pitcher_00.ogg",
+    "class/pitcher/pitcher_01.ogg",
+    "class/pitcher/pitcher_02.ogg",
+    "class/pitcher/pitcher_03.ogg",
+    "class/pitcher/pitcher_04.ogg",
+    "class/pitcher/pitcher_05.ogg",
+    "class/pitcher/pitcher_06.ogg",
+    "class/pitcher/pitcher_07.ogg"
+   ]
+  },
+  "napkin": {
+   "material": "PAPER",
+   "loops": [
+    "class/napkin/napkin_00.ogg",
+    "class/napkin/napkin_01.ogg",
+    "class/napkin/napkin_02.ogg",
+    "class/napkin/napkin_03.ogg",
+    "class/napkin/napkin_04.ogg",
+    "class/napkin/napkin_05.ogg",
+    "class/napkin/napkin_06.ogg",
+    "class/napkin/napkin_07.ogg"
+   ]
+  },
+  "paper towel roll": {
+   "material": "PAPER",
+   "loops": [
+    "class/paper_towel_roll/paper_towel_roll_00.ogg",
+    "class/paper_towel_roll/paper_towel_roll_01.ogg",
+    "class/paper_towel_roll/paper_towel_roll_02.ogg",
+    "class/paper_towel_roll/paper_towel_roll_03.ogg",
+    "class/paper_towel_roll/paper_towel_roll_04.ogg",
+    "class/paper_towel_roll/paper_towel_roll_05.ogg",
+    "class/paper_towel_roll/paper_towel_roll_06.ogg",
+    "class/paper_towel_roll/paper_towel_roll_07.ogg"
+   ]
+  },
+  "strainer": {
+   "material": "METAL",
+   "loops": [
+    "class/strainer/strainer_00.ogg",
+    "class/strainer/strainer_01.ogg",
+    "class/strainer/strainer_02.ogg",
+    "class/strainer/strainer_03.ogg",
+    "class/strainer/strainer_04.ogg",
+    "class/strainer/strainer_05.ogg",
+    "class/strainer/strainer_06.ogg",
+    "class/strainer/strainer_07.ogg"
+   ]
+  },
+  "grater": {
+   "material": "METAL",
+   "loops": [
+    "class/grater/grater_00.ogg",
+    "class/grater/grater_01.ogg",
+    "class/grater/grater_02.ogg",
+    "class/grater/grater_03.ogg",
+    "class/grater/grater_04.ogg",
+    "class/grater/grater_05.ogg",
+    "class/grater/grater_06.ogg",
+    "class/grater/grater_07.ogg"
+   ]
+  },
+  "ladle": {
+   "material": "METAL",
+   "loops": [
+    "class/ladle/ladle_00.ogg",
+    "class/ladle/ladle_01.ogg",
+    "class/ladle/ladle_02.ogg",
+    "class/ladle/ladle_03.ogg",
+    "class/ladle/ladle_04.ogg",
+    "class/ladle/ladle_05.ogg",
+    "class/ladle/ladle_06.ogg",
+    "class/ladle/ladle_07.ogg"
+   ]
+  },
+  "spatula": {
+   "material": "METAL",
+   "loops": [
+    "class/spatula/spatula_00.ogg",
+    "class/spatula/spatula_01.ogg",
+    "class/spatula/spatula_02.ogg",
+    "class/spatula/spatula_03.ogg",
+    "class/spatula/spatula_04.ogg",
+    "class/spatula/spatula_05.ogg",
+    "class/spatula/spatula_06.ogg",
+    "class/spatula/spatula_07.ogg"
+   ]
+  },
+  "whisk": {
+   "material": "METAL",
+   "loops": [
+    "class/whisk/whisk_00.ogg",
+    "class/whisk/whisk_01.ogg",
+    "class/whisk/whisk_02.ogg",
+    "class/whisk/whisk_03.ogg",
+    "class/whisk/whisk_04.ogg",
+    "class/whisk/whisk_05.ogg",
+    "class/whisk/whisk_06.ogg",
+    "class/whisk/whisk_07.ogg"
+   ]
+  },
+  "rolling pin": {
+   "material": "WOOD",
+   "loops": [
+    "class/rolling_pin/rolling_pin_00.ogg",
+    "class/rolling_pin/rolling_pin_01.ogg",
+    "class/rolling_pin/rolling_pin_02.ogg",
+    "class/rolling_pin/rolling_pin_03.ogg",
+    "class/rolling_pin/rolling_pin_04.ogg",
+    "class/rolling_pin/rolling_pin_05.ogg",
+    "class/rolling_pin/rolling_pin_06.ogg",
+    "class/rolling_pin/rolling_pin_07.ogg"
+   ]
+  },
+  "blender": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/blender/blender_00.ogg",
+    "class/blender/blender_01.ogg",
+    "class/blender/blender_02.ogg",
+    "class/blender/blender_03.ogg",
+    "class/blender/blender_04.ogg",
+    "class/blender/blender_05.ogg",
+    "class/blender/blender_06.ogg",
+    "class/blender/blender_07.ogg"
+   ]
+  },
+  "coffee maker": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/coffee_maker/coffee_maker_00.ogg",
+    "class/coffee_maker/coffee_maker_01.ogg",
+    "class/coffee_maker/coffee_maker_02.ogg",
+    "class/coffee_maker/coffee_maker_03.ogg",
+    "class/coffee_maker/coffee_maker_04.ogg",
+    "class/coffee_maker/coffee_maker_05.ogg",
+    "class/coffee_maker/coffee_maker_06.ogg",
+    "class/coffee_maker/coffee_maker_07.ogg"
+   ]
+  },
+  "food processor": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/food_processor/food_processor_00.ogg",
+    "class/food_processor/food_processor_01.ogg",
+    "class/food_processor/food_processor_02.ogg",
+    "class/food_processor/food_processor_03.ogg",
+    "class/food_processor/food_processor_04.ogg",
+    "class/food_processor/food_processor_05.ogg",
+    "class/food_processor/food_processor_06.ogg",
+    "class/food_processor/food_processor_07.ogg"
+   ]
+  },
+  "bread": {
+   "material": "FOOD",
+   "loops": [
+    "class/bread/bread_00.ogg"
+   ]
+  },
+  "egg": {
+   "material": "FOOD",
+   "loops": [
+    "class/egg/egg_00.ogg",
+    "class/egg/egg_01.ogg",
+    "class/egg/egg_02.ogg",
+    "class/egg/egg_03.ogg",
+    "class/egg/egg_04.ogg",
+    "class/egg/egg_05.ogg",
+    "class/egg/egg_06.ogg",
+    "class/egg/egg_07.ogg"
+   ]
+  },
+  "milk": {
+   "material": "FOOD",
+   "loops": [
+    "class/milk/milk_00.ogg",
+    "class/milk/milk_01.ogg",
+    "class/milk/milk_02.ogg",
+    "class/milk/milk_03.ogg",
+    "class/milk/milk_04.ogg",
+    "class/milk/milk_05.ogg",
+    "class/milk/milk_06.ogg",
+    "class/milk/milk_07.ogg"
+   ]
+  },
+  "juice": {
+   "material": "FOOD",
+   "loops": [
+    "class/juice/juice_00.ogg",
+    "class/juice/juice_01.ogg",
+    "class/juice/juice_02.ogg",
+    "class/juice/juice_03.ogg",
+    "class/juice/juice_04.ogg",
+    "class/juice/juice_05.ogg",
+    "class/juice/juice_06.ogg",
+    "class/juice/juice_07.ogg"
+   ]
+  },
+  "honey": {
+   "material": "FOOD",
+   "loops": [
+    "class/honey/honey_00.ogg",
+    "class/honey/honey_01.ogg",
+    "class/honey/honey_02.ogg",
+    "class/honey/honey_03.ogg",
+    "class/honey/honey_04.ogg",
+    "class/honey/honey_05.ogg",
+    "class/honey/honey_06.ogg",
+    "class/honey/honey_07.ogg"
+   ]
+  },
+  "jam": {
+   "material": "FOOD",
+   "loops": [
+    "class/jam/jam_00.ogg",
+    "class/jam/jam_01.ogg",
+    "class/jam/jam_02.ogg",
+    "class/jam/jam_03.ogg",
+    "class/jam/jam_04.ogg",
+    "class/jam/jam_05.ogg",
+    "class/jam/jam_06.ogg",
+    "class/jam/jam_07.ogg"
+   ]
+  },
+  "ketchup": {
+   "material": "FOOD",
+   "loops": [
+    "class/ketchup/ketchup_00.ogg",
+    "class/ketchup/ketchup_01.ogg",
+    "class/ketchup/ketchup_02.ogg",
+    "class/ketchup/ketchup_03.ogg",
+    "class/ketchup/ketchup_04.ogg",
+    "class/ketchup/ketchup_05.ogg",
+    "class/ketchup/ketchup_06.ogg",
+    "class/ketchup/ketchup_07.ogg"
+   ]
+  },
+  "sauce": {
+   "material": "FOOD",
+   "loops": [
+    "class/sauce/sauce_00.ogg",
+    "class/sauce/sauce_01.ogg",
+    "class/sauce/sauce_02.ogg",
+    "class/sauce/sauce_03.ogg",
+    "class/sauce/sauce_04.ogg",
+    "class/sauce/sauce_05.ogg",
+    "class/sauce/sauce_06.ogg",
+    "class/sauce/sauce_07.ogg"
+   ]
+  },
+  "soup": {
+   "material": "FOOD",
+   "loops": [
+    "class/soup/soup_00.ogg",
+    "class/soup/soup_01.ogg",
+    "class/soup/soup_02.ogg",
+    "class/soup/soup_03.ogg",
+    "class/soup/soup_04.ogg",
+    "class/soup/soup_05.ogg",
+    "class/soup/soup_06.ogg",
+    "class/soup/soup_07.ogg"
+   ]
+  },
+  "cereal": {
+   "material": "FOOD",
+   "loops": [
+    "class/cereal/cereal_00.ogg",
+    "class/cereal/cereal_01.ogg",
+    "class/cereal/cereal_02.ogg",
+    "class/cereal/cereal_03.ogg",
+    "class/cereal/cereal_04.ogg",
+    "class/cereal/cereal_05.ogg",
+    "class/cereal/cereal_06.ogg",
+    "class/cereal/cereal_07.ogg"
+   ]
+  },
+  "bacon": {
+   "material": "FOOD",
+   "loops": [
+    "class/bacon/bacon_00.ogg",
+    "class/bacon/bacon_01.ogg",
+    "class/bacon/bacon_02.ogg",
+    "class/bacon/bacon_03.ogg",
+    "class/bacon/bacon_04.ogg",
+    "class/bacon/bacon_05.ogg",
+    "class/bacon/bacon_06.ogg",
+    "class/bacon/bacon_07.ogg"
+   ]
+  },
+  "french fries": {
+   "material": "FOOD",
+   "loops": [
+    "class/french_fries/french_fries_00.ogg",
+    "class/french_fries/french_fries_01.ogg",
+    "class/french_fries/french_fries_02.ogg",
+    "class/french_fries/french_fries_03.ogg",
+    "class/french_fries/french_fries_04.ogg",
+    "class/french_fries/french_fries_05.ogg",
+    "class/french_fries/french_fries_06.ogg",
+    "class/french_fries/french_fries_07.ogg"
+   ]
+  },
+  "pineapple": {
+   "material": "FOOD",
+   "loops": [
+    "class/pineapple/pineapple_00.ogg",
+    "class/pineapple/pineapple_01.ogg",
+    "class/pineapple/pineapple_02.ogg",
+    "class/pineapple/pineapple_03.ogg",
+    "class/pineapple/pineapple_04.ogg",
+    "class/pineapple/pineapple_05.ogg",
+    "class/pineapple/pineapple_06.ogg",
+    "class/pineapple/pineapple_07.ogg"
+   ]
+  },
+  "pumpkin": {
+   "material": "FOOD",
+   "loops": [
+    "class/pumpkin/pumpkin_00.ogg",
+    "class/pumpkin/pumpkin_01.ogg",
+    "class/pumpkin/pumpkin_02.ogg",
+    "class/pumpkin/pumpkin_03.ogg",
+    "class/pumpkin/pumpkin_04.ogg",
+    "class/pumpkin/pumpkin_05.ogg",
+    "class/pumpkin/pumpkin_06.ogg",
+    "class/pumpkin/pumpkin_07.ogg"
+   ]
+  },
+  "nuts": {
+   "material": "FOOD",
+   "loops": [
+    "class/nuts/nuts_00.ogg",
+    "class/nuts/nuts_01.ogg",
+    "class/nuts/nuts_02.ogg",
+    "class/nuts/nuts_03.ogg",
+    "class/nuts/nuts_04.ogg",
+    "class/nuts/nuts_05.ogg",
+    "class/nuts/nuts_06.ogg",
+    "class/nuts/nuts_07.ogg"
+   ]
+  },
+  "bag": {
+   "material": "FABRIC",
+   "loops": [
+    "class/bag/bag_00.ogg",
+    "class/bag/bag_01.ogg",
+    "class/bag/bag_02.ogg",
+    "class/bag/bag_03.ogg",
+    "class/bag/bag_04.ogg",
+    "class/bag/bag_05.ogg",
+    "class/bag/bag_06.ogg",
+    "class/bag/bag_07.ogg"
+   ]
+  },
+  "plastic bag": {
+   "material": "FABRIC",
+   "loops": [
+    "class/plastic_bag/plastic_bag_00.ogg",
+    "class/plastic_bag/plastic_bag_01.ogg",
+    "class/plastic_bag/plastic_bag_02.ogg",
+    "class/plastic_bag/plastic_bag_03.ogg",
+    "class/plastic_bag/plastic_bag_04.ogg",
+    "class/plastic_bag/plastic_bag_05.ogg",
+    "class/plastic_bag/plastic_bag_06.ogg",
+    "class/plastic_bag/plastic_bag_07.ogg"
+   ]
+  },
+  "paper bag": {
+   "material": "PAPER",
+   "loops": [
+    "class/paper_bag/paper_bag_00.ogg",
+    "class/paper_bag/paper_bag_01.ogg",
+    "class/paper_bag/paper_bag_02.ogg",
+    "class/paper_bag/paper_bag_03.ogg",
+    "class/paper_bag/paper_bag_04.ogg",
+    "class/paper_bag/paper_bag_05.ogg",
+    "class/paper_bag/paper_bag_06.ogg",
+    "class/paper_bag/paper_bag_07.ogg"
+   ]
+  },
+  "shoes": {
+   "material": "FABRIC",
+   "loops": [
+    "class/shoes/shoes_00.ogg",
+    "class/shoes/shoes_01.ogg",
+    "class/shoes/shoes_02.ogg",
+    "class/shoes/shoes_03.ogg",
+    "class/shoes/shoes_04.ogg",
+    "class/shoes/shoes_05.ogg",
+    "class/shoes/shoes_06.ogg",
+    "class/shoes/shoes_07.ogg"
+   ]
+  },
+  "sneaker": {
+   "material": "FABRIC",
+   "loops": [
+    "class/sneaker/sneaker_00.ogg",
+    "class/sneaker/sneaker_01.ogg",
+    "class/sneaker/sneaker_02.ogg",
+    "class/sneaker/sneaker_03.ogg",
+    "class/sneaker/sneaker_04.ogg",
+    "class/sneaker/sneaker_05.ogg",
+    "class/sneaker/sneaker_06.ogg",
+    "class/sneaker/sneaker_07.ogg"
+   ]
+  },
+  "boot": {
+   "material": "FABRIC",
+   "loops": [
+    "class/boot/boot_00.ogg",
+    "class/boot/boot_01.ogg",
+    "class/boot/boot_02.ogg",
+    "class/boot/boot_03.ogg",
+    "class/boot/boot_04.ogg",
+    "class/boot/boot_05.ogg",
+    "class/boot/boot_06.ogg",
+    "class/boot/boot_07.ogg"
+   ]
+  },
+  "slipper": {
+   "material": "FABRIC",
+   "loops": [
+    "class/slipper/slipper_00.ogg",
+    "class/slipper/slipper_01.ogg",
+    "class/slipper/slipper_02.ogg",
+    "class/slipper/slipper_03.ogg",
+    "class/slipper/slipper_04.ogg",
+    "class/slipper/slipper_05.ogg",
+    "class/slipper/slipper_06.ogg",
+    "class/slipper/slipper_07.ogg"
+   ]
+  },
+  "sandal": {
+   "material": "FABRIC",
+   "loops": [
+    "class/sandal/sandal_00.ogg",
+    "class/sandal/sandal_01.ogg",
+    "class/sandal/sandal_02.ogg",
+    "class/sandal/sandal_03.ogg",
+    "class/sandal/sandal_04.ogg",
+    "class/sandal/sandal_05.ogg",
+    "class/sandal/sandal_06.ogg",
+    "class/sandal/sandal_07.ogg"
+   ]
+  },
+  "glasses": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/glasses/glasses_00.ogg",
+    "class/glasses/glasses_01.ogg",
+    "class/glasses/glasses_02.ogg",
+    "class/glasses/glasses_03.ogg",
+    "class/glasses/glasses_04.ogg",
+    "class/glasses/glasses_05.ogg",
+    "class/glasses/glasses_06.ogg",
+    "class/glasses/glasses_07.ogg"
+   ]
+  },
+  "sunglasses": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/sunglasses/sunglasses_00.ogg",
+    "class/sunglasses/sunglasses_01.ogg",
+    "class/sunglasses/sunglasses_02.ogg",
+    "class/sunglasses/sunglasses_03.ogg",
+    "class/sunglasses/sunglasses_04.ogg",
+    "class/sunglasses/sunglasses_05.ogg",
+    "class/sunglasses/sunglasses_06.ogg",
+    "class/sunglasses/sunglasses_07.ogg"
+   ]
+  },
+  "wristwatch": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/wristwatch/wristwatch_00.ogg",
+    "class/wristwatch/wristwatch_01.ogg",
+    "class/wristwatch/wristwatch_02.ogg",
+    "class/wristwatch/wristwatch_03.ogg",
+    "class/wristwatch/wristwatch_04.ogg",
+    "class/wristwatch/wristwatch_05.ogg",
+    "class/wristwatch/wristwatch_06.ogg",
+    "class/wristwatch/wristwatch_07.ogg"
+   ]
+  },
+  "key": {
+   "material": "METAL",
+   "loops": [
+    "class/key/key_00.ogg",
+    "class/key/key_01.ogg",
+    "class/key/key_02.ogg",
+    "class/key/key_03.ogg",
+    "class/key/key_04.ogg",
+    "class/key/key_05.ogg",
+    "class/key/key_06.ogg",
+    "class/key/key_07.ogg"
+   ]
+  },
+  "lighter": {
+   "material": "METAL",
+   "loops": [
+    "class/lighter/lighter_00.ogg",
+    "class/lighter/lighter_01.ogg",
+    "class/lighter/lighter_02.ogg",
+    "class/lighter/lighter_03.ogg",
+    "class/lighter/lighter_04.ogg",
+    "class/lighter/lighter_05.ogg",
+    "class/lighter/lighter_06.ogg",
+    "class/lighter/lighter_07.ogg"
+   ]
+  },
+  "matches": {
+   "material": "PAPER",
+   "loops": [
+    "class/matches/matches_00.ogg",
+    "class/matches/matches_01.ogg",
+    "class/matches/matches_02.ogg",
+    "class/matches/matches_03.ogg",
+    "class/matches/matches_04.ogg",
+    "class/matches/matches_05.ogg",
+    "class/matches/matches_06.ogg",
+    "class/matches/matches_07.ogg"
+   ]
+  },
+  "notebook": {
+   "material": "PAPER",
+   "loops": [
+    "class/notebook/notebook_00.ogg",
+    "class/notebook/notebook_01.ogg",
+    "class/notebook/notebook_02.ogg",
+    "class/notebook/notebook_03.ogg",
+    "class/notebook/notebook_04.ogg",
+    "class/notebook/notebook_05.ogg",
+    "class/notebook/notebook_06.ogg",
+    "class/notebook/notebook_07.ogg"
+   ]
+  },
+  "pen": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/pen/pen_00.ogg",
+    "class/pen/pen_01.ogg",
+    "class/pen/pen_02.ogg",
+    "class/pen/pen_03.ogg",
+    "class/pen/pen_04.ogg",
+    "class/pen/pen_05.ogg",
+    "class/pen/pen_06.ogg",
+    "class/pen/pen_07.ogg"
+   ]
+  },
+  "pencil": {
+   "material": "WOOD",
+   "loops": [
+    "class/pencil/pencil_00.ogg",
+    "class/pencil/pencil_01.ogg",
+    "class/pencil/pencil_02.ogg",
+    "class/pencil/pencil_03.ogg",
+    "class/pencil/pencil_04.ogg",
+    "class/pencil/pencil_05.ogg",
+    "class/pencil/pencil_06.ogg",
+    "class/pencil/pencil_07.ogg"
+   ]
+  },
+  "marker": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/marker/marker_00.ogg",
+    "class/marker/marker_01.ogg",
+    "class/marker/marker_02.ogg",
+    "class/marker/marker_03.ogg",
+    "class/marker/marker_04.ogg",
+    "class/marker/marker_05.ogg",
+    "class/marker/marker_06.ogg",
+    "class/marker/marker_07.ogg"
+   ]
+  },
+  "stapler": {
+   "material": "METAL",
+   "loops": [
+    "class/stapler/stapler_00.ogg",
+    "class/stapler/stapler_01.ogg",
+    "class/stapler/stapler_02.ogg",
+    "class/stapler/stapler_03.ogg",
+    "class/stapler/stapler_04.ogg",
+    "class/stapler/stapler_05.ogg",
+    "class/stapler/stapler_06.ogg",
+    "class/stapler/stapler_07.ogg"
+   ]
+  },
+  "glue": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/glue/glue_00.ogg",
+    "class/glue/glue_01.ogg",
+    "class/glue/glue_02.ogg",
+    "class/glue/glue_03.ogg",
+    "class/glue/glue_04.ogg",
+    "class/glue/glue_05.ogg",
+    "class/glue/glue_06.ogg",
+    "class/glue/glue_07.ogg"
+   ]
+  },
+  "adhesive tape": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/adhesive_tape/adhesive_tape_00.ogg",
+    "class/adhesive_tape/adhesive_tape_01.ogg",
+    "class/adhesive_tape/adhesive_tape_02.ogg",
+    "class/adhesive_tape/adhesive_tape_03.ogg",
+    "class/adhesive_tape/adhesive_tape_04.ogg",
+    "class/adhesive_tape/adhesive_tape_05.ogg",
+    "class/adhesive_tape/adhesive_tape_06.ogg",
+    "class/adhesive_tape/adhesive_tape_07.ogg"
+   ]
+  },
+  "folder": {
+   "material": "PAPER",
+   "loops": [
+    "class/folder/folder_00.ogg",
+    "class/folder/folder_01.ogg",
+    "class/folder/folder_02.ogg",
+    "class/folder/folder_03.ogg",
+    "class/folder/folder_04.ogg",
+    "class/folder/folder_05.ogg",
+    "class/folder/folder_06.ogg",
+    "class/folder/folder_07.ogg"
+   ]
+  },
+  "envelope": {
+   "material": "PAPER",
+   "loops": [
+    "class/envelope/envelope_00.ogg",
+    "class/envelope/envelope_01.ogg",
+    "class/envelope/envelope_02.ogg",
+    "class/envelope/envelope_03.ogg",
+    "class/envelope/envelope_04.ogg",
+    "class/envelope/envelope_05.ogg",
+    "class/envelope/envelope_06.ogg",
+    "class/envelope/envelope_07.ogg"
+   ]
+  },
+  "document": {
+   "material": "PAPER",
+   "loops": [
+    "class/document/document_00.ogg",
+    "class/document/document_01.ogg",
+    "class/document/document_02.ogg",
+    "class/document/document_03.ogg",
+    "class/document/document_04.ogg",
+    "class/document/document_05.ogg",
+    "class/document/document_06.ogg",
+    "class/document/document_07.ogg"
+   ]
+  },
+  "newspaper": {
+   "material": "PAPER",
+   "loops": [
+    "class/newspaper/newspaper_00.ogg",
+    "class/newspaper/newspaper_01.ogg",
+    "class/newspaper/newspaper_02.ogg",
+    "class/newspaper/newspaper_03.ogg",
+    "class/newspaper/newspaper_04.ogg",
+    "class/newspaper/newspaper_05.ogg",
+    "class/newspaper/newspaper_06.ogg",
+    "class/newspaper/newspaper_07.ogg"
+   ]
+  },
+  "magazine": {
+   "material": "PAPER",
+   "loops": [
+    "class/magazine/magazine_00.ogg",
+    "class/magazine/magazine_01.ogg",
+    "class/magazine/magazine_02.ogg",
+    "class/magazine/magazine_03.ogg",
+    "class/magazine/magazine_04.ogg",
+    "class/magazine/magazine_05.ogg",
+    "class/magazine/magazine_06.ogg",
+    "class/magazine/magazine_07.ogg"
+   ]
+  },
+  "bathtub": {
+   "material": "CERAMIC",
+   "loops": [
+    "class/bathtub/bathtub_00.ogg",
+    "class/bathtub/bathtub_01.ogg",
+    "class/bathtub/bathtub_02.ogg",
+    "class/bathtub/bathtub_03.ogg",
+    "class/bathtub/bathtub_04.ogg",
+    "class/bathtub/bathtub_05.ogg",
+    "class/bathtub/bathtub_06.ogg",
+    "class/bathtub/bathtub_07.ogg"
+   ]
+  },
+  "shower head": {
+   "material": "METAL",
+   "loops": [
+    "class/shower_head/shower_head_00.ogg",
+    "class/shower_head/shower_head_01.ogg",
+    "class/shower_head/shower_head_02.ogg",
+    "class/shower_head/shower_head_03.ogg",
+    "class/shower_head/shower_head_04.ogg",
+    "class/shower_head/shower_head_05.ogg",
+    "class/shower_head/shower_head_06.ogg",
+    "class/shower_head/shower_head_07.ogg"
+   ]
+  },
+  "faucet": {
+   "material": "METAL",
+   "loops": [
+    "class/faucet/faucet_00.ogg",
+    "class/faucet/faucet_01.ogg",
+    "class/faucet/faucet_02.ogg",
+    "class/faucet/faucet_03.ogg",
+    "class/faucet/faucet_04.ogg",
+    "class/faucet/faucet_05.ogg",
+    "class/faucet/faucet_06.ogg",
+    "class/faucet/faucet_07.ogg"
+   ]
+  },
+  "toilet paper": {
+   "material": "PAPER",
+   "loops": [
+    "class/toilet_paper/toilet_paper_00.ogg",
+    "class/toilet_paper/toilet_paper_01.ogg",
+    "class/toilet_paper/toilet_paper_02.ogg",
+    "class/toilet_paper/toilet_paper_03.ogg",
+    "class/toilet_paper/toilet_paper_04.ogg",
+    "class/toilet_paper/toilet_paper_05.ogg",
+    "class/toilet_paper/toilet_paper_06.ogg",
+    "class/toilet_paper/toilet_paper_07.ogg"
+   ]
+  },
+  "pill bottle": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/pill_bottle/pill_bottle_00.ogg",
+    "class/pill_bottle/pill_bottle_01.ogg",
+    "class/pill_bottle/pill_bottle_02.ogg",
+    "class/pill_bottle/pill_bottle_03.ogg",
+    "class/pill_bottle/pill_bottle_04.ogg",
+    "class/pill_bottle/pill_bottle_05.ogg",
+    "class/pill_bottle/pill_bottle_06.ogg",
+    "class/pill_bottle/pill_bottle_07.ogg"
+   ]
+  },
+  "hammer": {
+   "material": "METAL",
+   "loops": [
+    "class/hammer/hammer_00.ogg",
+    "class/hammer/hammer_01.ogg",
+    "class/hammer/hammer_02.ogg",
+    "class/hammer/hammer_03.ogg",
+    "class/hammer/hammer_04.ogg",
+    "class/hammer/hammer_05.ogg",
+    "class/hammer/hammer_06.ogg",
+    "class/hammer/hammer_07.ogg"
+   ]
+  },
+  "screwdriver": {
+   "material": "METAL",
+   "loops": [
+    "class/screwdriver/screwdriver_00.ogg",
+    "class/screwdriver/screwdriver_01.ogg",
+    "class/screwdriver/screwdriver_02.ogg",
+    "class/screwdriver/screwdriver_03.ogg",
+    "class/screwdriver/screwdriver_04.ogg",
+    "class/screwdriver/screwdriver_05.ogg",
+    "class/screwdriver/screwdriver_06.ogg",
+    "class/screwdriver/screwdriver_07.ogg"
+   ]
+  },
+  "wrench": {
+   "material": "METAL",
+   "loops": [
+    "class/wrench/wrench_00.ogg",
+    "class/wrench/wrench_01.ogg",
+    "class/wrench/wrench_02.ogg",
+    "class/wrench/wrench_03.ogg",
+    "class/wrench/wrench_04.ogg",
+    "class/wrench/wrench_05.ogg",
+    "class/wrench/wrench_06.ogg",
+    "class/wrench/wrench_07.ogg"
+   ]
+  },
+  "pliers": {
+   "material": "METAL",
+   "loops": [
+    "class/pliers/pliers_00.ogg",
+    "class/pliers/pliers_01.ogg",
+    "class/pliers/pliers_02.ogg",
+    "class/pliers/pliers_03.ogg",
+    "class/pliers/pliers_04.ogg",
+    "class/pliers/pliers_05.ogg",
+    "class/pliers/pliers_06.ogg",
+    "class/pliers/pliers_07.ogg"
+   ]
+  },
+  "saw": {
+   "material": "METAL",
+   "loops": [
+    "class/saw/saw_00.ogg",
+    "class/saw/saw_01.ogg",
+    "class/saw/saw_02.ogg",
+    "class/saw/saw_03.ogg",
+    "class/saw/saw_04.ogg",
+    "class/saw/saw_05.ogg",
+    "class/saw/saw_06.ogg",
+    "class/saw/saw_07.ogg"
+   ]
+  },
+  "drill": {
+   "material": "ELECTRONICS",
+   "loops": [
+    "class/drill/drill_00.ogg",
+    "class/drill/drill_01.ogg",
+    "class/drill/drill_02.ogg",
+    "class/drill/drill_03.ogg",
+    "class/drill/drill_04.ogg",
+    "class/drill/drill_05.ogg",
+    "class/drill/drill_06.ogg",
+    "class/drill/drill_07.ogg"
+   ]
+  },
+  "axe": {
+   "material": "METAL",
+   "loops": [
+    "class/axe/axe_00.ogg",
+    "class/axe/axe_01.ogg",
+    "class/axe/axe_02.ogg",
+    "class/axe/axe_03.ogg",
+    "class/axe/axe_04.ogg",
+    "class/axe/axe_05.ogg",
+    "class/axe/axe_06.ogg",
+    "class/axe/axe_07.ogg"
+   ]
+  },
+  "padlock": {
+   "material": "METAL",
+   "loops": [
+    "class/padlock/padlock_00.ogg",
+    "class/padlock/padlock_01.ogg",
+    "class/padlock/padlock_02.ogg",
+    "class/padlock/padlock_03.ogg",
+    "class/padlock/padlock_04.ogg",
+    "class/padlock/padlock_05.ogg",
+    "class/padlock/padlock_06.ogg",
+    "class/padlock/padlock_07.ogg"
+   ]
+  },
+  "door handle": {
+   "material": "METAL",
+   "loops": [
+    "class/door_handle/door_handle_00.ogg",
+    "class/door_handle/door_handle_01.ogg",
+    "class/door_handle/door_handle_02.ogg",
+    "class/door_handle/door_handle_03.ogg",
+    "class/door_handle/door_handle_04.ogg",
+    "class/door_handle/door_handle_05.ogg",
+    "class/door_handle/door_handle_06.ogg",
+    "class/door_handle/door_handle_07.ogg"
+   ]
+  },
+  "chain": {
+   "material": "METAL",
+   "loops": [
+    "class/chain/chain_00.ogg",
+    "class/chain/chain_01.ogg",
+    "class/chain/chain_02.ogg",
+    "class/chain/chain_03.ogg",
+    "class/chain/chain_04.ogg",
+    "class/chain/chain_05.ogg",
+    "class/chain/chain_06.ogg",
+    "class/chain/chain_07.ogg"
+   ]
+  },
+  "hose": {
+   "material": "FABRIC",
+   "loops": [
+    "class/hose/hose_00.ogg",
+    "class/hose/hose_01.ogg",
+    "class/hose/hose_02.ogg",
+    "class/hose/hose_03.ogg",
+    "class/hose/hose_04.ogg",
+    "class/hose/hose_05.ogg",
+    "class/hose/hose_06.ogg",
+    "class/hose/hose_07.ogg"
+   ]
+  },
+  "fence": {
+   "material": "WOOD",
+   "loops": [
+    "class/fence/fence_00.ogg",
+    "class/fence/fence_01.ogg",
+    "class/fence/fence_02.ogg",
+    "class/fence/fence_03.ogg",
+    "class/fence/fence_04.ogg",
+    "class/fence/fence_05.ogg",
+    "class/fence/fence_06.ogg",
+    "class/fence/fence_07.ogg"
+   ]
+  },
+  "gate": {
+   "material": "METAL",
+   "loops": [
+    "class/gate/gate_00.ogg",
+    "class/gate/gate_01.ogg",
+    "class/gate/gate_02.ogg",
+    "class/gate/gate_03.ogg",
+    "class/gate/gate_04.ogg",
+    "class/gate/gate_05.ogg",
+    "class/gate/gate_06.ogg",
+    "class/gate/gate_07.ogg"
+   ]
+  },
+  "stairs": {
+   "material": "WOOD",
+   "loops": [
+    "class/stairs/stairs_00.ogg",
+    "class/stairs/stairs_01.ogg",
+    "class/stairs/stairs_02.ogg",
+    "class/stairs/stairs_03.ogg",
+    "class/stairs/stairs_04.ogg",
+    "class/stairs/stairs_05.ogg",
+    "class/stairs/stairs_06.ogg",
+    "class/stairs/stairs_07.ogg"
+   ]
+  },
+  "escalator": {
+   "material": "METAL",
+   "loops": [
+    "class/escalator/escalator_00.ogg",
+    "class/escalator/escalator_01.ogg",
+    "class/escalator/escalator_02.ogg",
+    "class/escalator/escalator_03.ogg",
+    "class/escalator/escalator_04.ogg",
+    "class/escalator/escalator_05.ogg",
+    "class/escalator/escalator_06.ogg",
+    "class/escalator/escalator_07.ogg"
+   ]
+  },
+  "elevator": {
+   "material": "METAL",
+   "loops": [
+    "class/elevator/elevator_00.ogg",
+    "class/elevator/elevator_01.ogg",
+    "class/elevator/elevator_02.ogg",
+    "class/elevator/elevator_03.ogg",
+    "class/elevator/elevator_04.ogg",
+    "class/elevator/elevator_05.ogg",
+    "class/elevator/elevator_06.ogg",
+    "class/elevator/elevator_07.ogg"
+   ]
+  },
+  "tree": {
+   "material": "PLANT",
+   "loops": [
+    "class/tree/tree_00.ogg",
+    "class/tree/tree_01.ogg",
+    "class/tree/tree_02.ogg",
+    "class/tree/tree_03.ogg",
+    "class/tree/tree_04.ogg",
+    "class/tree/tree_05.ogg",
+    "class/tree/tree_06.ogg",
+    "class/tree/tree_07.ogg"
+   ]
+  },
+  "bush": {
+   "material": "PLANT",
+   "loops": [
+    "class/bush/bush_00.ogg",
+    "class/bush/bush_01.ogg",
+    "class/bush/bush_02.ogg",
+    "class/bush/bush_03.ogg",
+    "class/bush/bush_04.ogg",
+    "class/bush/bush_05.ogg",
+    "class/bush/bush_06.ogg",
+    "class/bush/bush_07.ogg"
+   ]
+  },
+  "flower": {
+   "material": "PLANT",
+   "loops": [
+    "class/flower/flower_00.ogg",
+    "class/flower/flower_01.ogg",
+    "class/flower/flower_02.ogg",
+    "class/flower/flower_03.ogg",
+    "class/flower/flower_04.ogg",
+    "class/flower/flower_05.ogg",
+    "class/flower/flower_06.ogg",
+    "class/flower/flower_07.ogg"
+   ]
+  },
+  "fountain": {
+   "material": "WATER",
+   "loops": [
+    "class/fountain/fountain_00.ogg",
+    "class/fountain/fountain_01.ogg",
+    "class/fountain/fountain_02.ogg",
+    "class/fountain/fountain_03.ogg",
+    "class/fountain/fountain_04.ogg",
+    "class/fountain/fountain_05.ogg",
+    "class/fountain/fountain_06.ogg"
+   ]
+  },
+  "swing": {
+   "material": "METAL",
+   "loops": [
+    "class/swing/swing_00.ogg",
+    "class/swing/swing_01.ogg",
+    "class/swing/swing_02.ogg",
+    "class/swing/swing_03.ogg",
+    "class/swing/swing_04.ogg",
+    "class/swing/swing_05.ogg",
+    "class/swing/swing_06.ogg",
+    "class/swing/swing_07.ogg"
+   ]
+  },
+  "taxi": {
+   "material": "ENGINE",
+   "loops": [
+    "class/taxi/taxi_00.ogg",
+    "class/taxi/taxi_01.ogg",
+    "class/taxi/taxi_02.ogg",
+    "class/taxi/taxi_03.ogg",
+    "class/taxi/taxi_04.ogg",
+    "class/taxi/taxi_05.ogg",
+    "class/taxi/taxi_06.ogg",
+    "class/taxi/taxi_07.ogg"
+   ]
+  },
+  "van": {
+   "material": "ENGINE",
+   "loops": [
+    "class/van/van_00.ogg",
+    "class/van/van_01.ogg",
+    "class/van/van_02.ogg",
+    "class/van/van_03.ogg",
+    "class/van/van_04.ogg",
+    "class/van/van_05.ogg",
+    "class/van/van_06.ogg",
+    "class/van/van_07.ogg"
+   ]
+  },
+  "tractor": {
+   "material": "ENGINE",
+   "loops": [
+    "class/tractor/tractor_00.ogg",
+    "class/tractor/tractor_01.ogg",
+    "class/tractor/tractor_02.ogg",
+    "class/tractor/tractor_03.ogg",
+    "class/tractor/tractor_04.ogg",
+    "class/tractor/tractor_05.ogg",
+    "class/tractor/tractor_06.ogg",
+    "class/tractor/tractor_07.ogg"
+   ]
+  },
+  "excavator": {
+   "material": "ENGINE",
+   "loops": [
+    "class/excavator/excavator_00.ogg",
+    "class/excavator/excavator_01.ogg",
+    "class/excavator/excavator_02.ogg",
+    "class/excavator/excavator_03.ogg",
+    "class/excavator/excavator_04.ogg",
+    "class/excavator/excavator_05.ogg",
+    "class/excavator/excavator_06.ogg",
+    "class/excavator/excavator_07.ogg"
+   ]
+  },
+  "crane": {
+   "material": "METAL",
+   "loops": [
+    "class/crane/crane_00.ogg",
+    "class/crane/crane_01.ogg",
+    "class/crane/crane_02.ogg",
+    "class/crane/crane_03.ogg",
+    "class/crane/crane_04.ogg",
+    "class/crane/crane_05.ogg",
+    "class/crane/crane_06.ogg",
+    "class/crane/crane_07.ogg"
+   ]
+  },
+  "forklift": {
+   "material": "ENGINE",
+   "loops": [
+    "class/forklift/forklift_00.ogg",
+    "class/forklift/forklift_01.ogg",
+    "class/forklift/forklift_02.ogg",
+    "class/forklift/forklift_03.ogg",
+    "class/forklift/forklift_04.ogg",
+    "class/forklift/forklift_05.ogg",
+    "class/forklift/forklift_06.ogg",
+    "class/forklift/forklift_07.ogg"
+   ]
+  },
+  "ambulance": {
+   "material": "ENGINE",
+   "loops": [
+    "class/ambulance/ambulance_00.ogg",
+    "class/ambulance/ambulance_01.ogg",
+    "class/ambulance/ambulance_02.ogg",
+    "class/ambulance/ambulance_03.ogg",
+    "class/ambulance/ambulance_04.ogg",
+    "class/ambulance/ambulance_05.ogg",
+    "class/ambulance/ambulance_06.ogg",
+    "class/ambulance/ambulance_07.ogg"
+   ]
+  },
+  "police car": {
+   "material": "ENGINE",
+   "loops": [
+    "class/police_car/police_car_00.ogg",
+    "class/police_car/police_car_01.ogg",
+    "class/police_car/police_car_02.ogg",
+    "class/police_car/police_car_03.ogg",
+    "class/police_car/police_car_04.ogg",
+    "class/police_car/police_car_05.ogg",
+    "class/police_car/police_car_06.ogg",
+    "class/police_car/police_car_07.ogg"
+   ]
+  },
+  "fire truck": {
+   "material": "ENGINE",
+   "loops": [
+    "class/fire_truck/fire_truck_00.ogg",
+    "class/fire_truck/fire_truck_01.ogg",
+    "class/fire_truck/fire_truck_02.ogg",
+    "class/fire_truck/fire_truck_03.ogg",
+    "class/fire_truck/fire_truck_04.ogg",
+    "class/fire_truck/fire_truck_05.ogg",
+    "class/fire_truck/fire_truck_06.ogg",
+    "class/fire_truck/fire_truck_07.ogg"
+   ]
+  },
+  "kick scooter": {
+   "material": "METAL",
+   "loops": [
+    "class/kick_scooter/kick_scooter_00.ogg",
+    "class/kick_scooter/kick_scooter_01.ogg",
+    "class/kick_scooter/kick_scooter_02.ogg",
+    "class/kick_scooter/kick_scooter_03.ogg",
+    "class/kick_scooter/kick_scooter_04.ogg",
+    "class/kick_scooter/kick_scooter_05.ogg",
+    "class/kick_scooter/kick_scooter_06.ogg",
+    "class/kick_scooter/kick_scooter_07.ogg"
+   ]
+  },
+  "scooter": {
+   "material": "ENGINE",
+   "loops": [
+    "class/scooter/scooter_00.ogg",
+    "class/scooter/scooter_01.ogg",
+    "class/scooter/scooter_02.ogg",
+    "class/scooter/scooter_03.ogg",
+    "class/scooter/scooter_04.ogg",
+    "class/scooter/scooter_05.ogg",
+    "class/scooter/scooter_06.ogg",
+    "class/scooter/scooter_07.ogg"
+   ]
+  },
+  "puddle": {
+   "material": "WATER",
+   "loops": [
+    "class/puddle/puddle_00.ogg",
+    "class/puddle/puddle_01.ogg",
+    "class/puddle/puddle_02.ogg",
+    "class/puddle/puddle_03.ogg",
+    "class/puddle/puddle_04.ogg",
+    "class/puddle/puddle_05.ogg",
+    "class/puddle/puddle_06.ogg",
+    "class/puddle/puddle_07.ogg"
+   ]
+  },
+  "fire": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/fire/fire_00.ogg",
+    "class/fire/fire_01.ogg",
+    "class/fire/fire_02.ogg",
+    "class/fire/fire_03.ogg",
+    "class/fire/fire_04.ogg",
+    "class/fire/fire_05.ogg",
+    "class/fire/fire_06.ogg",
+    "class/fire/fire_07.ogg"
+   ]
+  },
+  "pigeon": {
+   "material": "BIRD",
+   "loops": [
+    "class/pigeon/pigeon_00.ogg",
+    "class/pigeon/pigeon_01.ogg",
+    "class/pigeon/pigeon_02.ogg",
+    "class/pigeon/pigeon_03.ogg",
+    "class/pigeon/pigeon_04.ogg",
+    "class/pigeon/pigeon_05.ogg",
+    "class/pigeon/pigeon_06.ogg",
+    "class/pigeon/pigeon_07.ogg"
+   ]
+  },
+  "sparrow": {
+   "material": "BIRD",
+   "loops": [
+    "class/sparrow/sparrow_00.ogg",
+    "class/sparrow/sparrow_01.ogg",
+    "class/sparrow/sparrow_02.ogg",
+    "class/sparrow/sparrow_03.ogg",
+    "class/sparrow/sparrow_04.ogg",
+    "class/sparrow/sparrow_05.ogg",
+    "class/sparrow/sparrow_06.ogg",
+    "class/sparrow/sparrow_07.ogg"
+   ]
+  },
+  "crow": {
+   "material": "BIRD",
+   "loops": [
+    "class/crow/crow_00.ogg",
+    "class/crow/crow_01.ogg",
+    "class/crow/crow_02.ogg",
+    "class/crow/crow_03.ogg",
+    "class/crow/crow_04.ogg",
+    "class/crow/crow_05.ogg",
+    "class/crow/crow_06.ogg",
+    "class/crow/crow_07.ogg"
+   ]
+  },
+  "duck": {
+   "material": "BIRD",
+   "loops": [
+    "class/duck/duck_00.ogg",
+    "class/duck/duck_01.ogg",
+    "class/duck/duck_02.ogg",
+    "class/duck/duck_03.ogg",
+    "class/duck/duck_04.ogg",
+    "class/duck/duck_05.ogg",
+    "class/duck/duck_06.ogg",
+    "class/duck/duck_07.ogg"
+   ]
+  },
+  "goose": {
+   "material": "BIRD",
+   "loops": [
+    "class/goose/goose_00.ogg",
+    "class/goose/goose_01.ogg",
+    "class/goose/goose_02.ogg",
+    "class/goose/goose_03.ogg",
+    "class/goose/goose_04.ogg",
+    "class/goose/goose_05.ogg",
+    "class/goose/goose_06.ogg",
+    "class/goose/goose_07.ogg"
+   ]
+  },
+  "chicken": {
+   "material": "BIRD",
+   "loops": [
+    "class/chicken/chicken_00.ogg",
+    "class/chicken/chicken_01.ogg",
+    "class/chicken/chicken_02.ogg",
+    "class/chicken/chicken_03.ogg",
+    "class/chicken/chicken_04.ogg",
+    "class/chicken/chicken_05.ogg",
+    "class/chicken/chicken_06.ogg",
+    "class/chicken/chicken_07.ogg"
+   ]
+  },
+  "parrot": {
+   "material": "BIRD",
+   "loops": [
+    "class/parrot/parrot_00.ogg",
+    "class/parrot/parrot_01.ogg",
+    "class/parrot/parrot_02.ogg",
+    "class/parrot/parrot_03.ogg",
+    "class/parrot/parrot_04.ogg",
+    "class/parrot/parrot_05.ogg"
+   ]
+  },
+  "hamster": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/hamster/hamster_00.ogg",
+    "class/hamster/hamster_01.ogg",
+    "class/hamster/hamster_02.ogg",
+    "class/hamster/hamster_03.ogg",
+    "class/hamster/hamster_04.ogg"
+   ]
+  },
+  "rat": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/rat/rat_00.ogg",
+    "class/rat/rat_01.ogg",
+    "class/rat/rat_02.ogg",
+    "class/rat/rat_03.ogg",
+    "class/rat/rat_04.ogg",
+    "class/rat/rat_05.ogg",
+    "class/rat/rat_06.ogg",
+    "class/rat/rat_07.ogg"
+   ]
+  },
+  "frog": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/frog/frog_00.ogg",
+    "class/frog/frog_01.ogg",
+    "class/frog/frog_02.ogg",
+    "class/frog/frog_03.ogg",
+    "class/frog/frog_04.ogg",
+    "class/frog/frog_05.ogg",
+    "class/frog/frog_06.ogg",
+    "class/frog/frog_07.ogg"
+   ]
+  },
+  "squirrel": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/squirrel/squirrel_00.ogg"
+   ]
+  },
+  "fox": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/fox/fox_00.ogg",
+    "class/fox/fox_01.ogg",
+    "class/fox/fox_02.ogg",
+    "class/fox/fox_03.ogg",
+    "class/fox/fox_04.ogg",
+    "class/fox/fox_05.ogg",
+    "class/fox/fox_06.ogg"
+   ]
+  },
+  "wolf": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/wolf/wolf_00.ogg",
+    "class/wolf/wolf_01.ogg",
+    "class/wolf/wolf_02.ogg",
+    "class/wolf/wolf_03.ogg",
+    "class/wolf/wolf_04.ogg",
+    "class/wolf/wolf_05.ogg",
+    "class/wolf/wolf_06.ogg",
+    "class/wolf/wolf_07.ogg"
+   ]
+  },
+  "monkey": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/monkey/monkey_00.ogg",
+    "class/monkey/monkey_01.ogg",
+    "class/monkey/monkey_02.ogg",
+    "class/monkey/monkey_03.ogg",
+    "class/monkey/monkey_04.ogg",
+    "class/monkey/monkey_05.ogg"
+   ]
+  },
+  "pig": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/pig/pig_00.ogg",
+    "class/pig/pig_01.ogg",
+    "class/pig/pig_02.ogg",
+    "class/pig/pig_03.ogg",
+    "class/pig/pig_04.ogg",
+    "class/pig/pig_05.ogg",
+    "class/pig/pig_06.ogg",
+    "class/pig/pig_07.ogg"
+   ]
+  },
+  "goat": {
+   "material": "ANIMAL",
+   "loops": [
+    "class/goat/goat_00.ogg",
+    "class/goat/goat_01.ogg",
+    "class/goat/goat_02.ogg",
+    "class/goat/goat_03.ogg",
+    "class/goat/goat_04.ogg",
+    "class/goat/goat_05.ogg",
+    "class/goat/goat_06.ogg",
+    "class/goat/goat_07.ogg"
+   ]
+  },
+  "balloon": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/balloon/balloon_00.ogg"
+   ]
+  },
+  "guitar": {
+   "material": "WOOD",
+   "loops": [
+    "class/guitar/guitar_00.ogg",
+    "class/guitar/guitar_01.ogg",
+    "class/guitar/guitar_02.ogg",
+    "class/guitar/guitar_03.ogg",
+    "class/guitar/guitar_04.ogg",
+    "class/guitar/guitar_05.ogg",
+    "class/guitar/guitar_06.ogg",
+    "class/guitar/guitar_07.ogg"
+   ]
+  },
+  "piano": {
+   "material": "WOOD",
+   "loops": [
+    "class/piano/piano_00.ogg",
+    "class/piano/piano_01.ogg",
+    "class/piano/piano_02.ogg",
+    "class/piano/piano_03.ogg",
+    "class/piano/piano_04.ogg",
+    "class/piano/piano_05.ogg",
+    "class/piano/piano_06.ogg",
+    "class/piano/piano_07.ogg"
+   ]
+  },
+  "drum": {
+   "material": "WOOD",
+   "loops": [
+    "class/drum/drum_00.ogg",
+    "class/drum/drum_01.ogg",
+    "class/drum/drum_02.ogg",
+    "class/drum/drum_03.ogg",
+    "class/drum/drum_04.ogg",
+    "class/drum/drum_05.ogg",
+    "class/drum/drum_06.ogg",
+    "class/drum/drum_07.ogg"
+   ]
+  },
+  "soccer ball": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/soccer_ball/soccer_ball_00.ogg",
+    "class/soccer_ball/soccer_ball_01.ogg",
+    "class/soccer_ball/soccer_ball_02.ogg",
+    "class/soccer_ball/soccer_ball_03.ogg",
+    "class/soccer_ball/soccer_ball_04.ogg",
+    "class/soccer_ball/soccer_ball_05.ogg",
+    "class/soccer_ball/soccer_ball_06.ogg",
+    "class/soccer_ball/soccer_ball_07.ogg"
+   ]
+  },
+  "basketball": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/basketball/basketball_00.ogg",
+    "class/basketball/basketball_01.ogg",
+    "class/basketball/basketball_02.ogg",
+    "class/basketball/basketball_03.ogg",
+    "class/basketball/basketball_04.ogg",
+    "class/basketball/basketball_05.ogg",
+    "class/basketball/basketball_06.ogg",
+    "class/basketball/basketball_07.ogg"
+   ]
+  },
+  "tennis ball": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/tennis_ball/tennis_ball_00.ogg",
+    "class/tennis_ball/tennis_ball_01.ogg",
+    "class/tennis_ball/tennis_ball_02.ogg",
+    "class/tennis_ball/tennis_ball_03.ogg",
+    "class/tennis_ball/tennis_ball_04.ogg",
+    "class/tennis_ball/tennis_ball_05.ogg",
+    "class/tennis_ball/tennis_ball_06.ogg",
+    "class/tennis_ball/tennis_ball_07.ogg"
+   ]
+  },
+  "folding chair": {
+   "material": "METAL",
+   "loops": [
+    "class/folding_chair/folding_chair_00.ogg",
+    "class/folding_chair/folding_chair_01.ogg",
+    "class/folding_chair/folding_chair_02.ogg",
+    "class/folding_chair/folding_chair_03.ogg",
+    "class/folding_chair/folding_chair_04.ogg",
+    "class/folding_chair/folding_chair_05.ogg",
+    "class/folding_chair/folding_chair_06.ogg",
+    "class/folding_chair/folding_chair_07.ogg"
+   ]
+  },
+  "step stool": {
+   "material": "WOOD",
+   "loops": [
+    "class/step_stool/step_stool_00.ogg",
+    "class/step_stool/step_stool_01.ogg",
+    "class/step_stool/step_stool_02.ogg",
+    "class/step_stool/step_stool_03.ogg",
+    "class/step_stool/step_stool_04.ogg",
+    "class/step_stool/step_stool_05.ogg",
+    "class/step_stool/step_stool_06.ogg",
+    "class/step_stool/step_stool_07.ogg"
+   ]
+  },
+  "sports ball": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/sports_ball/sports_ball_00.ogg",
+    "class/sports_ball/sports_ball_01.ogg",
+    "class/sports_ball/sports_ball_02.ogg",
+    "class/sports_ball/sports_ball_03.ogg",
+    "class/sports_ball/sports_ball_04.ogg",
+    "class/sports_ball/sports_ball_05.ogg",
+    "class/sports_ball/sports_ball_06.ogg",
+    "class/sports_ball/sports_ball_07.ogg"
+   ]
+  },
+  "computer mouse": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/mouse/mouse_00.ogg",
+    "class/mouse/mouse_01.ogg",
+    "class/mouse/mouse_02.ogg",
+    "class/mouse/mouse_03.ogg",
+    "class/mouse/mouse_04.ogg",
+    "class/mouse/mouse_05.ogg",
+    "class/mouse/mouse_06.ogg",
+    "class/mouse/mouse_07.ogg"
+   ]
+  },
+  "remote control": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/remote/remote_00.ogg",
+    "class/remote/remote_01.ogg",
+    "class/remote/remote_02.ogg",
+    "class/remote/remote_03.ogg",
+    "class/remote/remote_04.ogg",
+    "class/remote/remote_05.ogg",
+    "class/remote/remote_06.ogg",
+    "class/remote/remote_07.ogg"
+   ]
+  },
+  "computer keyboard": {
+   "material": "NEUTRAL",
+   "loops": [
+    "class/keyboard/keyboard_00.ogg",
+    "class/keyboard/keyboard_01.ogg",
+    "class/keyboard/keyboard_02.ogg",
+    "class/keyboard/keyboard_03.ogg",
+    "class/keyboard/keyboard_04.ogg",
+    "class/keyboard/keyboard_05.ogg",
+    "class/keyboard/keyboard_06.ogg",
+    "class/keyboard/keyboard_07.ogg"
+   ]
+  }
+ }
+}

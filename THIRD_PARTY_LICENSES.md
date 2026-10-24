@@ -75,3 +75,19 @@
 ### ssd_mobilenet_v1 quantized (COCO)
 - Source: https://storage.googleapis.com/download.tensorflow.org/models/tflite/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29.zip
 - License: **Apache-2.0** (TensorFlow)
+
+## Sound library (bundled in APK assets, `app/src/main/assets/sounds/`)
+
+Since v1.5.x the per-class sound packs, material loops and one-shot accents are
+curated REAL recordings (not synthesized) sourced from the **FSD50K** dataset:
+
+- Dataset: FSD50K — an open dataset of human-labeled sound events
+  (Eduardo Fonseca, Xavier Favory, Jordi Pons, Frederic Font, Xavier Serra).
+- Source: https://zenodo.org/records/4064022 / https://github.com/DCASE-REPO/FSD50K
+- Paper: Fonseca et al., "FSD50K: An Open Dataset of Human-Labeled Sound Events", IEEE/ACM TASLP 2022.
+- Licensing: every included clip is **CC0 1.0 or CC-BY 4.0/3.0** (no NC, no
+  Sampling+). Per-file attribution (FSD50K id, title, uploader, license) is in
+  `app/src/main/assets/sounds/ATTRIBUTIONS.md`. CC-BY clips remain the property
+  of their respective Freesound.org uploaders, credited there.
+- Processing: clips were quality-filtered (SNR/clipping gates), loopified with
+  tail-head crossfade, loudness-normalized and re-encoded to mono 48 kHz OGG.
