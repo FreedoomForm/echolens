@@ -173,6 +173,4 @@ class SceneTracker(
         tracks.clear()
     }
 
-    @Synchronized
-    fun trackCount(): Int = tracks.size
 }

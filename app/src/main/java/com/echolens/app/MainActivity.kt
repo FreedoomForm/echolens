@@ -23,7 +23,6 @@ import com.echolens.app.service.AudioSceneService
 import com.echolens.app.util.Angles
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.materialswitch.MaterialSwitch
-import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
 
@@ -318,7 +317,8 @@ class MainActivity : AppCompatActivity() {
             tvStatus.text = getString(R.string.status_fmt, headDeg, state.tracks.size, state.fps)
 
             val camState = state.camError ?: "OK"
-            val depthStr = if (!state.depthOn) "выкл" else "${state.depthMs} мс"
+            val depthStr = if (!state.depthOn) getString(R.string.diag_depth_off)
+            else getString(R.string.diag_ms_fmt, state.depthMs)
             tvDiag.text = getString(
                 R.string.diag_fmt, camState, state.frames, Math.round(state.detectorMs), depthStr
             ) + "\n" + getString(

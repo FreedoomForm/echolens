@@ -1,0 +1,11 @@
+# Normalize line endings for text files; never touch binaries.
+* text=auto
+*.ogg binary
+*.wav binary
+*.onnx binary
+*.tflite binary
+*.jks binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.jar binary

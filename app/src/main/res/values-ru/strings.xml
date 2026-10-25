@@ -12,7 +12,7 @@
     <string name="btn_stop">Остановить</string>
     <string name="btn_speak">Что вокруг?</string>
     <string name="btn_test">Проверка звука</string>
-    <string name="status_idle">Не запущено. Закрепите телефон на голове, наденьте стерео-наушники и нажмите «Начать сессию».</string>
+    <string name="status_idle">Не запущено. Закрепите телефон на голове и нажмите «Начать сессию». Наушники не обязательны — по умолчанию звук идёт из динамика телефона.</string>
     <string name="status_fmt">Голова: %1$d° · Объектов: %2$d · %3$.1f кадр/с</string>
     <string name="streams_fmt">Звуковых источников: %1$d</string>
     <string name="no_tracks">Пока ничего не обнаружено</string>
@@ -33,7 +33,16 @@
     <string name="neural_weak_device">Нейро-текстуры: недостаточно оперативной памяти (%1$d ГБ). Процедурные звуки продолжают работать</string>
     <string name="neural_gen">Нейро-текстура: %1$s</string>
     <string name="diag_fmt">Камера: %1$s · Кадры: %2$d · Детекция: %3$d мс · Глубина: %4$s</string>
+    <string name="diag_depth_off">выкл</string>
+    <string name="diag_ms_fmt">%1$d мс</string>
     <string name="diag_lib_fmt">Детектор: %1$s · Библиотека звуков: %2$d сэмплов · Материал-ИИ: %3$s</string>
+    <string name="detector_full">YOLOE-26s@640 · 426 классов</string>
+    <string name="detector_fast">YOLO26-N@480 · COCO</string>
+    <string name="err_detector_fmt">детектор: %1$s</string>
+    <string name="err_load_generic">ошибка загрузки</string>
+    <string name="err_camera_no_frames">камера не выдаёт кадры — закройте другие приложения с камерой</string>
+    <string name="err_camera_fmt">камера: %1$s</string>
+    <string name="err_start_generic">ошибка запуска</string>
     <string name="volume_label">Громкость: %1$d%%</string>
     <string name="cone_label">Ширина конуса внимания: %1$d°</string>
     <string name="streams_label">Максимум звуковых источников: %1$d</string>

@@ -298,7 +298,7 @@ class AudioEngine(
             val az = relAz(t.azWorld, pose)
             val centrality = 0.5f + 0.5f * cos(az)
             val proximity = t.spec.refDistanceM / (t.spec.refDistanceM + t.distance)
-            val score = t.spec.importance * (0.35f + 0.65f * proximity) * (0.3f + 0.7f * centrality)
+            val score = t.spec.importance * (W_PROX_BASE + W_PROX * proximity) * (W_CENTRAL_BASE + W_CENTRAL * centrality)
             cands.add(Candidate(t, az, score, coneGain(az)))
         }
         cands.sortByDescending { it.score }
@@ -410,7 +410,7 @@ class AudioEngine(
         os.pos = 0f
         os.azWorld = t.azWorld
         os.distance = t.distance.coerceIn(0.4f, 10f)
-        os.gain = (0.35f + 0.45f * gain)
+        os.gain = (EVENT_GAIN_BASE + EVENT_GAIN_SCALE * gain)
         os.rate = 0.92f + 0.16f * hash01(t.id * 104729L + 11L)
     }
 
@@ -421,7 +421,7 @@ class AudioEngine(
         val n = samples.size
         if (n < 64) return
         val invSr = 1f / sampleRate
-        val fc = 12000f / (1f + distanceM * distanceM * 0.16f)
+        val fc = airLpf(distanceM)
         val a = (1f - exp(-TWO_PI * fc * invSr)).coerceIn(0.001f, 1f)
         var lp = s.loopLp
         var g = s.loopGainSmooth
@@ -440,7 +440,7 @@ class AudioEngine(
             pos += rate
             if (pos >= n) pos -= n
             lp += a * (v - lp)
-            g += 0.0045f * (gain - g)
+            g += GAIN_SMOOTH * (gain - g)
             lfo += lfoStep
             if (lfo > TWO_PI) lfo -= TWO_PI
             val breath = 1f - lfoDepth + lfoDepth * (0.5f + 0.5f * sin(lfo))
@@ -464,8 +464,8 @@ class AudioEngine(
             val shadowK = if (settings.speakerMode) 7f else 4.5f
             val shadowL = Angles.smoothstep(0f, 1.05f, if (az > 0f) az else 0f)
             val shadowR = Angles.smoothstep(0f, 1.05f, if (az < 0f) -az else 0f)
-            val coefL = lpCoef(12000f / (1f + shadowL * shadowK))
-            val coefR = lpCoef(12000f / (1f + shadowR * shadowK))
+            val coefL = lpCoef(SHADOW_LPF_HZ / (1f + shadowL * shadowK))
+            val coefR = lpCoef(SHADOW_LPF_HZ / (1f + shadowR * shadowK))
             val distGain = (1.5f / os.distance).pow(1.15f).coerceIn(0.15f, 1.6f) * os.gain
             var lpL = 0f
             var lpR = 0f
@@ -541,7 +541,7 @@ class AudioEngine(
         val n = samples.size
         if (n < 2) return
         val invSr = 1f / sampleRate
-        val fc = 12000f / (1f + distanceM * distanceM * 0.16f)
+        val fc = airLpf(distanceM)
         val a = (1f - exp(-TWO_PI * fc * invSr)).coerceIn(0.001f, 1f)
         var lp = s.loopLp
         var g = s.loopGainSmooth
@@ -555,7 +555,7 @@ class AudioEngine(
             pos += 1f
             if (pos >= n) pos -= n
             lp += a * (v - lp)
-            g += 0.0045f * (gain - g)
+            g += GAIN_SMOOTH * (gain - g)
             dest[i] = lp * g * 0.9f
         }
         s.loopPos = pos
@@ -641,8 +641,8 @@ class AudioEngine(
         val shadowL = Angles.smoothstep(0f, 1.05f, if (az > 0f) az else 0f)
         val shadowR = Angles.smoothstep(0f, 1.05f, if (az < 0f) -az else 0f)
         val bright = 1f + 0.3f * sin(elev)
-        s.lpCoefL = lpCoef((12000f / (1f + shadowL * shadowK)) * bright)
-        s.lpCoefR = lpCoef((12000f / (1f + shadowR * shadowK)) * bright)
+        s.lpCoefL = lpCoef((SHADOW_LPF_HZ / (1f + shadowL * shadowK)) * bright)
+        s.lpCoefR = lpCoef((SHADOW_LPF_HZ / (1f + shadowR * shadowK)) * bright)
 
         var wp = s.writePos
         var gainL = s.gainL
@@ -666,8 +666,8 @@ class AudioEngine(
             val sr = readDelay(lineR, wp, dr)
             lpL += coefL * (sl - lpL)
             lpR += coefR * (sr - lpR)
-            gainL += 0.004f * (tl - gainL)
-            gainR += 0.004f * (tr - gainR)
+            gainL += SPATIAL_GAIN_SMOOTH * (tl - gainL)
+            gainR += SPATIAL_GAIN_SMOOTH * (tr - gainR)
             mixL[i] += lpL * gainL
             mixR[i] += lpR * gainR
             wp = (wp + 1) and 63
@@ -690,6 +690,12 @@ class AudioEngine(
 
     private fun lpCoef(fc: Float): Float =
         (1f - exp(-TWO_PI * fc / sampleRate)).coerceIn(0.0005f, 1f)
+
+    /** Air-absorption low-pass corner for a distance in meters:
+     *  ~12 kHz at 1 m, rolling off with distance squared — far objects sound duller,
+     *  which is a real-world cue and helps parallel voices stay distinguishable. */
+    private fun airLpf(distanceM: Float): Float =
+        AIR_LPF_HZ / (1f + distanceM * distanceM * AIR_LPF_K)
 
     private fun softClip(x: Float, knee: Float = 0.9f): Float {
         val a = abs(x)
@@ -757,5 +763,30 @@ class AudioEngine(
         const val HALF_PI = 1.5707964f
         const val QUARTER_PI = 0.7853982f
         const val INV_WOODWORTH = 1f / (1.5707964f + 1f)
+
+        // Perceptual-model constants — rationale in docs/ARCHITECTURE.md,
+        // section "Perceptual model constants".
+
+        /** Voice ranking: importance * (base + slope * proximity) * (base + slope * centrality). */
+        const val W_PROX_BASE = 0.35f
+        const val W_PROX = 0.65f
+        const val W_CENTRAL_BASE = 0.3f
+        const val W_CENTRAL = 0.7f
+
+        /** Air absorption: low-pass corner falls off with distance squared (d in meters). */
+        const val AIR_LPF_HZ = 12000f
+        const val AIR_LPF_K = 0.16f
+
+        /** Contralateral head-shadow low-pass ceiling. */
+        const val SHADOW_LPF_HZ = 12000f
+
+        /** Voice-gain smoothing per 20 ms block (~200 ms time constant) — dezipper without flanging. */
+        const val GAIN_SMOOTH = 0.0045f
+        /** Spatial L/R gain smoothing — slightly slower, keeps pans stable under head rotation. */
+        const val SPATIAL_GAIN_SMOOTH = 0.004f
+
+        /** One-shot accent gain when a new object appears: base + scaled by voice gain. */
+        const val EVENT_GAIN_BASE = 0.35f
+        const val EVENT_GAIN_SCALE = 0.45f
     }
 }

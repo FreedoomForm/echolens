@@ -21,3 +21,7 @@ local.properties
 # NOTE: signing/ci-release.jks IS committed intentionally — it is a public CI-only
 # key for sideloaded APKs. Replace it with your own key for production signing.
 app/src/main/assets/models/*.tflite
+
+# Python tooling
+__pycache__/
+*.pyc

@@ -16,9 +16,12 @@ import concurrent.futures as cf
 import numpy as np
 import soundfile as sf
 
-DATA = "/home/z/my-project/data"
+# Layout is configurable: ECHOLENS_DATA (datasets/staging), ECHOLENS_REPO (this repo).
+# Defaults keep the historic layout relative to the repo checkout.
+_REPO_DEFAULT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPO = os.environ.get("ECHOLENS_REPO", _REPO_DEFAULT)
+DATA = os.environ.get("ECHOLENS_DATA", os.path.join(_REPO_DEFAULT, "..", "data"))
 STAGE = os.path.join(DATA, "stage")
-REPO = "/home/z/my-project/echolens"
 ASSETS = os.path.join(REPO, "app/src/main/assets/sounds")
 HF = "https://huggingface.co/datasets/Fhrozen/FSD50k/resolve/main/clips"
 

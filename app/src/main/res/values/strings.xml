@@ -12,7 +12,7 @@
     <string name="btn_stop">Stop session</string>
     <string name="btn_speak">What is around?</string>
     <string name="btn_test">Sound check</string>
-    <string name="status_idle">Not running. Mount the phone on your head, put on stereo headphones and press Start.</string>
+    <string name="status_idle">Not running. Mount the phone on your head and press Start. Headphones are optional — by default the sound comes from the phone speaker.</string>
     <string name="status_fmt">Head: %1$d° · Objects: %2$d · %3$.1f fps</string>
     <string name="streams_fmt">Sound sources: %1$d</string>
     <string name="no_tracks">Nothing detected yet</string>
@@ -33,7 +33,16 @@
     <string name="neural_weak_device">Neural textures: device has not enough RAM (%1$d GB). Procedural sounds stay active</string>
     <string name="neural_gen">Neural texture: %1$s</string>
     <string name="diag_fmt">Camera: %1$s · Frames: %2$d · Detection: %3$d ms · Depth: %4$s</string>
+    <string name="diag_depth_off">off</string>
+    <string name="diag_ms_fmt">%1$d ms</string>
     <string name="diag_lib_fmt">Detector: %1$s · Sound library: %2$d samples · Material AI: %3$s</string>
+    <string name="detector_full">YOLOE-26s@640 · 426 classes</string>
+    <string name="detector_fast">YOLO26-N@480 · COCO</string>
+    <string name="err_detector_fmt">detector: %1$s</string>
+    <string name="err_load_generic">failed to load</string>
+    <string name="err_camera_no_frames">camera produces no frames — close other camera apps</string>
+    <string name="err_camera_fmt">camera: %1$s</string>
+    <string name="err_start_generic">failed to start</string>
     <string name="volume_label">Volume: %1$d%%</string>
     <string name="cone_label">Attention cone width: %1$d°</string>
     <string name="streams_label">Max simultaneous sound sources: %1$d</string>

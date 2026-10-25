@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import fsd_pipeline as fp                     # noqa: E402
 import fsd_build_candidates as F              # noqa: E402
 
-DATA = "/home/z/my-project/data"
+DATA = fp.DATA  # inherits ECHOLENS_DATA from fsd_pipeline
 STAGE_EV = os.path.join(DATA, "stage_events")
 WORKERS = 10
 PER_MAT = 10

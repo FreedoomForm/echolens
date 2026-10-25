@@ -201,13 +201,13 @@ class AudioSceneService : LifecycleService() {
         try {
             detector = YoloDetector.create(this, accurate)
             detectorModelName = when {
-                accurate -> "YOLOE-26s@640 · 426 классов"
-                else -> "YOLO26-N@480 · COCO"
+                accurate -> getString(R.string.detector_full)
+                else -> getString(R.string.detector_fast)
             }
             camError = null
         } catch (e: Exception) {
             Log.e(TAG, "Detector load failed", e)
-            camError = "детектор: " + (e.message ?: "ошибка загрузки")
+            camError = getString(R.string.err_detector_fmt, e.message ?: getString(R.string.err_load_generic))
         }
         depthEstimator = try {
             DepthEstimator(this)
@@ -294,13 +294,13 @@ class AudioSceneService : LifecycleService() {
                             runCatching { cameraProvider?.unbindAll() }
                             startCamera()
                         } else {
-                            camError = "камера не выдаёт кадры — закройте другие приложения с камерой"
+                            camError = getString(R.string.err_camera_no_frames)
                         }
                     }
                 }, 3500)
             } catch (e: Exception) {
                 Log.e(TAG, "Camera init failed", e)
-                camError = "камера: " + (e.message ?: "ошибка запуска")
+                camError = getString(R.string.err_camera_fmt, e.message ?: getString(R.string.err_start_generic))
                 stopSession()
                 stopSelf()
             }

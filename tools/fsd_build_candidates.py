@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build candidate clip lists for EchoLens class/material sound packs from FSD50K.
 
-Inputs (in /home/z/my-project/data):
+Inputs (in ECHOLENS_DATA, default ../data next to the repo):
   dev.csv, eval.csv               - FSD50K labels (fname,labels,mids[,split])
   eval_clips_info.json            - per-clip title/tags/license/uploader (eval)
   dev_clips_info.json             - same for dev
@@ -14,7 +14,8 @@ Output: candidates.json { target: {"kind": "class"|"material", "material": str,
 import csv, json, os
 from collections import defaultdict
 
-DATA = "/home/z/my-project/data"
+_REPO_DEFAULT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA = os.environ.get("ECHOLENS_DATA", os.path.join(_REPO_DEFAULT, "..", "data"))
 OUT = os.path.join(DATA, "candidates.json")
 MAX_PER_TARGET = 26          # candidates to download per target
 MAX_CC0, MAX_CCBY = 18, 10   # priority split

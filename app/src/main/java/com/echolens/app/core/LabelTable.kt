@@ -3,8 +3,10 @@ package com.echolens.app.core
 /**
  * Generated class table for the YOLOE-26s detector (EchoLens vocabulary, 426 classes).
  *
- * DO NOT EDIT BY HAND — regenerate with scripts/vocab_build.py + scripts/gen_label_table.py.
- * Index in the arrays == class id emitted by yoloe26s.onnx (order baked at export).
+ * DO NOT EDIT BY HAND. The table was exported once from the YOLOE-26s vocabulary
+ * (order baked into yoloe26s.onnx at ONNX export time) and hand-annotated with
+ * the sound material, typical height and attention importance per class.
+ * Regeneration background: docs/DEVELOPMENT.md, section "Class table".
  *
  * The first 80 entries are COCO-80 in the canonical Ultralytics order, so the
  * yolo26n fallback detector shares the same spoken names and sound materials.

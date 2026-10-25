@@ -14,8 +14,8 @@ android {
         applicationId = "com.echolens.app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 8
-        versionName = "1.6.0"
+        versionCode = 9
+        versionName = "1.7.0"
 
         ndk {
             abiFilters += listOf("arm64-v8a", "x86_64")
@@ -88,4 +88,7 @@ dependencies {
 
     // LiteRT (TensorFlow Lite) — Stable Audio Open Small on-device texture generation
     implementation("org.tensorflow:tensorflow-lite:2.14.0")
+
+    // JVM unit tests (pure-Kotlin modules: Angles, LabelTable, RuText)
+    testImplementation("junit:junit:4.13.2")
 }

@@ -29,9 +29,6 @@ class DepthEstimator(
     private val net = FloatArray(3 * netSize * netSize)
     private var map: Array<FloatArray>? = null
 
-    @Volatile var lastRunMs = 0L
-        private set
-
     @Volatile var lastMs = 0f
         private set
 
@@ -69,7 +66,6 @@ class DepthEstimator(
             }
         }
         lastMs = (System.currentTimeMillis() - t0).toFloat()
-        lastRunMs = System.currentTimeMillis()
     }
 
     /** Median relative depth in a 3×3 patch at normalized image coords; higher = closer. */

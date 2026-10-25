@@ -53,12 +53,6 @@ class SampleLibrary(private val context: Context) {
         private const val MANIFEST = "sounds/manifest.json"
         private const val TARGET_SR = 48000
         private const val MAX_CACHED = 48 // ~48 x 3 s x 48 kHz x float ≈ 27 MB
-
-        fun isAvailable(context: Context): Boolean = try {
-            context.assets.open(MANIFEST).use { it.read() } >= 0
-        } catch (_: Exception) {
-            false
-        }
     }
 
     init {

@@ -154,14 +154,6 @@ object NeuralModels {
         return null
     }
 
-    fun freeCacheDiskBytes(context: Context): Long {
-        val dir = context.filesDir
-        return try {
-            StatFs(dir.path).availableBytes
-        } catch (_: Exception) {
-            Long.MAX_VALUE
-        }
-    }
 
     private fun find(dir: File, name: String): File? {
         val f = File(dir, name)

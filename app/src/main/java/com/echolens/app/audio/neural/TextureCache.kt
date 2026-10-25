@@ -69,36 +69,26 @@ class TextureCache(private val context: Context) {
         }
     }
 
-    /** Drops the in-RAM copy if the cache is above the budget. */
+    /** Drops the in-RAM copies of the OLDEST entries until 75% of the budget is free.
+     *  On-disk files stay — only the RAM copy is released, so a later [find]
+     *  transparently re-reads the loop from disk. */
     private fun remember(k: String, e: Entry) {
         mem[k]?.let { old -> memBytes -= (old.samples?.size ?: 0) * 4L }
         mem[k] = e
         memBytes += (e.samples?.size ?: 0) * 4L
         if (memBytes > MAX_MEM_BYTES) {
-            // Evict everything not currently remembered as newest-first.
-            val it = mem.entries.iterator()
-            while (memBytes > MAX_MEM_BYTES * 3 / 4 && it.hasNext()) {
-                val en = it.next()
+            val byAge = mem.entries
+                .filter { it.value.samples != null }
+                .sortedBy { it.value.createdMs }
+                .iterator()
+            while (memBytes > MAX_MEM_BYTES * 3 / 4 && byAge.hasNext()) {
+                val en = byAge.next()
+                val bytes = (en.value.samples?.size ?: 0) * 4L
                 en.value.samples = null
-                memBytes -= 0 // samples dropped; bytes re-accounted below
-                it.remove()
+                memBytes -= bytes
             }
-            memBytes = mem.values.sumOf { (it.samples?.size ?: 0) * 4L }
         }
     }
-
-    fun clear() {
-        mem.clear()
-        memBytes = 0
-        dir.listFiles()?.forEach { it.delete() }
-    }
-
-    fun cachedMaterials(): List<Material> {
-        val names = dir.listFiles()?.filter { it.name.endsWith(EXT) }?.map { it.name } ?: emptyList()
-        return Material.values().filter { m -> names.any { it.startsWith(m.name.lowercase()) } }
-    }
-
-    fun cacheBytes(): Long = dir.listFiles()?.sumOf { it.length() } ?: 0L
 
     private fun readPcm(f: File): FloatArray {
         val size = (f.length() / 4L).toInt()

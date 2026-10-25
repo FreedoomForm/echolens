@@ -19,6 +19,12 @@ import java.util.concurrent.atomic.AtomicBoolean
  * procedural fallback and crossfades to the neural loop as soon as the
  * listener fires. Nothing is ever downloaded — everything is generated
  * on this phone and cached.
+ *
+ * Lifecycle: the singleton worker thread lives for the whole process and is
+ * intentionally NOT stopped between sessions — idle polling costs one 400 ms
+ * wake-up while a session is off, and re-creating the thread (plus ONNX
+ * sessions) per session would be far more expensive. [shutdownProvisioner]
+ * exists for tests and process teardown, not for session stop.
  */
 class NeuralTextureProvisioner private constructor(
     private val context: Context,
